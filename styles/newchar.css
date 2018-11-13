@@ -1,0 +1,539 @@
+/* New Character CSS Stylesheet == "The Nine Lands" Website. */
+/* It defines the styles for the elements inside the [newchar.php] file.
+*/
+
+
+
+/* ================================================================================ */
+/* General Properties																																*/
+/* ================================================================================ */
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	overflow: hidden;
+}
+
+h5 {
+	margin: 0;
+
+	padding: 20px;
+
+	font-size: 2em;
+  text-shadow: 3px black;
+  text-shadow: 2px 2px 2px black;
+}
+
+
+
+/* ================================================================================ */
+/* General MainBox Properties																												*/
+/* ================================================================================ */
+
+/* ========================== New Charachter Sheet Properties ==================== */
+/* ================================================================================= */
+
+
+/* ========================== General Elements Properties ========================== */
+
+.mainbox { /* The container of the Charachter boxes */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 80%;
+	max-width: 870px;
+
+	height: 80%;
+	max-height: 650px;
+
+	margin: 0 auto;
+	padding: 3px 10px;
+
+	border: 15px solid transparent;
+	border-image: url(../images/medieval-border.png) 20% round;
+	box-shadow: 10px 10px 18px 10px rgba(0,0,0,0.6);
+
+	background-image: url("../images/darkmetal-bck.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+
+	overflow: hidden;
+}
+
+.pagetitle {
+	display: flex;
+	justify-content: space-between;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.titlebox {
+	flex-grow: 2;
+}
+
+.sideimgbox {
+	display: flex;
+	align-items: center;
+	flex-grow: 0;
+
+	margin: 10px;
+}
+
+.sideimg {
+	width: auto;
+}
+
+.mainscreen {
+	display: flex;
+	justify-content: center;
+	flex-grow: 2;
+
+}
+
+.subscreen {
+	flex-grow: 0;
+
+	margin: 10px;
+
+/*	border: 1px white solid; */
+}
+
+.col1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-shrink: 0;
+
+	width: 200px;
+
+	overflow-y: auto;
+}
+
+.listtitle {
+	flex-shrink: 0;
+	flex-grow: 0;
+
+	margin: 3px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 10px;
+
+	background-image: url("../images/darkmetal-bck.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+
+	font-size: 1.2em;
+	font-weight: normal;
+	color: silver;
+	text-shadow: 1px 1px 1px black;
+}
+
+.listitem {
+	padding: 3px 10px;
+
+	font-family: "Roman", serif;
+	font-size: 1.2em;
+}
+
+.listitem:hover {
+	background-color: silver;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.listitem:focus {
+	color: darkgoldenrod;
+}
+
+.subbtns {
+	flex-shrink: 0;
+	flex-grow: 1;
+
+	margin: 3px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 10px;
+
+	background-image: url("../images/darkmetal-bck.png");
+
+	font-size: 1.2em;
+	font-weight: normal;
+	color: silver;
+	text-shadow: 1px 1px 1px black;
+}
+
+.algcol {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	min-width: 33%;
+	width: 37.5em;
+	max-width: 50%;
+
+}
+
+.algbtn {
+	width: 30%;
+}
+
+.col2 {
+	flex-grow: 1;
+
+	border: 10px solid transparent;
+	border-image: url(../images/greymedieval-border.png) 20% round;
+
+	padding: 10px;
+
+	background-color: black;
+
+	overflow-y: auto;
+}
+
+.col3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+
+	width: 200px;
+
+	overflow-y: hidden;
+}
+
+.avatarbox {
+	display: flex;
+	justify-content: center;
+	flex-grow: 2;
+
+	margin: 3px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 20px;
+
+	background-image: url("../images/darkmetal-bck.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+
+	overflow-y: hidden;
+}
+
+.avatarbox div {
+	width: 75%;
+	max-height: 100%;
+}
+
+.avatarbox img {
+	display: inline-block;
+
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+
+	box-shadow: 2px 2px 4px 2px rgba(255,255,255,0.4), -2px -2px 4px 2px rgba(0,0,0,0.6);
+}
+
+.rightbtns {
+	flex-grow: 0;
+}
+
+.campcol, .racecol, .classcol, .alignmentcol, .abilitiescol {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-grow: 1;
+
+	overflow: hidden;
+}
+
+.banner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	height: 8em;
+
+	border: 10px solid transparent;
+	border-bottom: none;
+	border-image: url(../images/greymedieval-border.png) 20% round;
+
+	overflow: hidden;
+}
+
+.bannerbox {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+
+	height: 100%;
+	width: 100%;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	padding: 10px;
+
+	font-family: 'Roman', serif;
+	font-size: 3em;
+	color: darkgoldenrod;
+	text-shadow: 5px 5px 5px black;
+}
+
+.campruleset {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	margin-top: 15px;
+
+	padding: 10px;
+
+	overflow: hidden;
+}
+
+.campdesc, .racedesc, .classdesc {
+	flex-grow: 1;
+
+	border: 10px solid transparent;
+	border-top: none;
+	border-image: url(../images/greymedieval-border.png) 20% round;
+
+	padding: 10px;
+
+	background-color: black;
+
+	text-align: justify;
+
+	overflow-y: auto;
+}
+
+.pagefooter {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-shrink: 0;
+
+	margin: 10px;
+
+}
+
+.pagebuttons {
+	display: flex;
+	flex-grow: 0;
+
+	margin: 0;
+}
+
+.mainbtns {
+	width: 15%;
+	min-width: 200px;
+
+	margin: 2px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 3px 10px;
+
+	background-image: url('../images/lightmetal-bck.png');
+	background-color: rgba(0,0,0,0.0);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	font-size: 1.2em;
+	color: darkgoldenrod;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px black;
+}
+
+a.mainbtns {
+	display: block;
+
+	font-family: "Sherwood", serif;
+	text-align: center;
+	text-decoration: none;
+
+	cursor: default;
+}
+
+a.mainbtns:hover {
+	opacity: 0.8;
+}
+
+.redbtn {
+	background-image: url('../images/redmetal-bck.png');
+}
+
+.bluebtn {
+	background-image: url('../images/bluemetal-bck.png');
+}
+
+/* ========================== End of the General Elements Properties =============== */
+
+/* ========================== Modal Boxes Properties =============================== */
+
+.newcharbox {
+
+	width: 80%;
+	max-width: 870px;
+
+	height: 80%;
+	max-height: 650px;
+
+	border-image: url(../images/greymedieval-border.png) 20% round;
+
+	background-image: url("../images/bluemetal-bck.png");
+}
+
+.genderbox {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+
+	width: 100%;
+}
+
+#imgMale {
+	background-image: url('../images/webelements/buttons/Male_symbol.png'), url('../images/bluemetal-bck.png');
+}
+
+#imgFemale {
+	background-image: url('../images/webelements/buttons/Female_symbol.png'), url('../images/bluemetal-bck.png');
+}
+
+.genderbtn {
+	flex-shrink: 1;
+
+	width: 45%;
+
+	background-size: contain, cover;
+	background-position: center, center;
+	background-repeat: no-repeat, no-repeat;
+
+}
+
+#newcharrace, #newcharclass {
+	width: 75%;
+	height: 75%;
+}
+
+/* ========================== End of the Modal Boxes Properties ==================== */
+
+/* ========================== End of Charachter Sheet Properties =================== */
+/* ================================================================================= */
+
+.tabmainbox {
+	height: calc(100% - 30px);
+	width: 100%;
+	overflow-y: auto;
+}
+
+.stpbtnbox {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: 15px auto;
+}
+
+.stpbtn {
+	height: 30px;
+	width: 80px;
+}
+
+.rollscreen {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+
+	margin: 10px;
+}
+
+.rollcol {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 0;
+}
+
+.rollabildiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+.rollabildiv > label {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+#rolltilediv {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+.rollline {
+	display: flex;
+}
+
+.rollbox {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+
+	height: 2em;
+	width: 2.5em;
+
+	font-family: "Sherwood", fantasy;
+}
+
+.rolltile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+
+	border-radius: 5px;
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	background-image: url('../images/lightmetal-bck.png');
+	background-color: rgba(0,0,0,0.0);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	font-family: "Sherwood", fantasy;
+
+	cursor: move;
+}
+
+.rolltile.over {
+	filter: brightness(150%);
+}
+
+.rollbtn {
+	flex-grow: 0;
+
+	width: 2.5em;
+	height: 2.5em;
+
+	background-image: url('../images/webelements/buttons/btn-dice.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
