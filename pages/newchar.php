@@ -162,7 +162,7 @@
 			<div class="pagefooter">
 				<div class="pagebuttons embossed">
 					<a class="mainbtns" href="charsheet.php">Back</a>
-					<a class="mainbtns redbtn" href="#">Start Over</a>
+					<a class="mainbtns redbtn" href="newchar.php">Start Over</a>
 
 					<form action="charsheet.php">
 
@@ -455,7 +455,7 @@
 					<div class="subscreen abilitiescol" id="abilities0">
 
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
+							<div class="bannerbox" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
 								<span>Ability Rolls</span>
 							</div>
 						</div>

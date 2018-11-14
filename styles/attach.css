@@ -44,6 +44,10 @@
   text-shadow: 1px 1px 1px black;
 }
 
+.roman {
+	font-family: "Roman", fantasy;
+}
+
 .selected {
 	color: darkgoldenrod;
 }

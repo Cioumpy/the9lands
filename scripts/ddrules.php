@@ -8,6 +8,7 @@
 		public $classes = array();
 		public $classesdesc = array();
 		public $alignments = array();
+		public $skills = array();
 
 		public function __construct($gm, $activeConn) {
 			$this->game = $gm;
@@ -18,7 +19,7 @@
 			$sql = "SELECT * FROM t9lddrules.racelist;";
 			$this->races = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT id, class, shtname, hd, maxlvl, bab, fort, refl, will FROM t9lddrules.baseclasslist;";
+			$sql = "SELECT id, class, shtname, hd, maxlvl, bab, fort, refl, will, skillpoints FROM t9lddrules.baseclasslist;";
 			$this->classes = getDBTable($sql, $activeConn);
 
 			$sql = "SELECT id, class, shtdesc, manual, page, image, intro, Adventures, Characteristics, Alignment, Religion, Background, Races, Other_Classes, Role FROM t9lddrules.baseclasslist;";
@@ -26,6 +27,9 @@
 
 			$sql = "SELECT * FROM t9lddrules.alignments;";
 			$this->alignments = getDBTable($sql, $activeConn);
+
+			$sql = "SELECT * FROM t9lddrules.skills;";
+			$this->skills = getDBTable($sql, $activeConn);
 		}
 
 		public function get_ability() {

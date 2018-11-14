@@ -26,6 +26,24 @@ h5 {
   text-shadow: 2px 2px 2px black;
 }
 
+th {
+	padding: 5px;
+
+	border: 1px solid white;
+
+	background-color: rgba(127,127,127,0.8);
+}
+
+td {
+	padding: 5px;
+
+	border: 1px solid white;
+}
+
+.cellcenter {
+	text-align: center;
+}
+
 
 
 /* ================================================================================ */

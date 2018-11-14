@@ -67,6 +67,9 @@ function setRace(myId, raceValue, stepNum) {
 	for (var i = 1; i <= 6; i++) {
 		showIdAmongClasses(myId + 'ability' + i, 'ability' + i, 'race');
 	}
+	if (document.getElementById('roll1').innerHTML != "") {
+		setAbilTotals();
+	}
 	nxtStepReady(stepNum);
 
 	setInputValue('race', raceValue);
