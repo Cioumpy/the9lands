@@ -1,7 +1,7 @@
 <div class="subscreen classcol hidden" id="class<?php echo $rc; ?>">
 	<div class="banner">
-		<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
-			<span><?php echo $ddRules->classes[$rc]['class']; ?></span>
+		<div class="bannerbox" style="background-image: url('../images/webelements/banners/classes/<?php echo $ddRules->classesdesc[$rc]['image']; ?>'), url('../images/webelements/backgrounds/background-map.jpg')">
+			<span class="bannertitle"><?php echo $ddRules->classes[$rc]['class']; ?></span>
 		</div>
 	</div>
 	<div class="classdesc">
@@ -11,32 +11,85 @@
 		<p><span class="roman" style="font-weight: bold; font-size: 1.3em">Class Skills</span><br>
 			The <?php echo $ddRules->classes[$rc]['class']; ?>&#39;s class skills (and the key ability for each skill) are
 			<?php
+
+				/* To insert the commas and the "and", we need to get the last skill
+				in our class list. */
 				$lastSkill = null;
-				for ($i = count($ddRules->skills); $i >= 1 ; $i--) {
-					if ($ddRules->skills[$i][$ddRules->classes[$rc]['shtname']] != 0 and $lastSkill == null) {
-							$lastSkill = $ddRules->skills[$i]['skill'];
+				foreach ($ddRules->skills as $key => $value) {
+					if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
+						$lastSkill = $key;
 					}
 				}
+
 				$x = 0;
-				for ($i = 1; $i <= count($ddRules->skills); $i++) {
-					if ($ddRules->skills[$i][$ddRules->classes[$rc]['shtname']] != 0) {
+				$craft = true;
+				$perf = true;
+				$prof = true;
+				foreach ($ddRules->skills as $key => $value) {
+					if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
 						$x++;
-						if ($x > 1) {
-							if ($ddRules->skills[$i]['skill'] == $lastSkill) {
+						if (strpos($ddRules->skills[$key]['skill'], "Craft") === 0) {
+							if ($craft) {
+								if ($key == $lastSkill) {
+									echo " and ";
+								} elseif ($x > 1) {
+									echo ", ";
+								}
+								echo "Craft";
+								for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+									if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+										echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+									}
+								}
+								$craft = false;
+							}
+						} elseif (strpos($ddRules->skills[$key]['skill'], "Perform") === 0) {
+							if ($perf) {
+								if ($key == $lastSkill) {
+									echo " and ";
+								} elseif ($x > 1) {
+									echo ", ";
+								}
+								echo "Perform";
+								for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+									if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+										echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+									}
+								}
+								$perf = false;
+							}
+						} elseif (strpos($ddRules->skills[$key]['skill'], "Profession") === 0) {
+							if ($prof) {
+								if ($key == $lastSkill) {
+									echo " and ";
+								} elseif ($x > 1) {
+									echo ", ";
+								}
+								echo "Profession";
+								for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+									if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+										echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+									}
+								}
+								$prof = false;
+							}
+						} else {
+							if ($key == $lastSkill) {
 								echo " and ";
-							} else {
+							} elseif ($x > 1) {
 								echo ", ";
 							}
-						}
-						echo $ddRules->skills[$i]['skill'];
-						for ($y = 1; $y <= count($ddRules->abilities); $y++) {
-							if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$i]['ability']) {
-								echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+							echo $ddRules->classes[$rc]['classskills'][$key]['skill'];
+							for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+								if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+									echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+								}
 							}
 						}
 					}
 				}
 				echo ".";
+
 			?>
 			<br><b>Skill Points per level:</b> <?php echo $ddRules->classes[$rc]['skillpoints']; ?> + Intelligence modifier.<br>
 			<b>At first level:</b> (<?php echo $ddRules->classes[$rc]['skillpoints']; ?> + Intelligence modifier) &times; 4.</p>

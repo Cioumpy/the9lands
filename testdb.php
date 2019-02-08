@@ -3,9 +3,8 @@
 	include "scripts/session.php";    	// Checks if a member section is active
 	include "scripts/functions.php";		// Enables the website´s general PHP functions
 
-//	include "scripts/charrules.php";  	// Get the rules regarding characters
-	include "scripts/invites.php";  	// Get the rules regarding invites
-	include "scripts/ddrules.php";
+	include "scripts/invites.php";  		// Get the rules regarding invites
+	include "scripts/ddrules.php";			// Get the rules of the game
 	include "scripts/character.php";  	// Get the rules regarding characters
 ?>
 
@@ -15,9 +14,16 @@
 
 	<head>
 		<meta charset="utf-8">
+
 		<title>The Nine Lands Online Tabletop - D&D 3.5</title>
+
 		<link href="styles/style.css" rel="stylesheet" type="text/css">
 		<link href="styles/attach.css" rel="stylesheet" type="text/css">
+
+		<script>
+			var gameRules = JSON.parse('<?php echo json_encode($ddRules); ?>');
+			var invitesList = JSON.parse('<?php echo json_encode($invites); ?>');
+		</script>
 	</head>
 
 	<body>
@@ -45,9 +51,20 @@
 				print_r($myAbilities);
 				echo "<br><br>";
 
+				echo '<h6>The $character[1] Object</h6><br>';
 				print_r($character[1]);
 				echo "<br><br>";
+				echo '<h6>The $ddRules Object</h6><br>';
 				print_r($ddRules);
+				echo "<br><br>";
+
+				echo '<h6>The gameRules JS object (mirror of $ddRules)</h6><br>';
+				print_r(json_encode($ddRules, JSON_PRETTY_PRINT));
+				echo "<br><br>";
+
+				echo '<h6>The invitesList JS object (mirror of $invites)</h6><br>';
+				print_r(json_encode($invites, JSON_PRETTY_PRINT));
+				echo "<br><br>";
 
 				$testvar1 = 1 / 3;
 				$testvar2 = $testvar1 * 3;
@@ -305,6 +322,9 @@
 	  </div>
 
 	  <script src="scripts/main.js"></script>
+		<script>
+			document.getElementById('dndskills').innerHTML = Object.keys(gameSkills).length;
+		</script>
 	</body>
 
 </html>

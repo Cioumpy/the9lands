@@ -1,7 +1,7 @@
 <div class="subscreen campcol hidden" id="camp<?php echo $campid; ?>">
 	<div class="banner">
-		<div class="bannerbox" style="background-image: url('../images/campaigns/<?php echo $campaigns[$campid]['banner']; ?>')">
-			<span><?php echo $campaigns[$campid]['campaign']; ?></span>
+		<div class="bannerbox campbanner" style="background-image: url('../images/webelements/banners/campaigns/<?php echo $campaigns[$campid]['banner']; ?>')">
+			<span class="bannertitle"><?php echo $campaigns[$campid]['campaign']; ?></span>
 		</div>
 	</div>
 	<div class="campdesc">

@@ -23,8 +23,7 @@
 */
 function showIdAmongClasses(idValue, classValue, prefixValue) { // For example: (1, 'sheet', 'char')
 	var yDivs = document.getElementsByClassName(prefixValue + classValue); // Example: ('char' + 'sheet') => ('charsheet')
-	var yDivsRow;
-	for (yDivsRow = 0; yDivsRow < yDivs.length; yDivsRow++) {
+	for (var yDivsRow = 0; yDivsRow < yDivs.length; yDivsRow++) {
 		var yDiv = yDivs[yDivsRow];
 		if (!yDiv.classList.contains('hidden')) {
 			yDiv.classList.add('hidden');
@@ -39,7 +38,6 @@ function showIdAmongClasses(idValue, classValue, prefixValue) { // For example: 
 */
 function highlightListItem(itemId, listClass) {
 	var allItems = document.getElementsByClassName(listClass);
-	var itemsRow;
 	for (var itemsRow = 0; itemsRow < allItems.length; itemsRow++) {
 		var actualItem = allItems[itemsRow];
 		if (actualItem.classList.contains('selected')) {
@@ -126,7 +124,7 @@ function showTab(tabnumber) {
 /* These functions control the behaviour of the modal boxes */
 
 // Set the "activeModal" variable to contain the active modal's id.
-var activeModal;
+var activeModal = null;
 
 // Get the modal, set it as active and show it
 function showModal(myModal, myTab, allTabs, myPrefix) {
@@ -138,6 +136,7 @@ function showModal(myModal, myTab, allTabs, myPrefix) {
 // Get the modal and close it
 function closeModal() {
 	activeModal.classList.add('hidden');
+	activeModal = null;
 }
 
 

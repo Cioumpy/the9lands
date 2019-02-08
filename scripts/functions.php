@@ -1,5 +1,5 @@
 <?php
-	// Generic Functions script file - The Nine Lands Website
+	// Generic PHP Functions script file - The Nine Lands Website
 
 	/* 	Here below are all the functions related to the database.
 	 		Remember to call them only under an active connection!

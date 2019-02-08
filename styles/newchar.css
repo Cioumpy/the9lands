@@ -51,10 +51,14 @@ td {
 /* ================================================================================ */
 
 /* ========================== New Charachter Sheet Properties ==================== */
-/* ================================================================================= */
+/* =============================================================================== */
 
 
 /* ========================== General Elements Properties ========================== */
+
+.persp3d {
+	perspective: 1600px;
+}
 
 .mainbox { /* The container of the Charachter boxes */
 	display: flex;
@@ -151,19 +155,19 @@ td {
 	text-shadow: 1px 1px 1px black;
 }
 
-.listitem {
+.camplist, .racelist, .classlist {
 	padding: 3px 10px;
 
 	font-family: "Roman", serif;
 	font-size: 1.2em;
 }
 
-.listitem:hover {
+.camplist:hover, .racelist:hover, .classlist:hover {
 	background-color: silver;
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-.listitem:focus {
+.camplist:focus, .racelist:focus, .classlist:focus {
 	color: darkgoldenrod;
 }
 
@@ -262,7 +266,7 @@ td {
 	flex-grow: 0;
 }
 
-.campcol, .racecol, .classcol, .alignmentcol, .abilitiescol {
+.campcol, .racecol, .classcol, .alignmentcol, .abilitiescol, .skillscol {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -290,21 +294,31 @@ td {
 
 .bannerbox {
 	display: flex;
-	justify-content: center;
 	align-items: flex-end;
 
 	height: 100%;
 	width: 100%;
 
-	background-repeat: no-repeat;
-	background-size: cover;
-
-	padding: 10px;
+	background-color: wheat;
+	background-repeat: no-repeat, no-repeat;
+	background-position: right 0.8em center, center;
+	background-size: contain, cover;
 
 	font-family: 'Roman', serif;
 	font-size: 3em;
 	color: darkgoldenrod;
-	text-shadow: 5px 5px 5px black;
+	text-shadow: 2px 3px 4px black;
+}
+
+.bannertitle {
+	margin: 0.1em 0.8em;
+}
+
+.campbanner, .abilbanner {
+	justify-content: center;
+
+	background-size: cover;
+	background-position: center;
 }
 
 .campruleset {
@@ -413,6 +427,12 @@ a.mainbtns:hover {
 	border-image: url(../images/greymedieval-border.png) 20% round;
 
 	background-image: url("../images/bluemetal-bck.png");
+
+	animation-name: opensection;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+
 }
 
 .genderbox {
@@ -554,4 +574,197 @@ a.mainbtns:hover {
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.skillscreen {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-shrink: 0;
+
+	max-width: 50%;
+}
+
+.skilllist {
+	display: flex;
+	flex-direction: column;
+
+	flex-grow: 2;
+
+	overflow-y: auto;
+}
+
+.skillrow {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+
+	flex-shrink: 0;
+
+	color: silver;
+}
+
+.skillrow:hover {
+	background-color: silver;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.skillrow:focus {
+	background-color: darkgoldenrod;
+	background-color: rgba(184, 134, 11, 0.2);
+}
+
+.skillname {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	flex-shrink: 1;
+	flex-grow: 1;
+
+	font-size: 1em;
+}
+
+.statsholder {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-family: "Roman", serif;
+}
+
+.skillkey {
+	width: 2.5em;
+
+	text-align: center;
+}
+
+.skillstat {
+	display: flex;
+
+	width: 2em;
+
+	height: 1.5em;
+}
+
+.skillbar {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-shrink: 0;
+	flex-grow: 0;
+
+	margin: 3px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	background-image: url("../images/bluemetal-bck.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+
+	font-family: "Roman", fantasy;
+	font-size: 0.9em;
+	font-weight: normal;
+	color: silver;
+	text-shadow: 1px 1px 1px black;
+}
+
+.skilltotals, .skillranks {
+	text-shadow: 2px 2px 1px black;
+}
+
+.classskill {
+	color: peru;
+	font-weight: bold;
+}
+
+.modranks {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	padding: 10px;
+}
+
+.skilldescrank {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin: 0 10px;
+
+	width: 40px;
+	height: 30px;
+}
+
+#skillbtns {
+	display: flex;
+}
+
+.modrankbtn {
+	margin: 0 2px;
+	width: 30px;
+	height: 30px;
+
+	background-size: contain, cover;
+	background-position: center, center;
+	background-repeat: no-repeat, no-repeat;
+}
+
+
+
+/* ================================================================================ */
+/* Attachments																																			*/
+/* ================================================================================ */
+
+.closing {
+	animation-name: closesection;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
+}
+
+
+
+/* ================================================================================ */
+/* CSS Animations																																		*/
+/* ================================================================================ */
+
+/* Modal Sections Animations */
+
+@-webkit-keyframes opensection {
+	0% {
+		transform: rotateY(270deg);
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+@keyframes opensection {
+	0% {
+		transform: rotateY(270deg);
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+@-webkit-keyframes closesection {
+	0% {
+		transform: rotateY(0deg);
+	}
+	100% {
+		transform: rotateY(90deg);
+	}
+}
+
+@keyframes closesection {
+	0% {
+		transform: rotateY(0deg);
+	}
+	100% {
+		transform: rotateY(90deg);
+	}
 }

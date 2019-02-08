@@ -5,7 +5,6 @@
 
 	include "../scripts/ddrules.php";			// Get the rules of the games
 	include "../scripts/invites.php";			// Get the rules regarding invites
-//	include "../scripts/character.php";  	// Get the rules regarding characters
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +13,21 @@
 
 	<head>
 		<meta charset="utf-8">
+
 		<title>The Nine Lands Online Tabletop - D&D 3.5</title>
+
 		<link href="/styles/style.css" rel="stylesheet" type="text/css">
 		<link href="/styles/newchar.css" rel="stylesheet" type="text/css">
 		<link href="/styles/attach.css" rel="stylesheet" type="text/css">
+
+		<script>
+			/* This variable mirrors the PHP $ddRules object in JavaScript. */
+			var gameRules = JSON.parse('<?php echo json_encode($ddRules); ?>');
+			var invitesList = JSON.parse('<?php echo json_encode($invites); ?>');
+		</script>
 	</head>
+
+
 
 	<body>
 
@@ -43,12 +52,12 @@
 				<div class="subscreen col1 embossed">
 					<div class="listtitle golden">Campaigns</div>
 					<br>
-					<label class="listitem selected" id="listcamp0" onclick="setCampaign(0, '', 'dd', '1')">Custom Character</label>
+					<label class="camplist selected" id="campitem0" onclick="setCampaign(0, 0, '', 'dd', '1')">Custom Character</label>
 					<?php
 						for ($inv = 1; $inv <= $invitesmaxid; $inv++) {
 							if ($invites[$inv]['username'] != null) {
 								$campid = $invites[$inv]['camp'];
-								echo "<label class=\"listitem\" id=\"listcamp" . $campid . "\" onclick=\"setCampaign(" . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
+								echo "<label class=\"camplist\" id=\"campitem" . $campid . "\" onclick=\"setCampaign(" . $inv . ", " . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
 							}
 						}
 					?>
@@ -56,8 +65,8 @@
 
 				<div class="subscreen campcol" id="camp0">
 					<div class="banner">
-						<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
-							<span>Custom Character</span>
+						<div class="bannerbox campbanner" style="background-image: url('../images/webelements/banners/campaigns/default.jpg')">
+							<span class="bannertitle">Custom Character</span>
 						</div>
 					</div>
 					<div class="campdesc">
@@ -73,7 +82,7 @@
 						</span>
 						<span>
 							<b>Starting Level: </b>
-							<input type="number" min="1" max="20" value="1" onchange="setInputValue('startlevel', this.value)">
+							<input type="number" min="1" max="20" value="1" onchange="setStartLevel(this.value)">
 						</span>
 					</div>
 				</div>
@@ -118,14 +127,14 @@
 
 				<div class="subscreen col1 embossed">
 					<button class="subbtns" onclick="showModal('newcharmodal', 'gender', 'box', 'newchar')">GENDER</button>
-					<button class="subbtns" id="subbtn1" onclick="showModal('newcharmodal', 'race', 'box', 'newchar')" disabled>RACE</button>
-					<button class="subbtns" id="subbtn2" onclick="showModal('newcharmodal', 'class', 'box', 'newchar')" disabled>CLASS</button>
-					<button class="subbtns" id="subbtn3" onclick="showModal('newcharmodal', 'alignment', 'box', 'newchar')" disabled>ALIGNMENT</button>
-					<button class="subbtns" id="subbtn4" onclick="showModal('newcharmodal', 'abilities', 'box', 'newchar')" disabled>ABILITIES</button>
-					<button class="subbtns" id="subbtn5" onclick="showModal('newcharmodal', 'skills', 'box', 'newchar')" disabled>SKILLS</button>
-					<button class="subbtns" id="subbtn6" onclick="showModal('newcharmodal', 'feats', 'box', 'newchar')" disabled>FEATS</button>
-					<button class="subbtns" id="subbtn7" onclick="showModal('newcharmodal', 'appearance', 'box', 'newchar')" disabled>APPEARANCE</button>
-					<button class="subbtns" id="subbtn8" onclick="showModal('newcharmodal', 'name', 'box', 'newchar')" disabled>NAME</button>
+					<button class="subbtns" id="subbtn1" onclick="showNewRacesModal()" disabled>RACE</button>
+					<button class="subbtns" id="subbtn2" onclick="showNewClassesModal()" disabled>CLASS</button>
+					<button class="subbtns" id="subbtn3" onclick="showNewAlignmentsModal()" disabled>ALIGNMENT</button>
+					<button class="subbtns" id="subbtn4" onclick="showNewAbilitiesModal()" disabled>ABILITIES</button>
+					<button class="subbtns" id="subbtn5" onclick="showSkillsModal()" disabled>SKILLS</button>
+					<button class="subbtns" id="subbtn6" onclick="showNewFeatsModal()" disabled>FEATS</button>
+					<button class="subbtns" id="subbtn7" onclick="showNewAppearanceModal()" disabled>APPEARANCE</button>
+					<button class="subbtns" id="subbtn8" onclick="showNewNameModal()" disabled>NAME</button>
 				</div>
 
 				<div class="subscreen col2">
@@ -169,6 +178,7 @@
 						<input class="hidden" type="radio" name="campaign" value="" checked>
 						<input class="hidden" type="radio" name="game" value="dd" checked>
 						<input class="hidden" type="radio" name="startlevel" value="1" checked>
+						<input class="hidden" type="radio" name="currxp" value="0" checked>
 
 						<input class="hidden" type="radio" name="gender" value="" checked>
 						<input class="hidden" type="radio" name="race" value="" checked>
@@ -193,7 +203,7 @@
 
 		<!-- Here ends the Character Creation main screen and start the Modal Submenu screens. -->
 
-		<div id="newcharmodal" class="modal centerxy hidden">
+		<div id="newcharmodal" class="modal persp3d centerxy hidden">
 
 			<!-- ******* Gender Section ******* -->
 
@@ -224,7 +234,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn1" onclick="showIdAmongClasses('race', 'box', 'newchar')" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn1" onclick="showNewRacesModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -246,12 +256,12 @@
 				<div class="mainscreen">
 
 					<div class="subscreen col1 embossed">
-						<div class="listtitle bluebtn golden">Races</div>
+						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'race')">Races</div>
 						<br>
 						<?php
 							for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
 								if ($ddRules->races[$rc]['race'] != null) {
-									echo "<label class=\"listitem\" id=\"listrace" . $rc . "\" onclick=\"setRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
+									echo "<label class=\"racelist\" id=\"raceitem" . $rc . "\" onclick=\"setNewRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
 								}
 							}
 						?>
@@ -259,8 +269,8 @@
 
 					<div class="subscreen racecol" id="race0">
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
-								<span>Races in the World</span>
+							<div class="bannerbox" style="background-image: url('../images/webelements/banners/races/dddefault.png'), url('../images/webelements/banners/campaigns/default.jpg')">
+								<span class="bannertitle">Races in the World</span>
 							</div>
 						</div>
 						<div class="racedesc">
@@ -282,7 +292,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn2" onclick="showIdAmongClasses('class', 'box', 'newchar')" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn2" onclick="showNewClassesModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -304,12 +314,12 @@
 				<div class="mainscreen">
 
 					<div class="subscreen col1 embossed">
-						<div class="listtitle bluebtn golden">Classes</div>
+						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'class')">Classes</div>
 						<br>
 						<?php
 							for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
 								if ($ddRules->classes[$rc]['class'] != null) {
-									echo "<label class=\"listitem\" id=\"listclass" . $rc . "\" onclick=\"setClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
+									echo "<label class=\"classlist\" id=\"classitem" . $rc . "\" onclick=\"setNewClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
 								}
 							}
 						?>
@@ -317,8 +327,8 @@
 
 					<div class="subscreen classcol" id="class0">
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
-								<span>About Classes</span>
+							<div class="bannerbox" style="background-image: url('../images/webelements/banners/classes/dddefault.png'), url('../images/webelements/backgrounds/background-map.jpg')">
+								<span class="bannertitle">About Classes</span>
 							</div>
 						</div>
 						<div class="racedesc">
@@ -340,7 +350,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn3" onclick="showIdAmongClasses('alignment', 'box', 'newchar')" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn3" onclick="showNewAlignmentsModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -373,8 +383,8 @@
 
 					<div class="subscreen alignmentcol" id="alignment0">
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/campaigns/default.jpg')">
-								<span>The Nine Alignments</span>
+							<div class="bannerbox" style="background-image: url('../images/webelements/banners/campaigns/default.jpg')">
+								<span class="bannertitle">The Nine Alignments</span>
 							</div>
 						</div>
 						<div class="racedesc">
@@ -395,7 +405,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn4" onclick="showIdAmongClasses('abilities', 'box', 'newchar')" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn4" onclick="showNewAbilitiesModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -438,9 +448,7 @@
 							for ($rll = 1; $rll <= count($ddRules->abilities); $rll++) {
 								echo "<div class=\"rollline centerxy\">";
 								echo "	<span> + </span>";
-								for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
-									echo "	<span class=\"raceability" . $rll . " rollbox centerxy embossed hidden\" id=\"race" . $rc . "ability" . $rll . "\">" . $ddRules->races[$rc][$ddRules->abilities[$rll]['ability']] . "</span>";
-								}
+								echo "	<span class=\"rollbox centerxy embossed\" id=\"race" . $ddRules->abilities[$rll]['ability'] . "\"></span>";
 								echo "	<span> = </span>";
 								echo "	<span class=\"rollbox centerxy embossed golden\" id=\"tot" . $rll . "\"></span>";
 								echo "	<span class=\"rollbox centerxy embossed golden\" id=\"mod" . $rll . "\"></span>";
@@ -449,14 +457,14 @@
 							echo "</div>";
 							?>
 						</div>
-						<button class="subbtns" style="flex-grow: 0" onclick="setAbilities()"><div class="rollbtn"></div></button>
+						<button class="subbtns" id="rollthedice" style="flex-grow: 0" onclick="setNewAbilities()"><div class="rollbtn"></div></button>
 					</div>
 
 					<div class="subscreen abilitiescol" id="abilities0">
 
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
-								<span>Ability Rolls</span>
+							<div class="bannerbox abilbanner" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
+								<span class="bannertitle">Ability Rolls</span>
 							</div>
 						</div>
 
@@ -474,7 +482,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn5" onclick="" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn5" onclick="showSkillsModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -495,12 +503,80 @@
 
 				<div class="mainscreen">
 
+					<div class="skillscreen embossed">
+						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'skills')">Skills</div>
+						<div class="skilllist">
+							<?php
+								for ($i = 1; $i <= count($ddRules->skills); $i++) {
+									echo "<div class=\"skillrow\" id=\"skillrow" . $i . "\" onclick=\"showIdAmongClasses(" . $i . ", 'col', 'skills')\">";
+									echo "<div class=\"listitem skillname skill" . $i . "\">" . $ddRules->skills[$i]['skill'] . "</div>";
+									echo "<div class=\"statsholder\">";
+									echo "<label class=\"skillkey skill" . $i . "\">";
+									for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+										if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$i]['ability']) {
+											echo $ddRules->abilities[$y]['shtname'];
+										}
+									}
+									echo "</label>";
+									echo "<div class=\"skillstat skilltotals centerxy embossed\" id=\"skilltot" . $i . "\" style=\"background-color: rgba(255, 255, 255, 0.2)\"></div>";
+									echo "<span>=</span>";
+									echo "<div class=\"skillstat centerxy embossed\" id=\"skillmod" . $i . "\"></div>";
+									echo "<span>+</span>";
+									echo "<div class=\"skillstat skillranks centerxy embossed\" id=\"skillrank" . $i . "\" style=\"background-color: rgba(100, 149, 237, 0.2)\">0</div>";
+									echo "<div class=\"hidden\" id=\"skillpts" . $i . "\"></div>";
+									echo "<span>+</span>";
+									echo "<div class=\"skillstat centerxy embossed\" id=\"skillother" . $i . "\"></div>";
+									echo "</div>";
+									echo "</div>";
+								}
+							?>
+						</div>
+						<div class="skillbar bluebtn">Available Skill Points: <span class="skillstat centerxy embossed" id="avskillpts"></span></div>
+					</div>
+
+					<div class="subscreen skillscol" id="skills0">
+
+						<div class="banner">
+							<div class="bannerbox" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
+								<span class="bannertitle">Skills</span>
+							</div>
+						</div>
+
+						<div class="racedesc">
+							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
+						</div>
+
+					</div>
+
+					<?php
+					for ($i = 1; $i <= count($ddRules->skills); $i++) {
+						echo "<div class=\"subscreen skillscol hidden\" id=\"skills" . $i . "\">";
+						echo "	<div class=\"banner\">";
+						echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/abilityrolls.jpg')\">";
+						echo "			<span class=\"bannertitle\">" . $ddRules->skillsdesc[$i]["skill"] . "</span>";
+						echo "		</div>";
+						echo "	</div>";
+						echo "	<div class=\"racedesc\">";
+						echo "		<p>" . $ddRules->skillsdesc[$i]["intro"] . "</p>";
+						echo "	</div>";
+						echo "	<div class=\"modranks\">";
+						echo "		<span class=\"roman\" style=\"font-size: 2.5em\">Ranks</span>";
+						echo "		<div class=\"skilldescrank embossed roman\" id=\"skilldescrank" . $i . "\">0</div>";
+						echo "		<div id=\"skillbtns\">";
+						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/arrowup.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 1)\"></button>";
+						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/arrowdown.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 0)\"></button>";
+						echo "		</div>";
+						echo "	</div>";
+						echo "</div>";
+					}
+					?>
+
 				</div> <!-- .mainscereen -->
 
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn6" onclick="" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn6" onclick="showNewFeatsModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -526,7 +602,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn7" onclick="" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn7" onclick="showNewAppearanceModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -552,7 +628,7 @@
 				<div class="pagefooter">
 					<div class="pagebuttons embossed">
 						<button class="mainbtns bluebtn" onclick="closeModal()">Back</button>
-						<button class="mainbtns bluebtn" id="nxtbtn8" onclick="" disabled>Next</button>
+						<button class="mainbtns bluebtn" id="nxtbtn8" onclick="showNewNameModal()" disabled>Next</button>
 					</div>
 				</div>
 
@@ -587,7 +663,8 @@
 		</div> <!-- End of Modal -->
 
 	  <script src="../scripts/main.js"></script>
-	  <script src="../scripts/newchar.js"></script>
+		<script src="../scripts/charobjclass.js"></script>
+		<script src="../scripts/newchar.js"></script>
 
 	</body>
 
