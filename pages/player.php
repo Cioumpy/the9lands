@@ -10,8 +10,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title>The Nine Lands Online Tabletop - D&D 3.5</title>
-		<link href="/styles/style.css" rel="stylesheet" type="text/css">
+
+		<link href="/styles/style.less" rel="stylesheet/less" type="text/css">
 		<link href="/styles/attach.css" rel="stylesheet" type="text/css">
+
+		<script>
+		  less = {
+		    env: "development"
+		  };
+		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
 	</head>
 
 	<body>
@@ -61,7 +69,7 @@
 			<hr> <!-- ******************************************************************************************************* -->
 			<hr> <!-- ******************************************************************************************************* -->
 
-			<h3>Temporary links</h3>
+			<h6>Temporary links</h6>
 			<p>These are links to quickly navigate to the pages you're working on:</p>
 			<ul>
 				<li><a href="charsheet.php" style="color: goldenrod">Characters List Page</a></li>
@@ -81,7 +89,7 @@
 
 			<hr> <!-- ******************************************************************************************************* -->
 
-			<h3>The Nine Lands Online RPG Tabletop Website</h3>
+			<h6>The Nine Lands Online RPG Tabletop Website</h6>
 			<p>Stuff done:</p>
 			<ul>
 				<li>Wrote the Login Page (index.php + login.php);</li>
@@ -105,7 +113,7 @@
 
 			<hr> <!-- ******************************************************************************************************* -->
 
-	     <h3>Playing Characters' Page</h3>
+	     <h6>Playing Characters' Page</h6>
 	     <p>Stuff done:</p>
 	     <ul>
 				<li>Started to write the Characters page (charsheet.php);</li>
@@ -125,7 +133,7 @@
 
 			<hr> <!-- ******************************************************************************************************* -->
 
-	     <h3>Manuals' Download Page</h3>
+	     <h6>Manuals' Download Page</h6>
 	     <p>Started to write the Manuals' Download page.</p>
 	     <p>Stuff done:</p>
 	     <ul>

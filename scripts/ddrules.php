@@ -12,41 +12,44 @@
 		public $alignments = array();
 		public $skills = array();
 		public $skillsdesc = array();
+		public $feats = array();
 
 		public function __construct($gm, $activeConn) {
 			$this->game = $gm;
 
 		/* Get the DataBase tables to work with on the building functions. */
-			$sql = "SELECT * FROM t9lddrules.abilities;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.abilities;";
 			$this->abilities = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.racelist;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.racelist;";
 			$this->races = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.racedesc;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.racedesc;";
 			$this->racedescs = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.sizes;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.sizes;";
 			$this->sizes = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.classes;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.classes;";
 			$this->classes = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.classesdesc;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.classesdesc;";
 			$this->classesdesc = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.alignments;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.alignments;";
 			$this->alignments = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.skills;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.skills;";
 			$this->skills = getDBTable($sql, $activeConn);
 
-			$sql = "SELECT * FROM t9lddrules.skillsdesc;";
+			$sql = "SELECT * FROM t9l" . $gm . "rules.skillsdesc;";
 			$this->skillsdesc = getDBTable($sql, $activeConn);
 
+			$sql = "SELECT * FROM t9l" . $gm . "rules.feats;";
+			$this->feats = getDBTable($sql, $activeConn);
 
 		/* Managing the tables to make them work at best. */
-			for ($i=1; $i <= count($this->races); $i++) {
+			for ($i = 1; $i <= count($this->races); $i++) {
 
 				$raceSkill = explode(";",$this->races[$i]['skillbonus']);
 				$this->races[$i]['skillbonus'] = null;
@@ -64,7 +67,9 @@
 				$this->races[$i]['autolangs'] = explode(";",$this->races[$i]['autolangs']);
 				$this->races[$i]['bonuslangs'] = explode(";",$this->races[$i]['bonuslangs']);
 				$this->races[$i]['othertraits'] = explode(";;",$this->races[$i]['othertraits']);
+
 			}
+
 
 			for ($i = 1; $i <= count($this->classes); $i++) {
 
@@ -82,7 +87,7 @@
 
 				$this->classes[$i]['bonuslangs'] = explode(";",$this->classes[$i]['bonuslangs']);
 
-				$classSkill = explode(";",$this->classes[$i]['classskills']);
+				$classSkill = explode(";", $this->classes[$i]['classskills']);
 				$this->classes[$i]['classskills'] = null;
 				for ($y = 1; $y <= count($this->skills) ; $y++) {
 					$this->classes[$i]['classskills'][$y]['skill'] = $this->skills[$y]['skill'];
@@ -93,6 +98,14 @@
 						}
 					}
 				}
+
+			}
+
+
+			for ($ft = 0; $ft <= count($this->feats); $ft++) {
+
+//				$this->feats[$ft]['desc'] = explode(";;", $this->feats[$ft]['desc']);
+
 			}
 
 		} // End of function __construct
@@ -129,10 +142,10 @@
 	$goodts = 1 / 2;
 	$poorts = 1 / 3;
 
-// ************************************************************** //
-
 	// Close connection
 	mysqli_close($conn);
+
+// ************************************************************** //
 
 
 ?>

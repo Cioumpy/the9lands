@@ -17,9 +17,15 @@
 
 		<title>The Nine Lands Online Tabletop - D&D 3.5</title>
 
-		<link href="styles/style.css" rel="stylesheet" type="text/css">
-		<link href="styles/attach.css" rel="stylesheet" type="text/css">
+		<link href="/styles/style.less" rel="stylesheet/less" type="text/css">
+		<link href="/styles/attach.css" rel="stylesheet" type="text/css">
 
+		<script>
+		  less = {
+		    env: "development"
+		  };
+		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
 		<script>
 			var gameRules = JSON.parse('<?php echo json_encode($ddRules); ?>');
 			var invitesList = JSON.parse('<?php echo json_encode($invites); ?>');

@@ -3,8 +3,8 @@
 			<div id="logotitle">
 				<div id="dndlogo"></div>
 				<div>
-					<h1>The Nine Lands</h1>
-					<h2>d20 System Online Tabletop RPG</h2>
+					<h1 class="sitetitle">The Nine Lands</h1>
+					<h2 class="sitetitle">d20 System Online Tabletop RPG</h2>
 				</div>
 			</div>
 			<div id="loginframe">

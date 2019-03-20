@@ -2,7 +2,6 @@
 	include "../scripts/config.php";		  // Cofiguration file for the Database connection
 	include "../scripts/session.php";		  // Checks if a member section is active
 	include "../scripts/functions.php";		// Enables the website´s generic PHP functions
-
 	include "../scripts/ddrules.php";			// Get the rules of the games
 	include "../scripts/invites.php";			// Get the rules regarding invites
 ?>
@@ -16,10 +15,15 @@
 
 		<title>The Nine Lands Online Tabletop - D&D 3.5</title>
 
-		<link href="/styles/style.css" rel="stylesheet" type="text/css">
-		<link href="/styles/newchar.css" rel="stylesheet" type="text/css">
+		<link href="/styles/newchar.less" rel="stylesheet/less" type="text/css">
 		<link href="/styles/attach.css" rel="stylesheet" type="text/css">
 
+		<script>
+		  less = {
+		    env: "development"
+		  };
+		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
 		<script>
 			/* This variable mirrors the PHP $ddRules object in JavaScript. */
 			var gameRules = JSON.parse('<?php echo json_encode($ddRules); ?>');
@@ -40,7 +44,7 @@
 					<img src="../images/shield.png" height="40px">
 				</div>
 				<div class="titlebox embossed">
-			    <h5>Select Campaign</h5>
+			    <h2>Select Campaign</h2>
 				</div>
 				<div class="sideimgbox">
 					<img src="../images/shield.png" height="40px">
@@ -49,23 +53,22 @@
 
 			<div class="mainscreen">
 
-				<div class="subscreen col1 embossed">
+				<div class="subscreen listcol embossed">
 					<div class="listtitle golden">Campaigns</div>
-					<br>
-					<label class="camplist selected" id="campitem0" onclick="setCampaign(0, 0, '', 'dd', '1')">Custom Character</label>
+					<label class="listitem camplist selected" id="campitem0" onclick="setCampaign(0, 0, '', 'dd', '1')">Custom Character</label>
 					<?php
 						for ($inv = 1; $inv <= $invitesmaxid; $inv++) {
 							if ($invites[$inv]['username'] != null) {
 								$campid = $invites[$inv]['camp'];
-								echo "<label class=\"camplist\" id=\"campitem" . $campid . "\" onclick=\"setCampaign(" . $inv . ", " . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
+								echo "<label class=\"listitem camplist\" id=\"campitem" . $campid . "\" onclick=\"setCampaign(" . $inv . ", " . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
 							}
 						}
 					?>
 				</div>
 
-				<div class="subscreen campcol" id="camp0">
+				<div class="subscreen desccol campcol" id="camp0">
 					<div class="banner">
-						<div class="bannerbox campbanner" style="background-image: url('../images/webelements/banners/campaigns/default.jpg')">
+						<div class="bannerbox campbanner" style="background-image: none, url('../images/webelements/banners/campaigns/default.jpg')">
 							<span class="bannertitle">Custom Character</span>
 						</div>
 					</div>
@@ -91,7 +94,25 @@
 					for ($inv = 1; $inv <= $invitesmaxid; $inv++) {
 						if ($invites[$inv]['username'] != null) {
 							$campid = $invites[$inv]['camp'];
-							include "frames/campaigns.php";
+							echo "<div class=\"subscreen desccol campcol hidden\" id=\"camp" . $campid . "\">";
+							echo "	<div class=\"banner\">";
+							echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/campaigns/" . $campaigns[$campid]['banner'] . "')\">";
+							echo "			<span class=\"bannertitle\">" . $campaigns[$campid]['campaign'] . "</span>";
+							echo "		</div>";
+							echo "	</div>";
+							echo "	<div class=\"campdesc\">" . $campaigns[$campid]['campdesc'] . "</div>";
+							echo "	<div class=\"campruleset embossed\">";
+							echo "		<span>";
+							echo "			<b>Game Ruleset: </b>";
+							if ($campaigns[$campid]['game'] == 'dd') {
+								echo "Dungeons & Dragons 3.5";
+							} else {
+								echo "Pathfinder";
+							}
+							echo "		</span>";
+							echo "		<span><b>Starting Level: </b>" . $campaigns[$campid]['startlevel'] . "</span>";
+							echo "	</div>";
+							echo "</div>";
 						}
 					}
 				?>
@@ -116,7 +137,7 @@
 					<img class="sideimg" src="../images/dd-logo.png" height="30px">
 				</div>
 				<div class="titlebox embossed">
-			    <h5>Create New Character</h5>
+			    <h1>Create New Character</h1>
 				</div>
 				<div class="sideimgbox">
 					<img class="sideimg" src="../images/dd-logo.png" height="30px">
@@ -125,7 +146,7 @@
 
 			<div class="mainscreen">
 
-				<div class="subscreen col1 embossed">
+				<div class="subscreen listcol embossed">
 					<button class="subbtns" onclick="showModal('newcharmodal', 'gender', 'box', 'newchar')">GENDER</button>
 					<button class="subbtns" id="subbtn1" onclick="showNewRacesModal()" disabled>RACE</button>
 					<button class="subbtns" id="subbtn2" onclick="showNewClassesModal()" disabled>CLASS</button>
@@ -138,6 +159,7 @@
 				</div>
 
 				<div class="subscreen col2">
+					<h6></h6>
 					<table>
 						<tr><td><b>Gender:</b></td><td>Male</td></tr>
 						<tr><td><b>Race:</b></td><td>Human</td></tr>
@@ -214,7 +236,7 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Gender</h5>
+				    <h2>Gender</h2>
 					</div>
 				</div>
 
@@ -249,25 +271,24 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Race</h5>
+				    <h2>Race</h2>
 					</div>
 				</div>
 
 				<div class="mainscreen">
 
-					<div class="subscreen col1 embossed">
+					<div class="subscreen listcol embossed">
 						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'race')">Races</div>
-						<br>
 						<?php
 							for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
 								if ($ddRules->races[$rc]['race'] != null) {
-									echo "<label class=\"racelist\" id=\"raceitem" . $rc . "\" onclick=\"setNewRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
+									echo "<label class=\"listitem racelist\" id=\"raceitem" . $rc . "\" onclick=\"setNewRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
 								}
 							}
 						?>
 					</div>
 
-					<div class="subscreen racecol" id="race0">
+					<div class="subscreen desccol racecol" id="race0">
 						<div class="banner">
 							<div class="bannerbox" style="background-image: url('../images/webelements/banners/races/dddefault.png'), url('../images/webelements/banners/campaigns/default.jpg')">
 								<span class="bannertitle">Races in the World</span>
@@ -282,7 +303,75 @@
 					<?php
 						for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
 							if ($ddRules->races[$rc]['race'] != null) {
-								include "frames/races.php";
+								echo "<div class=\"subscreen desccol racecol hidden\" id=\"race" . $rc . "\">";
+								echo "	<div class=\"banner\">";
+								echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/races/" . $ddRules->racedescs[$rc]['image'] . "'), url('../images/webelements/banners/campaigns/default.jpg')\">";
+								echo "			<span class=\"bannertitle\">" . $ddRules->races[$rc]['race'] . "</span>";
+								echo "		</div>";
+								echo "	</div>";
+								echo "	<div class=\"racedesc\">";
+								echo "		<p>" . $ddRules->racedescs[$rc]['intro'] . "</p>";
+								echo "		<p>All the members of the " . $ddRules->races[$rc]['race'] . " race share the following stats:</p>";
+								echo "		<ul>";
+
+												if ($ddRules->racedescs[$rc]['abilitydesc'] != null) {
+													echo "<li><b>";
+													$i = 1;
+													foreach ($ddRules->abilities as $key => $value) {
+														if ($ddRules->races[$rc][$ddRules->abilities[$key]['ability']] != 0) {
+															if ($i > 1) {
+																echo ", ";
+															}
+															$i++;
+												 			echo $ddRules->abilities[$key]['name'] . " ";
+															if ($ddRules->races[$rc][$ddRules->abilities[$key]['ability']] > 0) {
+																echo "+";
+															}
+															echo $ddRules->races[$rc][$ddRules->abilities[$key]['ability']];
+														}
+												 	}
+													echo ": </b>" . $ddRules->racedescs[$rc]['abilitydesc'] . "</li>";
+												}
+
+								echo "			<li><b>Size: </b>" . $ddRules->racedescs[$rc]['size'] . ".</li>";
+								echo "			<li><b>Speed: </b>" . $ddRules->racedescs[$rc]['speed'] . " ft.</li>";
+
+												for ($i=0; $i < count($ddRules->racedescs[$rc]['othertraits']); $i++) {
+													echo "<li>" . $ddRules->racedescs[$rc]['othertraits'][$i] . "</li>";
+												}
+
+								echo "			<li><b>Automatic Languages: </b>";
+
+													for ($i=0; $i < count($ddRules->races[$rc]['autolangs']); $i++) {
+														if ($i == 0) {
+															echo "";
+														} else if ($i == count($ddRules->races[$rc]['autolangs']) - 1) {
+															echo " and ";
+														} else {
+															echo ", ";
+														}
+														echo $ddRules->races[$rc]['autolangs'][$i];
+													}
+													echo ".</li>";
+
+								echo "			<li><b>Bonus Languages: </b>";
+
+												for ($i=0; $i < count($ddRules->races[$rc]['bonuslangs']); $i++) {
+													if ($i == 0) {
+														echo "";
+													} else if ($i == count($ddRules->races[$rc]['bonuslangs']) - 1) {
+														echo " and ";
+													} else {
+														echo ", ";
+													}
+													echo $ddRules->races[$rc]['bonuslangs'][$i];
+												}
+												echo ".</li>";
+
+								echo "			<li><b>Favored Class: </b>" . $ddRules->races[$rc]['favclass'] . ".</li>";
+								echo "		</ul>";
+								echo "	</div>";
+								echo "</div>";
 							}
 						}
 					?>
@@ -307,25 +396,24 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Class</h5>
+				    <h2>Class</h2>
 					</div>
 				</div>
 
 				<div class="mainscreen">
 
-					<div class="subscreen col1 embossed">
+					<div class="subscreen listcol embossed">
 						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'class')">Classes</div>
-						<br>
 						<?php
 							for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
 								if ($ddRules->classes[$rc]['class'] != null) {
-									echo "<label class=\"classlist\" id=\"classitem" . $rc . "\" onclick=\"setNewClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
+									echo "<label class=\"listitem classlist\" id=\"classitem" . $rc . "\" onclick=\"setNewClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
 								}
 							}
 						?>
 					</div>
 
-					<div class="subscreen classcol" id="class0">
+					<div class="subscreen desccol classcol" id="class0">
 						<div class="banner">
 							<div class="bannerbox" style="background-image: url('../images/webelements/banners/classes/dddefault.png'), url('../images/webelements/backgrounds/background-map.jpg')">
 								<span class="bannertitle">About Classes</span>
@@ -340,7 +428,150 @@
 					<?php
 						for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
 							if ($ddRules->classes[$rc]['class'] != null) {
-								include "frames/classes.php";
+								echo "<div class=\"subscreen desccol classcol hidden\" id=\"class" . $rc . "\">";
+								echo "	<div class=\"banner\">";
+								echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/classes/" . $ddRules->classesdesc[$rc]['image'] . "'), url('../images/webelements/backgrounds/background-map.jpg')\">";
+								echo "			<span class=\"bannertitle\">" . $ddRules->classes[$rc]['class'] . "</span>";
+								echo "		</div>";
+								echo "	</div>";
+								echo "	<div class=\"classdesc\">";
+								echo "		<p>" . $ddRules->classesdesc[$rc]['intro'] . "</p>";
+								echo "		<p>" . $ddRules->classesdesc[$rc]['Characteristics'] . "</p>";
+								echo "		<p><b>Hit Die:</b> d" . $ddRules->classes[$rc]['hd'] . ".</p>";
+								echo "		<p><span class=\"roman\" style=\"font-weight: bold; font-size: 1.3em\">Class Skills</span><br>";
+								echo "			The " . $ddRules->classes[$rc]['class'] . "&#39;s class skills (and the key ability for each skill) are ";
+
+								/* To insert the commas and the "and", we need to get the last skill
+								in our class list. */
+								$lastSkill = null;
+								foreach ($ddRules->skills as $key => $value) {
+									if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
+										$lastSkill = $key;
+									}
+								}
+
+								$x = 0;
+								$craft = true;
+								$perf = true;
+								$prof = true;
+								foreach ($ddRules->skills as $key => $value) {
+									if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
+										$x++;
+										if (strpos($ddRules->skills[$key]['skill'], "Craft") === 0) {
+											if ($craft) {
+												if ($key == $lastSkill) {
+													echo " and ";
+												} elseif ($x > 1) {
+													echo ", ";
+												}
+												echo "Craft";
+												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+													}
+												}
+												$craft = false;
+											}
+										} elseif (strpos($ddRules->skills[$key]['skill'], "Perform") === 0) {
+											if ($perf) {
+												if ($key == $lastSkill) {
+													echo " and ";
+												} elseif ($x > 1) {
+													echo ", ";
+												}
+												echo "Perform";
+												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+													}
+												}
+												$perf = false;
+											}
+										} elseif (strpos($ddRules->skills[$key]['skill'], "Profession") === 0) {
+											if ($prof) {
+												if ($key == $lastSkill) {
+													echo " and ";
+												} elseif ($x > 1) {
+													echo ", ";
+												}
+												echo "Profession";
+												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+													}
+												}
+												$prof = false;
+											}
+										} else {
+											if ($key == $lastSkill) {
+												echo " and ";
+											} elseif ($x > 1) {
+												echo ", ";
+											}
+											echo $ddRules->classes[$rc]['classskills'][$key]['skill'];
+											for ($y = 1; $y <= count($ddRules->abilities); $y++) {
+												if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
+													echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
+												}
+											}
+										}
+									}
+								}
+								echo ".";
+
+								echo "			<br><b>Skill Points per level:</b> " . $ddRules->classes[$rc]['skillpoints'] . " + Intelligence modifier.<br>";
+								echo "			<b>At first level:</b> (" . $ddRules->classes[$rc]['skillpoints'] . " + Intelligence modifier) &times; 4.</p>";
+								echo "			<br>";
+								echo "			<label><b>" . $ddRules->classes[$rc]['class'] . "&#39;s Stats Table:</b></label>";
+
+								// Print the Classes Stats ************************************** //
+								// Printing all the keys and values one by one
+								echo "<table>";
+								$test_classes = $ddRules->get_classes();
+								$keys = array_keys($test_classes);
+								echo "<tr><th class=\"cellcenter\">Level</th><th>BAB</th><th class=\"cellcenter\">Fort</th><th class=\"cellcenter\">Refl</th><th class=\"cellcenter\">Will</th><th>Class Features</th></tr>";
+								for($i = 1; $i <= $ddRules->classes[$rc]['maxlvl']; $i++) {
+										echo "<tr><th class=\"cellcenter\">" . $i . "</th>";
+										echo "<td>+";
+										echo floor($i * $ddRules->classes[$rc]['bab']);
+										if (($i * $ddRules->classes[$rc]['bab']) >= 6) {
+											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 5);
+										}
+										if (($i * $ddRules->classes[$rc]['bab']) >= 11) {
+											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 10);
+										}
+										if (($i * $ddRules->classes[$rc]['bab']) >= 16) {
+											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 15);
+										}
+										echo "</td>";
+										echo "<td class=\"cellcenter\">+";
+										if ($ddRules->classes[$rc]['fort'] == 'good') {
+											echo floor(($i * $goodts) + 2);
+										} else {
+											echo floor($i * $poorts);
+										}
+										echo "</td>";
+										echo "<td class=\"cellcenter\">+";
+										if ($ddRules->classes[$rc]['refl'] == 'good') {
+											echo floor(($i * $goodts) + 2);
+										} else {
+											echo floor($i * $poorts);
+										}
+										echo "</td>";
+										echo "<td class=\"cellcenter\">+";
+										if ($ddRules->classes[$rc]['will'] == 'good') {
+											echo floor(($i * $goodts) + 2);
+										} else {
+											echo floor($i * $poorts);
+										}
+										echo "</td>";
+										echo "<td></td>";
+										echo "</tr>";
+								}
+								echo "</table>";
+
+								echo "	</div>";
+								echo "</div>";
 							}
 						}
 					?>
@@ -365,13 +596,13 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Alignment</h5>
+				    <h2>Alignment</h2>
 					</div>
 				</div>
 
 				<div class="mainscreen">
 
-					<div class="subscreen col1 algcol embossed">
+					<div class="subscreen listcol algcol embossed">
 						<?php
 							for ($rc = 1; $rc <= count($ddRules->alignments); $rc++) {
 								if ($ddRules->alignments[$rc]['alignment'] != null) {
@@ -381,9 +612,9 @@
 						?>
 					</div>
 
-					<div class="subscreen alignmentcol" id="alignment0">
+					<div class="subscreen desccol alignmentcol" id="alignment0">
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/webelements/banners/campaigns/default.jpg')">
+							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/campaigns/default.jpg')">
 								<span class="bannertitle">The Nine Alignments</span>
 							</div>
 						</div>
@@ -396,7 +627,16 @@
 
 					<?php
 						for ($rc = 1; $rc <= count($ddRules->alignments); $rc++) {
-								include "frames/alignments.php";
+							echo "<div class=\"subscreen desccol alignmentcol hidden\" id=\"alignment" . $rc . "\">";
+							echo "	<div class=\"banner\">";
+							echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/campaigns/default.jpg')\">";
+							echo "			<span class=\"bannertitle\">" . $ddRules->alignments[$rc]['alignment'] . "</span>";
+							echo "		</div>";
+							echo "	</div>";
+							echo "	<div class=\"racedesc\">";
+							echo "		<p><b>" . $ddRules->alignments[$rc]['type'] . ":</b> " . $ddRules->alignments[$rc]['desc'] . "</p>";
+							echo "	</div>";
+							echo "</div>";
 						}
 					?>
 
@@ -420,7 +660,7 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Abilities</h5>
+				    <h2>Abilities</h2>
 					</div>
 				</div>
 
@@ -429,13 +669,11 @@
 					<div class="rollscreen">
 						<div class="rollcol">
 							<?php
-
 							echo "<div class=\"rollabildiv\">";
 							for ($rll = 1; $rll <= count($ddRules->abilities); $rll++) {
 								echo "<label class=\"golden\">" . $ddRules->abilities[$rll]['shtname'] . "</label> ";
 							}
 							echo "</div>";
-
 							echo "<div id=\"rolltilediv\">";
 							for ($rll = 1; $rll <= count($ddRules->abilities); $rll++) {
 								echo "<span class=\"rollbox embossed\">";
@@ -443,7 +681,6 @@
 								echo "</span>";
 							}
 							echo "</div>";
-
 							echo "<div class=\"rollabildiv\">";
 							for ($rll = 1; $rll <= count($ddRules->abilities); $rll++) {
 								echo "<div class=\"rollline centerxy\">";
@@ -460,10 +697,10 @@
 						<button class="subbtns" id="rollthedice" style="flex-grow: 0" onclick="setNewAbilities()"><div class="rollbtn"></div></button>
 					</div>
 
-					<div class="subscreen abilitiescol" id="abilities0">
+					<div class="subscreen desccol abilitiescol" id="abilities0">
 
 						<div class="banner">
-							<div class="bannerbox abilbanner" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
+							<div class="bannerbox abilbanner" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">
 								<span class="bannertitle">Ability Rolls</span>
 							</div>
 						</div>
@@ -497,7 +734,7 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Skills</h5>
+				    <h2>Skills</h2>
 					</div>
 				</div>
 
@@ -509,24 +746,24 @@
 							<?php
 								for ($i = 1; $i <= count($ddRules->skills); $i++) {
 									echo "<div class=\"skillrow\" id=\"skillrow" . $i . "\" onclick=\"showIdAmongClasses(" . $i . ", 'col', 'skills')\">";
-									echo "<div class=\"listitem skillname skill" . $i . "\">" . $ddRules->skills[$i]['skill'] . "</div>";
-									echo "<div class=\"statsholder\">";
-									echo "<label class=\"skillkey skill" . $i . "\">";
+									echo "	<div class=\"skillname skill" . $i . "\">" . $ddRules->skills[$i]['skill'] . "</div>";
+									echo "	<div class=\"statsholder\">";
+									echo "		<label class=\"skillkey skill" . $i . "\">";
 									for ($y = 1; $y <= count($ddRules->abilities); $y++) {
 										if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$i]['ability']) {
 											echo $ddRules->abilities[$y]['shtname'];
 										}
 									}
-									echo "</label>";
-									echo "<div class=\"skillstat skilltotals centerxy embossed\" id=\"skilltot" . $i . "\" style=\"background-color: rgba(255, 255, 255, 0.2)\"></div>";
-									echo "<span>=</span>";
-									echo "<div class=\"skillstat centerxy embossed\" id=\"skillmod" . $i . "\"></div>";
-									echo "<span>+</span>";
-									echo "<div class=\"skillstat skillranks centerxy embossed\" id=\"skillrank" . $i . "\" style=\"background-color: rgba(100, 149, 237, 0.2)\">0</div>";
-									echo "<div class=\"hidden\" id=\"skillpts" . $i . "\"></div>";
-									echo "<span>+</span>";
-									echo "<div class=\"skillstat centerxy embossed\" id=\"skillother" . $i . "\"></div>";
-									echo "</div>";
+									echo "		</label>";
+									echo "		<div class=\"skillstat skilltotals centerxy embossed\" id=\"skilltot" . $i . "\" style=\"background-color: rgba(255, 255, 255, 0.2)\"></div>";
+									echo "		<span>=</span>";
+									echo "		<div class=\"skillstat centerxy embossed\" id=\"skillmod" . $i . "\"></div>";
+									echo "		<span>+</span>";
+									echo "		<div class=\"skillstat skillranks centerxy embossed\" id=\"skillrank" . $i . "\" style=\"background-color: rgba(100, 149, 237, 0.2)\">0</div>";
+									echo "		<div class=\"hidden\" id=\"skillpts" . $i . "\"></div>";
+									echo "		<span>+</span>";
+									echo "		<div class=\"skillstat centerxy embossed\" id=\"skillother" . $i . "\"></div>";
+									echo "	</div>";
 									echo "</div>";
 								}
 							?>
@@ -534,10 +771,10 @@
 						<div class="skillbar bluebtn">Available Skill Points: <span class="skillstat centerxy embossed" id="avskillpts"></span></div>
 					</div>
 
-					<div class="subscreen skillscol" id="skills0">
+					<div class="subscreen desccol skillscol" id="skills0">
 
 						<div class="banner">
-							<div class="bannerbox" style="background-image: url('../images/webelements/banners/abilityrolls.jpg')">
+							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">
 								<span class="bannertitle">Skills</span>
 							</div>
 						</div>
@@ -550,9 +787,9 @@
 
 					<?php
 					for ($i = 1; $i <= count($ddRules->skills); $i++) {
-						echo "<div class=\"subscreen skillscol hidden\" id=\"skills" . $i . "\">";
+						echo "<div class=\"subscreen desccol skillscol hidden\" id=\"skills" . $i . "\">";
 						echo "	<div class=\"banner\">";
-						echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/abilityrolls.jpg')\">";
+						echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/abilityrolls.jpg')\">";
 						echo "			<span class=\"bannertitle\">" . $ddRules->skillsdesc[$i]["skill"] . "</span>";
 						echo "		</div>";
 						echo "	</div>";
@@ -563,8 +800,8 @@
 						echo "		<span class=\"roman\" style=\"font-size: 2.5em\">Ranks</span>";
 						echo "		<div class=\"skilldescrank embossed roman\" id=\"skilldescrank" . $i . "\">0</div>";
 						echo "		<div id=\"skillbtns\">";
-						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/arrowup.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 1)\"></button>";
-						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/arrowdown.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 0)\"></button>";
+						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/btn_arrowup.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 1)\"></button>";
+						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/btn_arrowdown.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 0)\"></button>";
 						echo "		</div>";
 						echo "	</div>";
 						echo "</div>";
@@ -591,11 +828,36 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Feats</h5>
+				    <h2>Feats</h2>
 					</div>
 				</div>
 
 				<div class="mainscreen">
+
+					<div class="subscreen listcol embossed">
+						<div class="listtitle bluebtn golden" onclick="">Feats</div>
+						<div class="itemlist">
+							<?php
+								for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
+									echo "<label class=\"listitem featlist\" id=\"featitem" . $ft . "\">" . $ddRules->feats[$ft]['feat'] . "</label>";	// onclick=\"setNewClass(" . $ft . ", '" . $ddRules->feats[$ft]['feat'] . "', 3)\"
+								}
+							?>
+						</div>
+					</div>
+
+					<div class="subscreen desccol featsscol" id="feats0">
+
+						<div class="banner">
+							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">
+								<span class="bannertitle">Skills</span>
+							</div>
+						</div>
+
+						<div class="racedesc">
+							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
+						</div>
+
+					</div>
 
 				</div> <!-- .mainscereen -->
 
@@ -617,7 +879,7 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Appearance</h5>
+				    <h2>Appearance</h2>
 					</div>
 				</div>
 
@@ -643,7 +905,7 @@
 						<img class="sideimg" src="../images/dd-logo.png" height="30px">
 					</div>
 					<div class="titlebox embossed">
-				    <h5>Name</h5>
+				    <h2>Name</h2>
 					</div>
 				</div>
 

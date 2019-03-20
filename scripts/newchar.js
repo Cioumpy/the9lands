@@ -1,5 +1,5 @@
 // New Character JavaScript == The Nine Lands Website
-/*	It controls the behaviour of the interactive objects in the newchar2.php page and its children.
+/*	It controls the behaviour of the interactive objects in the newchar.php page and its children.
 		It uses some functions from the main.js (and possibly other .js sheets) as following:
 
 		# showIdAmongClasses() - in main.js
@@ -23,13 +23,21 @@ var currLvl = new Level();
 // ========================================================================== //
 // Page Transition Functions Set																							//
 // ========================================================================== //
-/*  */
+/* These functions control the turning from a page to another of the New
+ 	 Character Creation modals */
 
 function nxtStepReady(step) {
 	var mySideBtn = document.getElementById('subbtn' + step);
 	var myNxtBtn = document.getElementById('nxtbtn' + step);
-	mySideBtn.removeAttribute('disabled');
-	myNxtBtn.removeAttribute('disabled');
+	mySideBtn.disabled = false;
+	myNxtBtn.disabled = false;
+}
+
+function nxtStepUnready(step) {
+	var mySideBtn = document.getElementById('subbtn' + step);
+	var myNxtBtn = document.getElementById('nxtbtn' + step);
+	mySideBtn.disabled = true;
+	myNxtBtn.disabled = true;
 }
 
 function turnPage(oldId, newId, pageClass, pagePrefix) {
@@ -86,6 +94,8 @@ function handleDragOver(e) {
 function handleDragEnter(e) {
   // this / e.target is the current hover target.
   this.classList.add('over');
+
+		this.style.cursor = "pointer";
 }
 
 function handleDragLeave(e) {
@@ -287,7 +297,7 @@ function showNewClassesModal() {
 /*  */
 
 function setAlignment(myId, value, stepNum) {
-	newCharacter.setCharAlignment(value);
+	newCharacter.setCharAlignment(value);		// newCharacter.alignment goes to <form>
 
 	highlightListItem('listalignment' + myId, 'subbtns');
 	showIdAmongClasses(myId, 'col', 'alignment');
@@ -394,6 +404,11 @@ function showNewAbilitiesModal() {
 // ========================================================================== //
 /*  */
 
+function showSkillDesc(skId) {
+	highlightListItem('skillrow' + skId, 'skillrow');
+	showIdAmongClasses(skId, 'col', 'skills');
+}
+
 function setSkillPoints() {
 	var pointsSum = 0;
 	for (var sk = 1; sk <= Object.keys(gameRules.skills).length; sk++) {
@@ -411,7 +426,7 @@ function setSkillTotals() {
 		var skillRanks = Number(document.getElementById('skillrank' + sk).innerHTML);
 		var skillBonus = Number(newCharacter.race.skillbonus[sk].bonus);
 
-		if (gameRules.skills[sk].untrained == 0 && skillRanks == 0) {
+		if (gameRules.skills[sk].untrained == 0 && currLvl.skills[sk].ranks == 0) {
 			skillTotal.innerHTML = "";
 		} else {
 			skillTotal.innerHTML = skillMod + skillRanks + skillBonus;
@@ -452,6 +467,8 @@ function modSkillRanks(skId, plusOrMinus) {
 	avSkPts = Number(document.getElementById('avskillpts').innerHTML);
 	if (avSkPts == 0) {
 		nxtStepReady(6);
+	} else {
+		nxtStepUnready(6);
 	}
 }
 
@@ -505,7 +522,15 @@ function showSkillsModal() {
 // ========================================================================== //
 /*  */
 
+function setNewFeats() {
+	var featBanner = document.getElementById('featbanner');
+//	featBanner.style.backgroundImage = "url('../images/webelements/banners/races/dddefault.png'), url('../images/webelements/banners/campaigns/default.jpg')";
+
+}
+
 function showNewFeatsModal() {
+
+	setNewFeats();
 
 	// Show the Alignments Selection <div>
 	openToPage('newcharmodal', 'skills', 'feats', 'box', 'newchar');

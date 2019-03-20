@@ -26,6 +26,8 @@ body {
 
 	font-size: 1em;
 	color: rgb(230,230,230);
+
+	cursor: url('../images/webelements/cursors/t9l_cursor.png'), default;
 }
 
 /* Set a style for all headings */

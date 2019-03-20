@@ -4,6 +4,15 @@
 
 
 
+@import (once) "style.less";
+
+/* ================================================================================ */
+/* LESS Variables																																		*/
+/* ================================================================================ */
+
+
+
+
 /* ================================================================================ */
 /* General Properties																																*/
 /* ================================================================================ */
@@ -16,17 +25,34 @@ body {
 	overflow: hidden;
 }
 
-h5 {
+
+/* ==== Headings ================ */
+
+h1 {
+	.siteheadings();
+
 	margin: 0;
 
 	padding: 20px;
 
 	font-size: 2em;
-  text-shadow: 3px black;
   text-shadow: 2px 2px 2px black;
 }
 
-th {
+h2 {
+	.siteheadings();
+
+	margin: 0;
+
+	padding: 20px;
+
+	font-size: 2em;
+  text-shadow: 2px 2px 2px black;
+}
+
+
+
+th {  /* To be changed... */
 	padding: 5px;
 
 	border: 1px solid white;
@@ -34,7 +60,7 @@ th {
 	background-color: rgba(127,127,127,0.8);
 }
 
-td {
+td {  /* To be changed... */
 	padding: 5px;
 
 	border: 1px solid white;
@@ -50,16 +76,6 @@ td {
 /* General MainBox Properties																												*/
 /* ================================================================================ */
 
-/* ========================== New Charachter Sheet Properties ==================== */
-/* =============================================================================== */
-
-
-/* ========================== General Elements Properties ========================== */
-
-.persp3d {
-	perspective: 1600px;
-}
-
 .mainbox { /* The container of the Charachter boxes */
 	display: flex;
 	flex-direction: column;
@@ -72,11 +88,12 @@ td {
 	max-height: 650px;
 
 	margin: 0 auto;
-	padding: 3px 10px;
 
 	border: 15px solid transparent;
 	border-image: url(../images/medieval-border.png) 20% round;
 	box-shadow: 10px 10px 18px 10px rgba(0,0,0,0.6);
+
+	padding: 3px 10px;
 
 	background-image: url("../images/darkmetal-bck.png");
 	background-repeat: no-repeat;
@@ -84,6 +101,8 @@ td {
 
 	overflow: hidden;
 }
+
+/* ====== Header ====== */
 
 .pagetitle {
 	display: flex;
@@ -108,12 +127,76 @@ td {
 	width: auto;
 }
 
+/* ====== Section Body ====== */
+
 .mainscreen {
 	display: flex;
 	justify-content: center;
 	flex-grow: 2;
 
 }
+
+/* ====== Footer ====== */
+
+.pagefooter {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-shrink: 0;
+
+	margin: 10px;
+
+}
+
+.pagebuttons {
+	display: flex;
+	flex-grow: 0;
+
+	margin: 0;
+}
+
+.mainbtns {
+	width: 15%;
+	min-width: 200px;
+
+	margin: 2px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 3px 10px;
+
+	background-image: url('../images/lightmetal-bck.png');
+	background-color: rgba(0,0,0,0.0);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	font-size: 1.2em;
+	color: darkgoldenrod;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px black;
+}
+
+a.mainbtns {
+	display: block;
+
+	font-family: "Sherwood", serif;
+	text-align: center;
+	text-decoration: none;
+
+	cursor: @curdefault, default;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+
+
+/* ========================== New Charachter Sheet Properties ===================== */
+/* ================================================================================ */
+
+
+/* ========================== General Elements Properties ========================= */
 
 .subscreen {
 	flex-grow: 0;
@@ -123,14 +206,15 @@ td {
 /*	border: 1px white solid; */
 }
 
-.col1 {
+.listcol {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: stretch;
 	flex-shrink: 0;
 
-	width: 200px;
+	width: auto;
+	min-width: 200px;
 
 	overflow-y: auto;
 }
@@ -155,20 +239,57 @@ td {
 	text-shadow: 1px 1px 1px black;
 }
 
-.camplist, .racelist, .classlist {
+.itemlist {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+
+	flex-grow: 2;
+
+	width: 100%;
+
+	overflow-y: auto;
+}
+
+.listitem {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+
+	height: 1.5em;
+
+	margin: 1px 2px;
+
+	border: 3px ridge silver;
+
+	background-image: url('../images/webelements/buttons/bluemetal-bck.png');
+
 	padding: 3px 10px;
 
 	font-family: "Roman", serif;
 	font-size: 1.2em;
-}
+	text-shadow: 1px 1px 1px black;
 
-.camplist:hover, .racelist:hover, .classlist:hover {
-	background-color: silver;
-	background-color: rgba(255, 255, 255, 0.2);
-}
+	&.camplist {
+		background-image: url('../images/webelements/buttons/darkmetal-bck.png');
+	}
 
-.camplist:focus, .racelist:focus, .classlist:focus {
-	color: darkgoldenrod;
+	&.selected {
+		border: 3px ridge darkgoldenrod;
+		background-image: url('../images/webelements/buttons/greenmetal-bck.png');
+	}
+
+	&:hover {
+		background-color: silver;
+		background-color: rgba(255, 255, 255, 0.2);
+		-webkit-filter: brightness(130%);
+		filter: brightness(130%);
+	}
+
+	&:focus {
+		color: darkgoldenrod;
+	}
 }
 
 .subbtns {
@@ -245,35 +366,35 @@ td {
 	background-size: 100% 100%;
 
 	overflow-y: hidden;
-}
 
-.avatarbox div {
-	width: 75%;
-	max-height: 100%;
-}
+	div {
+		width: 75%;
+		max-height: 100%;
+	}
 
-.avatarbox img {
-	display: inline-block;
+	img {
+		display: inline-block;
 
-	width: 100%;
-	height: auto;
-	max-height: 100%;
+		width: 100%;
+		height: auto;
+		max-height: 100%;
 
-	box-shadow: 2px 2px 4px 2px rgba(255,255,255,0.4), -2px -2px 4px 2px rgba(0,0,0,0.6);
+		box-shadow: 2px 2px 4px 2px rgba(255,255,255,0.4), -2px -2px 4px 2px rgba(0,0,0,0.6);
+	}
 }
 
 .rightbtns {
 	flex-grow: 0;
 }
 
-.campcol, .racecol, .classcol, .alignmentcol, .abilitiescol, .skillscol {
+.desccol {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: stretch;
 	flex-grow: 1;
 
-	overflow: hidden;
+	overflow-y: auto;
 }
 
 .banner {
@@ -314,13 +435,6 @@ td {
 	margin: 0.1em 0.8em;
 }
 
-.campbanner, .abilbanner {
-	justify-content: center;
-
-	background-size: cover;
-	background-position: center;
-}
-
 .campruleset {
 	display: flex;
 	flex-direction: column;
@@ -352,69 +466,15 @@ td {
 	overflow-y: auto;
 }
 
-.pagefooter {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-shrink: 0;
-
-	margin: 10px;
-
-}
-
-.pagebuttons {
-	display: flex;
-	flex-grow: 0;
-
-	margin: 0;
-}
-
-.mainbtns {
-	width: 15%;
-	min-width: 200px;
-
-	margin: 2px;
-
-	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
-
-	padding: 3px 10px;
-
-	background-image: url('../images/lightmetal-bck.png');
-	background-color: rgba(0,0,0,0.0);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-
-	font-size: 1.2em;
-	color: darkgoldenrod;
-	text-transform: uppercase;
-	text-shadow: 1px 1px 1px black;
-}
-
-a.mainbtns {
-	display: block;
-
-	font-family: "Sherwood", serif;
-	text-align: center;
-	text-decoration: none;
-
-	cursor: default;
-}
-
-a.mainbtns:hover {
-	opacity: 0.8;
-}
-
-.redbtn {
-	background-image: url('../images/redmetal-bck.png');
-}
-
-.bluebtn {
-	background-image: url('../images/bluemetal-bck.png');
-}
-
 /* ========================== End of the General Elements Properties =============== */
 
-/* ========================== Modal Boxes Properties =============================== */
+/* ================================================================================ */
+/* Modal Properties																																	*/
+/* ================================================================================ */
+
+.persp3d {
+	perspective: 1600px;
+}
 
 .newcharbox {
 
@@ -434,6 +494,11 @@ a.mainbtns:hover {
 	animation-fill-mode: forwards;
 
 }
+
+
+
+
+/* ========================== Modal Boxes Properties =============================== */
 
 .genderbox {
 	display: flex;
@@ -557,11 +622,11 @@ a.mainbtns:hover {
 
 	font-family: "Sherwood", fantasy;
 
-	cursor: move;
-}
+	cursor: grab;
 
-.rolltile.over {
-	filter: brightness(150%);
+	&.over {
+		filter: brightness(150%);
+	}
 }
 
 .rollbtn {
@@ -602,17 +667,27 @@ a.mainbtns:hover {
 
 	flex-shrink: 0;
 
+
+	border: 3px ridge silver;
+
+	background-image: url('../images/webelements/buttons/bluemetal-bck.png');
+
+	font-family: "Roman", serif;
 	color: silver;
-}
+	text-shadow: 1px 1px 1px black;
 
-.skillrow:hover {
-	background-color: silver;
-	background-color: rgba(255, 255, 255, 0.2);
-}
+	&:hover {
+		background-color: silver;
+		background-color: rgba(255, 255, 255, 0.2);
+		-webkit-filter: brightness(130%);
+		filter: brightness(130%);
+	}
 
-.skillrow:focus {
-	background-color: darkgoldenrod;
-	background-color: rgba(184, 134, 11, 0.2);
+	&:focus {
+		background-color: darkgoldenrod;
+		background-color: rgba(184, 134, 11, 0.2);
+	}
+
 }
 
 .skillname {
@@ -622,6 +697,8 @@ a.mainbtns:hover {
 
 	flex-shrink: 1;
 	flex-grow: 1;
+
+	margin-left: 10px;
 
 	font-size: 1em;
 }
@@ -675,6 +752,8 @@ a.mainbtns:hover {
 }
 
 .classskill {
+background-image: url('../images/webelements/buttons/azuremetal-bck.png');
+
 	color: peru;
 	font-weight: bold;
 }
@@ -696,6 +775,8 @@ a.mainbtns:hover {
 
 	width: 40px;
 	height: 30px;
+
+	font-size: 2em;
 }
 
 #skillbtns {
@@ -704,8 +785,8 @@ a.mainbtns:hover {
 
 .modrankbtn {
 	margin: 0 2px;
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 
 	background-size: contain, cover;
 	background-position: center, center;
@@ -717,6 +798,14 @@ a.mainbtns:hover {
 /* ================================================================================ */
 /* Attachments																																			*/
 /* ================================================================================ */
+
+.redbtn {
+	background-image: url('../images/redmetal-bck.png');
+}
+
+.bluebtn {
+	background-image: url('../images/bluemetal-bck.png');
+}
 
 .closing {
 	animation-name: closesection;

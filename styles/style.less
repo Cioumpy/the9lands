@@ -5,6 +5,22 @@
 
 
 /* ================================================================================ */
+/* LESS Variables																																		*/
+/* ================================================================================ */
+
+/* ====== Layers ====== */
+
+@bodyLayer: 0;
+@headerLayer: 7;
+@modalLayer: 9;
+
+/* ====== Cursors ====== */
+
+@curdefault: url('/images/webelements/cursors/t9l_cursor.png');
+@curgrab: url('/images/webelements/cursors/t9l_grab.png') 20 19;
+
+
+/* ================================================================================ */
 /* Fonts embedded in the CSS																												*/
 /* ================================================================================ */
 
@@ -38,12 +54,14 @@ body {
 	font-size: 1em;
 	color: rgb(230,230,230);
 
-	cursor: url('/images/webelements/cursors/t9l_cursor.png'), default;
+	cursor: @curdefault, default;
 }
 
 
-/* Set a style for all headings */
-h1, h2, h3, h4, h5, h6 {
+/* ==== Headings ================ */
+
+.siteheadings() {
+	/* Set a style for all headings */
   font-family: "Sherwood", fantasy;
 	font-weight: bold;
   color: darkgoldenrod;
@@ -53,33 +71,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5em;
-  text-shadow: 3px black;
-  text-shadow: 2px 2px 2px black;
+	.siteheadings();
+
+	&.sitetitle {
+		/* Website Title */
+		text-align: left;
+	  font-size: 2.5em;
+	  text-shadow: 2px 2px 2px black;
+	}
+
 }
 
 h2 {
-  font-size: 1.5em;
-  text-shadow: 3px black;
+	.siteheadings();
+
+	&.sitetitle {
+		/* Website Subtitle */
+		text-align: left;
+		font-size: 1.5em;
+	  text-shadow: 2px 2px 2px black;
+	}
+
 }
 
 h6 {
+	.siteheadings();
+
 	margin: 12px;
 
-	font-size: 130%;
+	text-align: left;
+	font-size: 1.3em;
   text-shadow: 3px black;
 }
 
 
-/* Set a stile for all links */
 a {
+	/* Set a style for all links */
 	text-decoration: inherit;
 	color: inherit;
 }
 
 
-/* Set a style for all buttons */
 button {
+	/* Set a style for all buttons */
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -90,8 +124,8 @@ button {
 
 	padding: 0 10px;
 
-	background-image: url('../images/button.jpg');
 	background-color: rgba(0,0,0,0.0);
+	background-image: url('../images/button.jpg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 
@@ -127,7 +161,7 @@ button[disabled] {
 
 header {
 	position: fixed;
-	z-index: 7;
+	z-index: @headerLayer;
 
 	width: 100%;
 	height: 170px;
@@ -271,7 +305,7 @@ header {
 	position: fixed; /* Stay in place */
 	left: 0;
   top: 0;
-  z-index: 9; /* Sit on top */
+  z-index: @modalLayer; /* Sit on top */
 
 	width: 100%; /* Full width */
   height: 100%; /* Full height */
