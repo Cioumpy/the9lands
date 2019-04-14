@@ -72,7 +72,7 @@
 							<span class="bannertitle">Custom Character</span>
 						</div>
 					</div>
-					<div class="campdesc">
+					<div class="descbox">
 						<p>You are going to create a standard character of your own choice.</p>
 					</div>
 					<div class="campruleset embossed">
@@ -100,7 +100,7 @@
 							echo "			<span class=\"bannertitle\">" . $campaigns[$campid]['campaign'] . "</span>";
 							echo "		</div>";
 							echo "	</div>";
-							echo "	<div class=\"campdesc\">" . $campaigns[$campid]['campdesc'] . "</div>";
+							echo "	<div class=\"descbox\">" . $campaigns[$campid]['campdesc'] . "</div>";
 							echo "	<div class=\"campruleset embossed\">";
 							echo "		<span>";
 							echo "			<b>Game Ruleset: </b>";
@@ -180,9 +180,7 @@
 
 				<div class="subscreen col3 embossed">
 					<div class="avatarbox">
-						<div>
-							<img src="../images/thumbs/chars/testavatar.jpg">
-						</div>
+						<div></div>
 					</div>
 					<button class="subbtns rightbtns">BIOGRAPHY</button>
 					<button class="subbtns rightbtns">IMPORT</button>
@@ -294,7 +292,7 @@
 								<span class="bannertitle">Races in the World</span>
 							</div>
 						</div>
-						<div class="racedesc">
+						<div class="descbox">
 							<p>The elven woods are home to the elves and their allies. Not many dwarves or half-orcs live there. In turn, elves, humans, halflings, and half-orcs are hard to find in underground dwarven cities. And while nonhumans may travel through the human countryside, most country folk are humans. In the big cities, however, the promise of power and profit brings together people of all the common races: humans, dwarves, elves, gnomes, half-elves, half-orcs, and halflings. </p>
 							<p>You can play a character of any race and class combination, but certain races do better pursuing certain careers. Halflings, for example, can be fighters, but their small size and special features make them better as rogues.</p>
 						</div>
@@ -309,7 +307,7 @@
 								echo "			<span class=\"bannertitle\">" . $ddRules->races[$rc]['race'] . "</span>";
 								echo "		</div>";
 								echo "	</div>";
-								echo "	<div class=\"racedesc\">";
+								echo "	<div class=\"descbox\">";
 								echo "		<p>" . $ddRules->racedescs[$rc]['intro'] . "</p>";
 								echo "		<p>All the members of the " . $ddRules->races[$rc]['race'] . " race share the following stats:</p>";
 								echo "		<ul>";
@@ -419,7 +417,7 @@
 								<span class="bannertitle">About Classes</span>
 							</div>
 						</div>
-						<div class="racedesc">
+						<div class="descbox">
 							<p>Adventurers seek gold, glory, justice, fame, power, knowledge, or maybe some other goals&#8212;perhaps noble or perhaps base. Each chooses a different way to attain those goals, from brutal combat power, to mighty magic, to subtle skills. Some adventurers prevail and grow in experience, wealth, and power. Others die.</p>
 							<p>Your character’s class is his or her profession or vocation. It determines what he or she is able to do: combat prowess, magical ability, skills, and more. Class is probably the first choice you make about your character&#8212;just ahead of race, or perhaps in conjunction with that decision. The class you choose determines where you should best place your character&#39;s ability scores and suggests which races are best to support that class choice.</p>
 						</div>
@@ -434,11 +432,11 @@
 								echo "			<span class=\"bannertitle\">" . $ddRules->classes[$rc]['class'] . "</span>";
 								echo "		</div>";
 								echo "	</div>";
-								echo "	<div class=\"classdesc\">";
+								echo "	<div class=\"descbox\">";
 								echo "		<p>" . $ddRules->classesdesc[$rc]['intro'] . "</p>";
 								echo "		<p>" . $ddRules->classesdesc[$rc]['Characteristics'] . "</p>";
 								echo "		<p><b>Hit Die:</b> d" . $ddRules->classes[$rc]['hd'] . ".</p>";
-								echo "		<p><span class=\"roman\" style=\"font-weight: bold; font-size: 1.3em\">Class Skills</span><br>";
+								echo "		<p><span class=\"partitle\">Class Skills</span><br>";
 								echo "			The " . $ddRules->classes[$rc]['class'] . "&#39;s class skills (and the key ability for each skill) are ";
 
 								/* To insert the commas and the "and", we need to get the last skill
@@ -618,7 +616,7 @@
 								<span class="bannertitle">The Nine Alignments</span>
 							</div>
 						</div>
-						<div class="racedesc">
+						<div class="descbox">
 							<p>Nine distinct alignments define all the possible combinations of the lawful–chaotic axis with the good–evil axis. Each alignment description below depicts a typical character of that alignment. Remember that individuals vary from this norm, and that a given character may act more or less in accord with his or her alignment from day to day. Use these descriptions as guidelines, not as scripts.<br>
 								<br>
 								The first six alignments, lawful good through chaotic neutral, are the standard alignments for player characters. The three evil alignments are for monsters and villains.</p>
@@ -633,7 +631,7 @@
 							echo "			<span class=\"bannertitle\">" . $ddRules->alignments[$rc]['alignment'] . "</span>";
 							echo "		</div>";
 							echo "	</div>";
-							echo "	<div class=\"racedesc\">";
+							echo "	<div class=\"descbox\">";
 							echo "		<p><b>" . $ddRules->alignments[$rc]['type'] . ":</b> " . $ddRules->alignments[$rc]['desc'] . "</p>";
 							echo "	</div>";
 							echo "</div>";
@@ -705,7 +703,7 @@
 							</div>
 						</div>
 
-						<div class="racedesc">
+						<div class="descbox">
 							<p>Just about every die roll you make is going to be modified based on your character&#39;s abilities. A tough character has a better chance of surviving a wyvern&#39;s poison sting. A perceptive character is more likely to notice bugbears sneaking up from behind. A stupid character is not as likely to find a secret door that leads to a hidden treasure chamber. Your ability scores tell you what your modifiers are for rolls such as these.
 								<br>
 								<br>
@@ -745,7 +743,7 @@
 						<div class="skilllist">
 							<?php
 								for ($i = 1; $i <= count($ddRules->skills); $i++) {
-									echo "<div class=\"skillrow\" id=\"skillrow" . $i . "\" onclick=\"showIdAmongClasses(" . $i . ", 'col', 'skills')\">";
+									echo "<div class=\"skillrow\" id=\"skillrow" . $i . "\" onclick=\"showSkillDesc(" . $i . ")\">";
 									echo "	<div class=\"skillname skill" . $i . "\">" . $ddRules->skills[$i]['skill'] . "</div>";
 									echo "	<div class=\"statsholder\">";
 									echo "		<label class=\"skillkey skill" . $i . "\">";
@@ -779,7 +777,7 @@
 							</div>
 						</div>
 
-						<div class="racedesc">
+						<div class="descbox">
 							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
 						</div>
 
@@ -793,7 +791,7 @@
 						echo "			<span class=\"bannertitle\">" . $ddRules->skillsdesc[$i]["skill"] . "</span>";
 						echo "		</div>";
 						echo "	</div>";
-						echo "	<div class=\"racedesc\">";
+						echo "	<div class=\"descbox\">";
 						echo "		<p>" . $ddRules->skillsdesc[$i]["intro"] . "</p>";
 						echo "	</div>";
 						echo "	<div class=\"modranks\">";
@@ -835,29 +833,55 @@
 				<div class="mainscreen">
 
 					<div class="subscreen listcol embossed">
-						<div class="listtitle bluebtn golden" onclick="">Feats</div>
+						<div class="listtitle bluebtn golden" onclick="showFeatDesc(0)">Feats</div>
 						<div class="itemlist">
 							<?php
 								for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
-									echo "<label class=\"listitem featlist\" id=\"featitem" . $ft . "\">" . $ddRules->feats[$ft]['feat'] . "</label>";	// onclick=\"setNewClass(" . $ft . ", '" . $ddRules->feats[$ft]['feat'] . "', 3)\"
+									echo "<div class=\"listitem featlist\" id=\"featitem" . $ft . "\" onclick=\"showFeatDesc(" . $ft . ")\">";
+									echo "<label class=\"checkbox\"><input type=\"checkbox\"><div class=\"hidden\"></div></label>";
+									echo $ddRules->feats[$ft]['feat'];
+									echo "</div>";
 								}
 							?>
 						</div>
 					</div>
 
-					<div class="subscreen desccol featsscol" id="feats0">
+					<div class="subscreen desccol featscol" id="feats0">
 
 						<div class="banner">
 							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">
-								<span class="bannertitle">Skills</span>
+								<span class="bannertitle">Feats</span>
 							</div>
 						</div>
 
-						<div class="racedesc">
+						<div class="descbox">
 							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
 						</div>
 
 					</div>
+
+					<?php
+						for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
+							echo "<div class=\"subscreen desccol featscol hidden\" id=\"feats" . $ft . "\">";
+							echo "	<div class=\"banner\">";
+							echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/abilityrolls.jpg')\">";
+							echo "			<span class=\"bannertitle\">" . $ddRules->feats[$ft]['feat'] . "</span>";
+							echo "		</div>";
+							echo "	</div>";
+							echo "	<div class=\"descbox\">";
+							echo "		<p>";
+							for ($i = 0; $i < count($ddRules->feats[$ft]['desc']); $i++) {
+								if ($i % 2 == 0) {
+									echo $ddRules->feats[$ft]['desc'][$i] . "</p>";
+								} else {
+									echo "<p><strong class=\"partitle\">" . $ddRules->feats[$ft]['desc'][$i] . ":</strong><br>";
+								}
+							}
+							echo "		</p>";
+							echo "	</div>";
+							echo "</div>";
+						}
+					?>
 
 				</div> <!-- .mainscereen -->
 

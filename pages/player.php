@@ -74,7 +74,9 @@
 			<ul>
 				<li><a href="charsheet.php" style="color: goldenrod">Characters List Page</a></li>
 				<li><a href="newchar.php" style="color: goldenrod">New Character Page</a></li>
-				<li><a href="../testdb.php" style="color: goldenrod">Test Page</a>: a page to test formulas and see the results.</li>
+				<li><a href="dev/testdb.php" style="color: goldenrod">Test Page</a>: a page to test formulas and see the results.</li>
+				<li><a href="dev/imguploadform.php" style="color: goldenrod">Upload Images</a>: a page to test uploading images.</li>
+				<li><a href="dev/htmltoimg.php" style="color: goldenrod">Frame Images</a>: a page to test framing images.</li>
 			</ul>
 
 			<hr> <!-- ******************************************************************************************************* -->

@@ -102,10 +102,9 @@
 			}
 
 
-			for ($ft = 0; $ft <= count($this->feats); $ft++) {
-
-//				$this->feats[$ft]['desc'] = explode(";;", $this->feats[$ft]['desc']);
-
+			$featDesc = [];
+			for ($ft = 1; $ft <= count($this->feats); $ft++) {
+				$this->feats[$ft]['desc'] = explode(";;", $this->feats[$ft]['desc']);
 			}
 
 		} // End of function __construct

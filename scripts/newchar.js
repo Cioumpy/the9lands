@@ -94,8 +94,6 @@ function handleDragOver(e) {
 function handleDragEnter(e) {
   // this / e.target is the current hover target.
   this.classList.add('over');
-
-		this.style.cursor = "pointer";
 }
 
 function handleDragLeave(e) {
@@ -521,6 +519,11 @@ function showSkillsModal() {
 // Feats Functions Set																												//
 // ========================================================================== //
 /*  */
+
+function showFeatDesc(ftId) {
+	showIdAmongClasses(ftId, 'col', 'feats');
+	highlightListItem('featitem' + ftId, 'featlist');
+}
 
 function setNewFeats() {
 	var featBanner = document.getElementById('featbanner');

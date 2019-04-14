@@ -166,9 +166,6 @@ td {  /* To be changed... */
 	padding: 3px 10px;
 
 	background-image: url('../images/lightmetal-bck.png');
-	background-color: rgba(0,0,0,0.0);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
 
 	font-size: 1.2em;
 	color: darkgoldenrod;
@@ -183,7 +180,7 @@ a.mainbtns {
 	text-align: center;
 	text-decoration: none;
 
-	cursor: @curdefault, default;
+	cursor: @curpointer, pointer;
 
 	&:hover {
 		opacity: 0.8;
@@ -206,6 +203,15 @@ a.mainbtns {
 /*	border: 1px white solid; */
 }
 
+.partitle {
+	font-family: "Roman", fantasy;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+
+/* ========================== List Column Properties ============================== */
+
 .listcol {
 	display: flex;
 	flex-direction: column;
@@ -217,6 +223,18 @@ a.mainbtns {
 	min-width: 200px;
 
 	overflow-y: auto;
+
+	&.algcol {
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		width: 37.5em;
+		min-width: 33%;
+		max-width: 50%;
+
+	}
+
 }
 
 .listtitle {
@@ -271,6 +289,8 @@ a.mainbtns {
 	font-size: 1.2em;
 	text-shadow: 1px 1px 1px black;
 
+	cursor: @curpointer, pointer;
+
 	&.camplist {
 		background-image: url('../images/webelements/buttons/darkmetal-bck.png');
 	}
@@ -289,6 +309,32 @@ a.mainbtns {
 
 	&:focus {
 		color: darkgoldenrod;
+	}
+
+	.checkbox {
+		width: 1em;
+		height: 1em;
+
+		margin-right: 0.5em;
+
+		border: 2px ridge goldenrod;
+
+		background-image: url("/images/webelements/buttons/greenmetal-bck.png");
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+
+		input {
+			display: none;
+		}
+
+		div {
+			width: 100%;
+			height: 100%;
+
+			background-image: url("/images/webelements/buttons/checkmark.png");
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
 	}
 }
 
@@ -310,20 +356,9 @@ a.mainbtns {
 	text-shadow: 1px 1px 1px black;
 }
 
-.algcol {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: wrap;
-
-	min-width: 33%;
-	width: 37.5em;
-	max-width: 50%;
-
-}
-
 .algbtn {
-	width: 30%;
+	width: 31%;
+	border: 3px solid transparent;
 }
 
 .col2 {
@@ -352,7 +387,9 @@ a.mainbtns {
 
 .avatarbox {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
 	flex-grow: 2;
 
 	margin: 3px;
@@ -361,23 +398,30 @@ a.mainbtns {
 
 	padding: 20px;
 
-	background-image: url("../images/darkmetal-bck.png");
+	background-image: url("/images/webelements/backgrounds/lightmetal-bck.png");
+	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 
 	overflow-y: hidden;
 
 	div {
-		width: 75%;
-		max-height: 100%;
+		flex-grow: 2;
+
+		width: 100%;
+		height: 100%;
+
+		background-image: url('/images/thumbs/frames/portrait_silver.png'), url("/images/thumbs/chars/testavatar.jpg");
+		background-repeat: no-repeat, no-repeat;
+		background-size: contain, contain;
 	}
 
 	img {
 		display: inline-block;
 
-		width: 100%;
-		height: auto;
-		max-height: 100%;
+		height: : 100%;
+		width: auto;
+		max-width: 100%;
 
 		box-shadow: 2px 2px 4px 2px rgba(255,255,255,0.4), -2px -2px 4px 2px rgba(0,0,0,0.6);
 	}
@@ -435,22 +479,7 @@ a.mainbtns {
 	margin: 0.1em 0.8em;
 }
 
-.campruleset {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	flex-grow: 0;
-	flex-shrink: 0;
-
-	margin-top: 15px;
-
-	padding: 10px;
-
-	overflow: hidden;
-}
-
-.campdesc, .racedesc, .classdesc {
+.descbox {
 	flex-grow: 1;
 
 	border: 10px solid transparent;
@@ -464,6 +493,21 @@ a.mainbtns {
 	text-align: justify;
 
 	overflow-y: auto;
+}
+
+.campruleset {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	margin-top: 15px;
+
+	padding: 10px;
+
+	overflow: hidden;
 }
 
 /* ========================== End of the General Elements Properties =============== */
@@ -642,12 +686,7 @@ a.mainbtns {
 }
 
 .skillscreen {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: stretch;
-	flex-shrink: 0;
-
+	.listcol();
 	max-width: 50%;
 }
 
@@ -667,7 +706,6 @@ a.mainbtns {
 
 	flex-shrink: 0;
 
-
 	border: 3px ridge silver;
 
 	background-image: url('../images/webelements/buttons/bluemetal-bck.png');
@@ -675,6 +713,8 @@ a.mainbtns {
 	font-family: "Roman", serif;
 	color: silver;
 	text-shadow: 1px 1px 1px black;
+
+	cursor: @curpointer, pointer;
 
 	&:hover {
 		background-color: silver;
@@ -686,6 +726,17 @@ a.mainbtns {
 	&:focus {
 		background-color: darkgoldenrod;
 		background-color: rgba(184, 134, 11, 0.2);
+	}
+
+	&.classskill {
+		color: peru;
+		font-weight: bold;
+	}
+
+	&.selected {
+		border: 3px ridge darkgoldenrod;
+		background-image: url('../images/webelements/buttons/greenmetal-bck.png');
+		color: inherit;
 	}
 
 }
@@ -707,8 +758,6 @@ a.mainbtns {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	font-family: "Roman", serif;
 }
 
 .skillkey {
@@ -749,13 +798,6 @@ a.mainbtns {
 
 .skilltotals, .skillranks {
 	text-shadow: 2px 2px 1px black;
-}
-
-.classskill {
-background-image: url('../images/webelements/buttons/azuremetal-bck.png');
-
-	color: peru;
-	font-weight: bold;
 }
 
 .modranks {

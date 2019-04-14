@@ -49,6 +49,8 @@
 }
 
 .selected {
+	border: 3px ridge darkgoldenrod;
+	background-image: url('../images/webelements/buttons/greenmetal-bck.png');
 	color: darkgoldenrod;
 }
 

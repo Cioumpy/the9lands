@@ -1,11 +1,11 @@
 <?php
-	include "scripts/config.php";     	// Cofiguration file for the Database connection
-	include "scripts/session.php";    	// Checks if a member section is active
-	include "scripts/functions.php";		// Enables the website´s general PHP functions
+	include "../../scripts/config.php";     	// Cofiguration file for the Database connection
+	include "../../scripts/session.php";    	// Checks if a member section is active
+	include "../../scripts/functions.php";		// Enables the website´s general PHP functions
 
-	include "scripts/invites.php";  		// Get the rules regarding invites
-	include "scripts/ddrules.php";			// Get the rules of the game
-	include "scripts/character.php";  	// Get the rules regarding characters
+	include "../../scripts/invites.php";  		// Get the rules regarding invites
+	include "../../scripts/ddrules.php";			// Get the rules of the game
+	include "../../scripts/character.php";  	// Get the rules regarding characters
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 
 	<body>
 
-		<?php include "pages/frames/header.php" ?>
+		<?php include "../frames/header.php" ?>
 
 		<div id="mainbody">
 
@@ -327,7 +327,7 @@
 
 	  </div>
 
-	  <script src="scripts/main.js"></script>
+	  <script src="../../scripts/main.js"></script>
 		<script>
 			document.getElementById('dndskills').innerHTML = Object.keys(gameSkills).length;
 		</script>

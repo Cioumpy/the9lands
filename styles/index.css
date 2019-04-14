@@ -6,12 +6,18 @@
 	src: url("../fonts/sherwood.ttf");
 }
 
+@font-face {
+	font-family: "Roman";
+	src: url("/fonts/morris-roman.black.ttf");
+}
+
 /* ========================== End of Fonts embedded in the CSS ===================== */
 /* ================================================================================= */
 
 body {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-around;
 	align-items: center;
 
 	height: 100vh;
@@ -19,10 +25,10 @@ body {
 	margin: 0;
 
 	background-color: black;
-	background-image: url("../images/blkstone-bck.jpg");
+	background-image: url("/images/webelements/backgrounds/worldmap-fantasy-bck.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 
 	font-size: 1em;
 	color: rgb(230,230,230);
@@ -46,6 +52,7 @@ h1 {
 }
 
 h2 {
+	font-family: 'Roman', bold;
   font-size: 2em;
   text-shadow: 4px 4px black;
 }
@@ -57,8 +64,8 @@ a {
 }
 
 /* Bordered form */
-form {
-	border: 20px solid transparent;
+#titlebox, form {
+	border: 15px solid transparent;
 	border-image: url(../images/medieval-border.png) 20% round;
 	box-shadow:20px 20px 50px 15px black;
 
@@ -93,6 +100,8 @@ input[type=text], input[type=password] {
 	background-image: url("../images/darkmetal-bck.png");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+
+	cursor: url('../images/webelements/cursors/t9l_text.png') 1 60, text;
 }
 
 /* Set a style for all buttons */
@@ -117,11 +126,8 @@ button {
 	font-family: 'Sherwood', serif;
 	color: silver;
 	text-shadow: 1px 1px 1px black;
-}
 
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
+	cursor: url('/images/webelements/cursors/t9l_pointer.png') 2 10, default;
 }
 
 /* Add a hover effect for buttons */

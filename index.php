@@ -13,13 +13,15 @@
 	</head>
 
 	<body>
+
+		<div id="titlebox">
+			<h1>The Nine Lands</h1>
+			<h2>d20 System Online Tabletop RPG</h2>
+		</div>
+
 		<div id="mainbody">
 
 			<form action="scripts/login.php" method="post">
-				<div>
-					<h1>The Nine Lands</h1>
-					<h2>d20 System Online Tabletop RPG</h2>
-				</div>
 				<div class="container">
 					<label>USERNAME</label>
 					<input type="text" placeholder="Enter Username" name="uname" required>
@@ -29,7 +31,7 @@
 
 					<button type="submit">LOGIN</button>
 					<label><input type="checkbox" checked> Remember me</label>
-					<span class="psw">Forgot <a href="#">password?</a></span>
+					<span class="psw">Forgot <a href="#">password</a>?</span>
 				</div>
 			</form>
 

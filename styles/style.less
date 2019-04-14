@@ -11,12 +11,13 @@
 /* ====== Layers ====== */
 
 @bodyLayer: 0;
-@headerLayer: 7;
-@modalLayer: 9;
+@headerLayer: 4;
+@modalLayer: 7;
 
 /* ====== Cursors ====== */
 
 @curdefault: url('/images/webelements/cursors/t9l_cursor.png');
+@curpointer: url('/images/webelements/cursors/t9l_pointer.png') 2 10;
 @curgrab: url('/images/webelements/cursors/t9l_grab.png') 20 19;
 
 
@@ -46,9 +47,9 @@ body {
 	margin: 0;
 
 	background-color: black;
-	background-image: url("../images/blkstone-bck.jpg");
+	background-image: url("/images/webelements/backgrounds/blkstone-bck.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: cover;
 	background-attachment: fixed;
 
 	font-size: 1em;
@@ -109,6 +110,8 @@ a {
 	/* Set a style for all links */
 	text-decoration: inherit;
 	color: inherit;
+
+	cursor: @curpointer, pointer;
 }
 
 
@@ -133,19 +136,25 @@ button {
 	color: brown;
 	text-shadow: 1px 1px 1px goldenrod;
 
-	cursor: url('/images/webelements/cursors/t9l_cursor.png'), default;
+	cursor: @curpointer, default;
+
+	&:hover {
+		/* Add a hover effect for buttons */
+	  opacity: 0.8;
+	}
+
+	/* Grey out the disabled buttons */
+	&[disabled] {
+		opacity: 0.4;
+
+		color: darkgrey;
+
+		cursor: @curdefault, default;
+	}
 }
 
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
-}
-
-/* Grey out the disabled buttons */
-button[disabled] {
-	opacity: 0.4;
-
-	color: darkgrey;
+label {
+	cursor: @curdefault, default;
 }
 
 /* Disable the browser's outline for all clicked buttons */
@@ -168,8 +177,7 @@ header {
 
 	background-image: url("../images/wood-bck.jpg");
 	background-repeat: repeat-x;
-	background-size: 300px 300px;
-	background-attachment: fixed;
+	background-size: contain;
 
 	text-align: center;
 }
@@ -201,53 +209,53 @@ header {
 
 	background-image: url(../images/dd-logo.png);
 	background-size: 100% 100%;
-}
 
-#dndlogo:hover {
-	animation-name: logotwist;
-	animation-duration: 2s;
-	animation-direction: alternate;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+	&:hover {
+		animation-name: logotwist;
+		animation-duration: 2s;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
 }
 
 #menubar {
 	display: flex;
 	justify-content: space-around;
-}
 
-#menubar > a {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	height: 50px;
-	width: 200px;
+		height: 50px;
+		width: 200px;
 
-	margin: 0 20px;
+		margin: 0 20px;
 
-	border: none;
+		border: none;
 
-	background-image: url('../images/scroll-button-2.png');
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+		background-image: url('../images/scroll-button-2.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
 
-	font-family: 'Sherwood', fantasy;
-	font-size: 1.1em;
-	color: brown;
-	text-shadow: 1px 1px 1px goldenrod;
-	text-decoration: inherit;
-}
+		font-family: 'Sherwood', fantasy;
+		font-size: 1.1em;
+		color: brown;
+		text-shadow: 1px 1px 1px goldenrod;
+		text-decoration: inherit;
 
-#menubar a:hover {
-	background-image: url('../images/scroll-button-2-h.png');
-}
+		&:hover {
+			background-image: url('../images/scroll-button-2-h.png');
+		}
 
-#menubar a:active, #menubar a:focus {
-	background-image: url('../images/scroll-button-2-c.png');
+		&:active, &:focus {
+			background-image: url('../images/scroll-button-2-c.png');
 
-	color: goldenrod;
-	text-shadow: 1px 1px 1px black;
+			color: goldenrod;
+			text-shadow: 1px 1px 1px black;
+		}
+	}
 }
 
 #loginframe {
@@ -274,12 +282,12 @@ header {
 	font-family: "Sherwood", fantasy;
 	color: brown;
 	text-shadow: 1px 1px 1px goldenrod;
-}
 
-.usrbtn:hover {
-    opacity: 0.8;
-}
+	&:hover {
+		opacity: 0.8;
+	}
 
+}
 
 
 /* ================================================================================ */
@@ -338,16 +346,15 @@ header {
 
 	color: #aaa;
 	font-size: 10px;
+
+	&:hover, &:focus {
+		color: red;
+		text-decoration: none;
+
+		cursor: pointer;
+	}
+
 }
-
-.close:hover,
-.close:focus {
-	color: red;
-	text-decoration: none;
-
-	cursor: pointer;
-}
-
 
 
 /* ================================================================================ */
@@ -356,8 +363,8 @@ header {
 
 /* Header Animations */
 
-@-webkit-keyframes logotwist {
-	  0% {
+@logotwist: {
+		0% {
 		background-image: url(../images/dd-logo.png);
 		transform: rotateY(0deg);
 	}
@@ -375,21 +382,5 @@ header {
 	}
 }
 
-@keyframes logotwist {
-	  0% {
-		background-image: url(../images/dd-logo.png);
-		transform: rotateY(0deg);
-	}
-	 50% {
-		background-image: url(../images/dd-logo.png);
-		transform: rotateY(90deg);
-	}
-	 51% {
-		background-image: url(../images/pf-logo.png);
-		transform: rotateY(90deg);
-	 }
-	100% {
-		background-image: url(../images/pf-logo.png);
-		transform: rotateY(0deg);
-	}
-}
+@-webkit-keyframes logotwist { @logotwist(); }
+@keyframes logotwist { @logotwist(); }
