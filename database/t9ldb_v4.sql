@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `the9lands` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `the9lands`;
 -- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: the9lands
@@ -228,7 +230,9 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 19:05:14
+-- Dump completed on 2019-04-14 19:51:18
+CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `t9lddrules`;
 -- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
@@ -605,4 +609,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 19:05:14
+-- Dump completed on 2019-04-14 19:51:18
