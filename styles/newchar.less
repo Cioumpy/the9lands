@@ -1,4 +1,4 @@
-/* New Character CSS Stylesheet == "The Nine Lands" Website. */
+ /* New Character CSS Stylesheet == "The Nine Lands" Website. */
 /* It defines the styles for the elements inside the [newchar.php] file.
 */
 
@@ -102,7 +102,7 @@ td {  /* To be changed... */
 	overflow: hidden;
 }
 
-/* ====== Header ====== */
+/* ====== Header ============================================================== */
 
 .pagetitle {
 	display: flex;
@@ -127,90 +127,25 @@ td {  /* To be changed... */
 	width: auto;
 }
 
-/* ====== Section Body ====== */
+/* ====== Section Body ======================================================== */
 
 .mainscreen {
 	display: flex;
 	justify-content: center;
 	flex-grow: 2;
+	flex-shrink: 2;
 
+	height: calc(100% - 140px);
 }
-
-/* ====== Footer ====== */
-
-.pagefooter {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-shrink: 0;
-
-	margin: 10px;
-
-}
-
-.pagebuttons {
-	display: flex;
-	flex-grow: 0;
-
-	margin: 0;
-}
-
-.mainbtns {
-	width: 15%;
-	min-width: 200px;
-
-	margin: 2px;
-
-	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
-
-	padding: 3px 10px;
-
-	background-image: url('../images/lightmetal-bck.png');
-
-	font-size: 1.2em;
-	color: darkgoldenrod;
-	text-transform: uppercase;
-	text-shadow: 1px 1px 1px black;
-}
-
-a.mainbtns {
-	display: block;
-
-	font-family: "Sherwood", serif;
-	text-align: center;
-	text-decoration: none;
-
-	cursor: @curpointer, pointer;
-
-	&:hover {
-		opacity: 0.8;
-	}
-}
-
-
-
-/* ========================== New Charachter Sheet Properties ===================== */
-/* ================================================================================ */
-
-
-/* ========================== General Elements Properties ========================= */
 
 .subscreen {
 	flex-grow: 0;
-
 	margin: 10px;
 
 /*	border: 1px white solid; */
 }
 
-.partitle {
-	font-family: "Roman", fantasy;
-	font-weight: bold;
-	font-size: 1.3em;
-}
-
-
-/* ========================== List Column Properties ============================== */
+/* === List Column Properties === */
 
 .listcol {
 	display: flex;
@@ -311,32 +246,93 @@ a.mainbtns {
 		color: darkgoldenrod;
 	}
 
-	.checkbox {
-		width: 1em;
-		height: 1em;
+	input[type=checkbox] {
+		display: none;
 
-		margin-right: 0.5em;
+		& + .checkbox {
+			width: 1em;
+			height: 1em;
 
-		border: 2px ridge goldenrod;
+			margin-right: 0.5em;
 
-		background-image: url("/images/webelements/buttons/greenmetal-bck.png");
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
+			border: 2px ridge goldenrod;
 
-		input {
-			display: none;
+			background-image: none, url("/images/webelements/buttons/bluemetal-bck.png");
+			background-repeat: no-repeat, no-repeat;
+			background-size: 100% 100%, 100% 100%;
 		}
 
-		div {
-			width: 100%;
-			height: 100%;
-
-			background-image: url("/images/webelements/buttons/checkmark.png");
-			background-repeat: no-repeat;
-			background-size: 100% 100%;
+		&:checked + .checkbox {
+			background-image: url("/images/webelements/buttons/checkmark.png"), url("/images/webelements/buttons/greenmetal-bck.png");
 		}
 	}
 }
+
+/* ====== Footer ============================================================== */
+
+.pagefooter {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-shrink: 0;
+
+	margin: 10px;
+
+}
+
+.pagebuttons {
+	display: flex;
+	flex-grow: 0;
+
+	margin: 0;
+}
+
+.mainbtns {
+	width: 15%;
+	min-width: 200px;
+
+	margin: 2px;
+
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 3px 10px;
+
+	background-image: url('../images/lightmetal-bck.png');
+
+	font-size: 1.2em;
+	color: darkgoldenrod;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px black;
+
+	a& {
+		display: block;
+
+		font-family: "Sherwood", serif;
+		text-align: center;
+		text-decoration: none;
+
+		cursor: @curpointer, pointer;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}
+
+
+
+/* ========================== New Charachter Sheet Properties ===================== */
+/* ================================================================================ */
+
+
+/* ========================== General Elements Properties ========================= */
+
+.partitle {
+	font-family: "Roman", fantasy;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
 
 .subbtns {
 	flex-shrink: 0;
@@ -521,13 +517,6 @@ a.mainbtns {
 }
 
 .newcharbox {
-
-	width: 80%;
-	max-width: 870px;
-
-	height: 80%;
-	max-height: 650px;
-
 	border-image: url(../images/greymedieval-border.png) 20% round;
 
 	background-image: url("../images/bluemetal-bck.png");
@@ -569,11 +558,6 @@ a.mainbtns {
 	background-position: center, center;
 	background-repeat: no-repeat, no-repeat;
 
-}
-
-#newcharrace, #newcharclass {
-	width: 75%;
-	height: 75%;
 }
 
 /* ========================== End of the Modal Boxes Properties ==================== */

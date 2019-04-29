@@ -55,15 +55,17 @@
 
 				<div class="subscreen listcol embossed">
 					<div class="listtitle golden">Campaigns</div>
-					<label class="listitem camplist selected" id="campitem0" onclick="setCampaign(0, 0, '', 'dd', '1')">Custom Character</label>
-					<?php
-						for ($inv = 1; $inv <= $invitesmaxid; $inv++) {
-							if ($invites[$inv]['username'] != null) {
-								$campid = $invites[$inv]['camp'];
-								echo "<label class=\"listitem camplist\" id=\"campitem" . $campid . "\" onclick=\"setCampaign(" . $inv . ", " . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
+					<div class="itemlist">
+						<label class="listitem camplist selected" id="campitem0" onclick="setCampaign(0, 0, '', 'dd', '1')">Custom Character</label>
+						<?php
+							for ($inv = 1; $inv <= $invitesmaxid; $inv++) {
+								if ($invites[$inv]['username'] != null) {
+									$campid = $invites[$inv]['camp'];
+									echo "<label class=\"listitem camplist\" id=\"campitem" . $campid . "\" onclick=\"setCampaign(" . $inv . ", " . $campid . ", '" . $campaigns[$campid]['campaign'] . "', '" . $campaigns[$campid]['game'] . "', '" . $campaigns[$campid]['startlevel'] . "')\">" . $campaigns[$campid]['campaign'] . "</label>";
+								}
 							}
-						}
-					?>
+						?>
+					</div>
 				</div>
 
 				<div class="subscreen desccol campcol" id="camp0">
@@ -147,15 +149,17 @@
 			<div class="mainscreen">
 
 				<div class="subscreen listcol embossed">
-					<button class="subbtns" onclick="showModal('newcharmodal', 'gender', 'box', 'newchar')">GENDER</button>
-					<button class="subbtns" id="subbtn1" onclick="showNewRacesModal()" disabled>RACE</button>
-					<button class="subbtns" id="subbtn2" onclick="showNewClassesModal()" disabled>CLASS</button>
-					<button class="subbtns" id="subbtn3" onclick="showNewAlignmentsModal()" disabled>ALIGNMENT</button>
-					<button class="subbtns" id="subbtn4" onclick="showNewAbilitiesModal()" disabled>ABILITIES</button>
-					<button class="subbtns" id="subbtn5" onclick="showSkillsModal()" disabled>SKILLS</button>
-					<button class="subbtns" id="subbtn6" onclick="showNewFeatsModal()" disabled>FEATS</button>
-					<button class="subbtns" id="subbtn7" onclick="showNewAppearanceModal()" disabled>APPEARANCE</button>
-					<button class="subbtns" id="subbtn8" onclick="showNewNameModal()" disabled>NAME</button>
+					<div class="itemlist">
+						<button class="subbtns" onclick="showModal('newcharmodal', 'gender', 'box', 'newchar')">GENDER</button>
+						<button class="subbtns" id="subbtn1" onclick="showNewRacesModal()" disabled>RACE</button>
+						<button class="subbtns" id="subbtn2" onclick="showNewClassesModal()" disabled>CLASS</button>
+						<button class="subbtns" id="subbtn3" onclick="showNewAlignmentsModal()" disabled>ALIGNMENT</button>
+						<button class="subbtns" id="subbtn4" onclick="showNewAbilitiesModal()" disabled>ABILITIES</button>
+						<button class="subbtns" id="subbtn5" onclick="showSkillsModal()" disabled>SKILLS</button>
+						<button class="subbtns" id="subbtn6" onclick="showNewFeatsModal()">FEATS</button>
+						<button class="subbtns" id="subbtn7" onclick="showNewAppearanceModal()" disabled>APPEARANCE</button>
+						<button class="subbtns" id="subbtn8" onclick="showNewNameModal()" disabled>NAME</button>
+					</div>
 				</div>
 
 				<div class="subscreen col2">
@@ -277,13 +281,15 @@
 
 					<div class="subscreen listcol embossed">
 						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'race')">Races</div>
-						<?php
-							for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
-								if ($ddRules->races[$rc]['race'] != null) {
-									echo "<label class=\"listitem racelist\" id=\"raceitem" . $rc . "\" onclick=\"setNewRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
+						<div class="itemlist">
+							<?php
+								for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
+									if ($ddRules->races[$rc]['race'] != null) {
+										echo "<label class=\"listitem racelist\" id=\"raceitem" . $rc . "\" onclick=\"setNewRace(" . $rc . ", '" . $ddRules->races[$rc]['race'] . "', 2)\">" . $ddRules->races[$rc]['race'] . "</label>";
+									}
 								}
-							}
-						?>
+							?>
+						</div>
 					</div>
 
 					<div class="subscreen desccol racecol" id="race0">
@@ -402,13 +408,15 @@
 
 					<div class="subscreen listcol embossed">
 						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'class')">Classes</div>
-						<?php
-							for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
-								if ($ddRules->classes[$rc]['class'] != null) {
-									echo "<label class=\"listitem classlist\" id=\"classitem" . $rc . "\" onclick=\"setNewClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
+						<div class="itemlist">
+							<?php
+								for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
+									if ($ddRules->classes[$rc]['class'] != null) {
+										echo "<label class=\"listitem classlist\" id=\"classitem" . $rc . "\" onclick=\"setNewClass(" . $rc . ", '" . $ddRules->classes[$rc]['class'] . "', 3)\">" . $ddRules->classes[$rc]['class'] . "</label>";
+									}
 								}
-							}
-						?>
+							?>
+						</div>
 					</div>
 
 					<div class="subscreen desccol classcol" id="class0">
@@ -838,7 +846,7 @@
 							<?php
 								for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
 									echo "<div class=\"listitem featlist\" id=\"featitem" . $ft . "\" onclick=\"showFeatDesc(" . $ft . ")\">";
-									echo "<label class=\"checkbox\"><input type=\"checkbox\"><div class=\"hidden\"></div></label>";
+									echo "<input type=\"checkbox\" id=\"racechk" . $ft . "\"><label class=\"checkbox\" for=\"racechk" . $ft . "\"><div class=\"hidden\"></div></label>";
 									echo $ddRules->feats[$ft]['feat'];
 									echo "</div>";
 								}
