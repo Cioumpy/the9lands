@@ -72,6 +72,10 @@
 				print_r(json_encode($invites, JSON_PRETTY_PRINT));
 				echo "<br><br>";
 
+				echo '<a href="../../scripts/ddrulesJSON.php" target="_blank"><h6>The $ddRules JSON</h6></a><br>';
+				include "../../scripts/ddrulesJSON.php";
+				echo "<br><br>";
+
 				$testvar1 = 1 / 3;
 				$testvar2 = $testvar1 * 3;
 				$testvar3 = $testvar1 + $testvar1 + $testvar1;

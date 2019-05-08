@@ -246,14 +246,117 @@ function setGender(myGender, stepNum) {
 // ========================================================================== //
 /*  */
 
+/* AJAX functions */
+function showDesc(url, descFunction, id) {
+  var xhttp;
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+			var myObj = JSON.parse(this.responseText);
+      descFunction(myObj, id);
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+
+function raceDesc(rulesObj, id) {
+  var section = document.getElementById('racecol');
+	var myRace = rulesObj.races[id];
+	var myDesc = rulesObj.racedescs[id];
+
+	var banner = section.getElementsByClassName('bannerbox');
+	banner[0].style.backgroundImage = "url('../images/webelements/banners/races/" + myDesc.image + "'), url('../images/webelements/banners/campaigns/default.jpg')";
+	banner[0].innerHTML = "<span class=\"bannertitle\">" + myRace.race + "</span>";
+
+	var descTxt = "";
+	descTxt += "<p>" + myDesc.intro + "</p>";
+	descTxt += "<p>All the members of the " + myRace.race + " race share the following stats:</p>";
+	descTxt += "<ul>";
+
+	if (myDesc.abilitydesc != null) {
+		descTxt += "<li><b>";
+		var longlist = false;
+		var abilKeys = Object.keys(rulesObj.abilities);
+		for (var i = 0; i < abilKeys.length; i++) {
+			if (myRace[rulesObj.abilities[abilKeys[i]].ability] != 0) {
+				if (longlist) {
+					descTxt += ", ";
+				}
+				descTxt += rulesObj.abilities[abilKeys[i]].name + " ";
+				if (myRace[rulesObj.abilities[abilKeys[i]].ability] > 0) {
+					descTxt += "+";
+				}
+				descTxt += myRace[rulesObj.abilities[abilKeys[i]].ability];
+				if (!longlist) {
+					longlist = true;
+				}
+			}
+		}
+		descTxt += ": </b>" + myDesc.abilitydesc + "</li>";
+	}
+
+	descTxt += "<li><b>Size: </b>" + myDesc.size + ".</li>";
+	descTxt += "<li><b>Speed: </b>" + myDesc.speed + " ft.</li>";
+
+	for (var i = 0; i < myDesc.othertraits.length; i++) {
+		descTxt += "<li>" + myDesc.othertraits[i] + "</li>";
+	}
+
+	descTxt += "<li><b>Automatic Languages: </b>";
+	for (var i = 0; i < myRace.autolangs.length; i++) {
+		if (i > 0) {
+			if (i == myRace.autolangs.length - 1) {
+				descTxt += " and ";
+			} else {
+				descTxt += ", ";
+			}
+		}
+		descTxt += myRace.autolangs[i]
+	}
+	descTxt += ".</li>";
+
+	descTxt += "<li><b>Bonus Languages: </b>";
+	for (var i = 0; i < myRace.bonuslangs.length; i++) {
+		if (i > 0) {
+			if (i == myRace.bonuslangs.length - 1) {
+				descTxt += " and ";
+			} else {
+				descTxt += ", ";
+			}
+		}
+		descTxt += myRace.bonuslangs[i]
+	}
+	descTxt += ".</li>";
+
+	descTxt += "<li><b>Favored Class: </b>" + myRace.favclass + ".</li>";
+	descTxt += "</ul>";
+
+	section.getElementsByClassName('descbox')[0].innerHTML = descTxt;
+}
+/* End of AJAX */
+
+function raceDefaultDesc() {
+	var section = document.getElementById('racecol');
+
+	var banner = section.getElementsByClassName('bannerbox');
+	banner[0].style.backgroundImage = "url('../images/webelements/banners/races/dddefault.png'), url('../images/webelements/banners/campaigns/default.jpg')";
+	banner[0].innerHTML = "<span class=\"bannertitle\">Races in the World</span>";
+
+	var descTxt = "<p>The elven woods are home to the elves and their allies. Not many dwarves or half-orcs live there. In turn, elves, humans, halflings, and half-orcs are hard to find in underground dwarven cities. And while nonhumans may travel through the human countryside, most country folk are humans. In the big cities, however, the promise of power and profit brings together people of all the common races: humans, dwarves, elves, gnomes, half-elves, half-orcs, and halflings. </p>";
+	descTxt += "<p>You can play a character of any race and class combination, but certain races do better pursuing certain careers. Halflings, for example, can be fighters, but their small size and special features make them better as rogues.</p>";
+	section.getElementsByClassName('descbox')[0].innerHTML = descTxt;
+}
+
 function setNewRace(myId, raceValue, stepNum) {
 	newCharacter.setRace(myId); 	// newCharacter.race.race goes to <form>
 
 	highlightListItem('raceitem' + myId, 'racelist');
-	showIdAmongClasses(myId, 'col', 'race');
+	showDesc("../scripts/ddrulesJSON.php", raceDesc, myId);
+/*	showIdAmongClasses(myId, 'col', 'race'); */
 	nxtStepReady(stepNum);
 
-// To be moved into the createCharacter() function
+// To be moved into the createCharacter() AJAX function
 	setInputValue('race', newCharacter.race.race);
 }
 

@@ -280,7 +280,7 @@
 				<div class="mainscreen">
 
 					<div class="subscreen listcol embossed">
-						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'race')">Races</div>
+						<div class="listtitle bluebtn golden" onclick="raceDefaultDesc()">Races</div>
 						<div class="itemlist">
 							<?php
 								for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
@@ -292,7 +292,7 @@
 						</div>
 					</div>
 
-					<div class="subscreen desccol racecol" id="race0">
+					<div class="subscreen desccol" id="racecol">
 						<div class="banner">
 							<div class="bannerbox" style="background-image: url('../images/webelements/banners/races/dddefault.png'), url('../images/webelements/banners/campaigns/default.jpg')">
 								<span class="bannertitle">Races in the World</span>
@@ -303,82 +303,6 @@
 							<p>You can play a character of any race and class combination, but certain races do better pursuing certain careers. Halflings, for example, can be fighters, but their small size and special features make them better as rogues.</p>
 						</div>
 					</div>
-
-					<?php
-						for ($rc = 1; $rc <= count($ddRules->races); $rc++) {
-							if ($ddRules->races[$rc]['race'] != null) {
-								echo "<div class=\"subscreen desccol racecol hidden\" id=\"race" . $rc . "\">";
-								echo "	<div class=\"banner\">";
-								echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/races/" . $ddRules->racedescs[$rc]['image'] . "'), url('../images/webelements/banners/campaigns/default.jpg')\">";
-								echo "			<span class=\"bannertitle\">" . $ddRules->races[$rc]['race'] . "</span>";
-								echo "		</div>";
-								echo "	</div>";
-								echo "	<div class=\"descbox\">";
-								echo "		<p>" . $ddRules->racedescs[$rc]['intro'] . "</p>";
-								echo "		<p>All the members of the " . $ddRules->races[$rc]['race'] . " race share the following stats:</p>";
-								echo "		<ul>";
-
-												if ($ddRules->racedescs[$rc]['abilitydesc'] != null) {
-													echo "<li><b>";
-													$i = 1;
-													foreach ($ddRules->abilities as $key => $value) {
-														if ($ddRules->races[$rc][$ddRules->abilities[$key]['ability']] != 0) {
-															if ($i > 1) {
-																echo ", ";
-															}
-															$i++;
-												 			echo $ddRules->abilities[$key]['name'] . " ";
-															if ($ddRules->races[$rc][$ddRules->abilities[$key]['ability']] > 0) {
-																echo "+";
-															}
-															echo $ddRules->races[$rc][$ddRules->abilities[$key]['ability']];
-														}
-												 	}
-													echo ": </b>" . $ddRules->racedescs[$rc]['abilitydesc'] . "</li>";
-												}
-
-								echo "			<li><b>Size: </b>" . $ddRules->racedescs[$rc]['size'] . ".</li>";
-								echo "			<li><b>Speed: </b>" . $ddRules->racedescs[$rc]['speed'] . " ft.</li>";
-
-												for ($i=0; $i < count($ddRules->racedescs[$rc]['othertraits']); $i++) {
-													echo "<li>" . $ddRules->racedescs[$rc]['othertraits'][$i] . "</li>";
-												}
-
-								echo "			<li><b>Automatic Languages: </b>";
-
-													for ($i=0; $i < count($ddRules->races[$rc]['autolangs']); $i++) {
-														if ($i == 0) {
-															echo "";
-														} else if ($i == count($ddRules->races[$rc]['autolangs']) - 1) {
-															echo " and ";
-														} else {
-															echo ", ";
-														}
-														echo $ddRules->races[$rc]['autolangs'][$i];
-													}
-													echo ".</li>";
-
-								echo "			<li><b>Bonus Languages: </b>";
-
-												for ($i=0; $i < count($ddRules->races[$rc]['bonuslangs']); $i++) {
-													if ($i == 0) {
-														echo "";
-													} else if ($i == count($ddRules->races[$rc]['bonuslangs']) - 1) {
-														echo " and ";
-													} else {
-														echo ", ";
-													}
-													echo $ddRules->races[$rc]['bonuslangs'][$i];
-												}
-												echo ".</li>";
-
-								echo "			<li><b>Favored Class: </b>" . $ddRules->races[$rc]['favclass'] . ".</li>";
-								echo "		</ul>";
-								echo "	</div>";
-								echo "</div>";
-							}
-						}
-					?>
 
 				</div> <!-- .mainscereen -->
 

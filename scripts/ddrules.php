@@ -66,7 +66,7 @@
 				$this->races[$i]['bonusfeats'] = explode(";",$this->races[$i]['bonusfeats']);
 				$this->races[$i]['autolangs'] = explode(";",$this->races[$i]['autolangs']);
 				$this->races[$i]['bonuslangs'] = explode(";",$this->races[$i]['bonuslangs']);
-				$this->races[$i]['othertraits'] = explode(";;",$this->races[$i]['othertraits']);
+				$this->racedescs[$i]['othertraits'] = explode(";;",$this->racedescs[$i]['othertraits']);
 
 			}
 
@@ -138,11 +138,11 @@
 	$ddRules = new gameRules('dd', $conn);
 	// $pfRules = new gameRules('pf');
 
-	$goodts = 1 / 2;
-	$poorts = 1 / 3;
-
 	// Close connection
 	mysqli_close($conn);
+
+	$goodts = 1 / 2;
+	$poorts = 1 / 3;
 
 // ************************************************************** //
 
