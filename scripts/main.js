@@ -17,6 +17,23 @@
 // ========================================================================== //
 /*  */
 
+/* 	This function calls another function whose name and parameters are stored
+		respectively in two variables.
+		It has been thought to execute functions stored in the Database.
+*/
+function callFunction(myFunction, myParameter) {
+	var thisFunction = window[myFunction]; 					// Find myFunction.
+	if (typeof thisFunction === "function") { 				// If myFunction is a function...
+		if (typeof myParameter === "undefined") { 		// ...and there are no parameters...
+			thisFunction();																		// ...execute it!
+		} else if (typeof myParameter === "object") { // ...and there are more parameters...
+			thisFunction.apply(myParameter);									// ...execute it!
+		} else {																			// ...and there is one parameter...
+			thisFunction(myParameter); 												// ...execute it!
+		}
+	}
+}
+
 /*	This function finds a tag among others with the same class and shows it exclusively.
  		It has been thought to better structure the HTML and CSS codes by giving every class
 		and id the same prefix, to avoid mistakes and mark better the HTML tags.

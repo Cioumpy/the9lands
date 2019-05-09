@@ -156,7 +156,7 @@
 						<button class="subbtns" id="subbtn3" onclick="showNewAlignmentsModal()" disabled>ALIGNMENT</button>
 						<button class="subbtns" id="subbtn4" onclick="showNewAbilitiesModal()" disabled>ABILITIES</button>
 						<button class="subbtns" id="subbtn5" onclick="showSkillsModal()" disabled>SKILLS</button>
-						<button class="subbtns" id="subbtn6" onclick="showNewFeatsModal()">FEATS</button>
+						<button class="subbtns" id="subbtn6" onclick="showNewFeatsModal()" disabled>FEATS</button>
 						<button class="subbtns" id="subbtn7" onclick="showNewAppearanceModal()" disabled>APPEARANCE</button>
 						<button class="subbtns" id="subbtn8" onclick="showNewNameModal()" disabled>NAME</button>
 					</div>
@@ -243,12 +243,10 @@
 				</div>
 
 				<div class="mainscreen">
-
 					<div class="genderbox embossed">
 						<button class="subbtns genderbtn" id="imgMale" onclick="setGender('Male', 1)"></button>
 						<button class="subbtns genderbtn" id="imgFemale" onclick="setGender('Female', 1)"></button>
 					</div>
-
 				</div> <!-- .mainscereen -->
 
 				<div class="campruleset embossed">
@@ -331,7 +329,7 @@
 				<div class="mainscreen">
 
 					<div class="subscreen listcol embossed">
-						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'class')">Classes</div>
+						<div class="listtitle bluebtn golden" onclick="classDefaultDesc()">Classes</div>
 						<div class="itemlist">
 							<?php
 								for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
@@ -343,7 +341,7 @@
 						</div>
 					</div>
 
-					<div class="subscreen desccol classcol" id="class0">
+					<div class="subscreen desccol" id="classcol">
 						<div class="banner">
 							<div class="bannerbox" style="background-image: url('../images/webelements/banners/classes/dddefault.png'), url('../images/webelements/backgrounds/background-map.jpg')">
 								<span class="bannertitle">About Classes</span>
@@ -351,160 +349,9 @@
 						</div>
 						<div class="descbox">
 							<p>Adventurers seek gold, glory, justice, fame, power, knowledge, or maybe some other goals&#8212;perhaps noble or perhaps base. Each chooses a different way to attain those goals, from brutal combat power, to mighty magic, to subtle skills. Some adventurers prevail and grow in experience, wealth, and power. Others die.</p>
-							<p>Your character’s class is his or her profession or vocation. It determines what he or she is able to do: combat prowess, magical ability, skills, and more. Class is probably the first choice you make about your character&#8212;just ahead of race, or perhaps in conjunction with that decision. The class you choose determines where you should best place your character&#39;s ability scores and suggests which races are best to support that class choice.</p>
+							<p>Your character&#39;s class is his or her profession or vocation. It determines what he or she is able to do: combat prowess, magical ability, skills, and more. Class is probably the first choice you make about your character&#8212;just ahead of race, or perhaps in conjunction with that decision. The class you choose determines where you should best place your character&#39;s ability scores and suggests which races are best to support that class choice.</p>
 						</div>
 					</div>
-
-					<?php
-						for ($rc = 1; $rc <= count($ddRules->classes); $rc++) {
-							if ($ddRules->classes[$rc]['class'] != null) {
-								echo "<div class=\"subscreen desccol classcol hidden\" id=\"class" . $rc . "\">";
-								echo "	<div class=\"banner\">";
-								echo "		<div class=\"bannerbox\" style=\"background-image: url('../images/webelements/banners/classes/" . $ddRules->classesdesc[$rc]['image'] . "'), url('../images/webelements/backgrounds/background-map.jpg')\">";
-								echo "			<span class=\"bannertitle\">" . $ddRules->classes[$rc]['class'] . "</span>";
-								echo "		</div>";
-								echo "	</div>";
-								echo "	<div class=\"descbox\">";
-								echo "		<p>" . $ddRules->classesdesc[$rc]['intro'] . "</p>";
-								echo "		<p>" . $ddRules->classesdesc[$rc]['Characteristics'] . "</p>";
-								echo "		<p><b>Hit Die:</b> d" . $ddRules->classes[$rc]['hd'] . ".</p>";
-								echo "		<p><span class=\"partitle\">Class Skills</span><br>";
-								echo "			The " . $ddRules->classes[$rc]['class'] . "&#39;s class skills (and the key ability for each skill) are ";
-
-								/* To insert the commas and the "and", we need to get the last skill
-								in our class list. */
-								$lastSkill = null;
-								foreach ($ddRules->skills as $key => $value) {
-									if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
-										$lastSkill = $key;
-									}
-								}
-
-								$x = 0;
-								$craft = true;
-								$perf = true;
-								$prof = true;
-								foreach ($ddRules->skills as $key => $value) {
-									if ($ddRules->classes[$rc]['classskills'][$key]['classskill'] == 1) {
-										$x++;
-										if (strpos($ddRules->skills[$key]['skill'], "Craft") === 0) {
-											if ($craft) {
-												if ($key == $lastSkill) {
-													echo " and ";
-												} elseif ($x > 1) {
-													echo ", ";
-												}
-												echo "Craft";
-												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
-													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
-														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
-													}
-												}
-												$craft = false;
-											}
-										} elseif (strpos($ddRules->skills[$key]['skill'], "Perform") === 0) {
-											if ($perf) {
-												if ($key == $lastSkill) {
-													echo " and ";
-												} elseif ($x > 1) {
-													echo ", ";
-												}
-												echo "Perform";
-												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
-													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
-														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
-													}
-												}
-												$perf = false;
-											}
-										} elseif (strpos($ddRules->skills[$key]['skill'], "Profession") === 0) {
-											if ($prof) {
-												if ($key == $lastSkill) {
-													echo " and ";
-												} elseif ($x > 1) {
-													echo ", ";
-												}
-												echo "Profession";
-												for ($y = 1; $y <= count($ddRules->abilities); $y++) {
-													if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
-														echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
-													}
-												}
-												$prof = false;
-											}
-										} else {
-											if ($key == $lastSkill) {
-												echo " and ";
-											} elseif ($x > 1) {
-												echo ", ";
-											}
-											echo $ddRules->classes[$rc]['classskills'][$key]['skill'];
-											for ($y = 1; $y <= count($ddRules->abilities); $y++) {
-												if ($ddRules->abilities[$y]['ability'] == $ddRules->skills[$key]['ability']) {
-													echo " (" . $ddRules->abilities[$y]['shtname'] . ")";
-												}
-											}
-										}
-									}
-								}
-								echo ".";
-
-								echo "			<br><b>Skill Points per level:</b> " . $ddRules->classes[$rc]['skillpoints'] . " + Intelligence modifier.<br>";
-								echo "			<b>At first level:</b> (" . $ddRules->classes[$rc]['skillpoints'] . " + Intelligence modifier) &times; 4.</p>";
-								echo "			<br>";
-								echo "			<label><b>" . $ddRules->classes[$rc]['class'] . "&#39;s Stats Table:</b></label>";
-
-								// Print the Classes Stats ************************************** //
-								// Printing all the keys and values one by one
-								echo "<table>";
-								$test_classes = $ddRules->get_classes();
-								$keys = array_keys($test_classes);
-								echo "<tr><th class=\"cellcenter\">Level</th><th>BAB</th><th class=\"cellcenter\">Fort</th><th class=\"cellcenter\">Refl</th><th class=\"cellcenter\">Will</th><th>Class Features</th></tr>";
-								for($i = 1; $i <= $ddRules->classes[$rc]['maxlvl']; $i++) {
-										echo "<tr><th class=\"cellcenter\">" . $i . "</th>";
-										echo "<td>+";
-										echo floor($i * $ddRules->classes[$rc]['bab']);
-										if (($i * $ddRules->classes[$rc]['bab']) >= 6) {
-											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 5);
-										}
-										if (($i * $ddRules->classes[$rc]['bab']) >= 11) {
-											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 10);
-										}
-										if (($i * $ddRules->classes[$rc]['bab']) >= 16) {
-											echo " / +" . (floor($i * $ddRules->classes[$rc]['bab']) - 15);
-										}
-										echo "</td>";
-										echo "<td class=\"cellcenter\">+";
-										if ($ddRules->classes[$rc]['fort'] == 'good') {
-											echo floor(($i * $goodts) + 2);
-										} else {
-											echo floor($i * $poorts);
-										}
-										echo "</td>";
-										echo "<td class=\"cellcenter\">+";
-										if ($ddRules->classes[$rc]['refl'] == 'good') {
-											echo floor(($i * $goodts) + 2);
-										} else {
-											echo floor($i * $poorts);
-										}
-										echo "</td>";
-										echo "<td class=\"cellcenter\">+";
-										if ($ddRules->classes[$rc]['will'] == 'good') {
-											echo floor(($i * $goodts) + 2);
-										} else {
-											echo floor($i * $poorts);
-										}
-										echo "</td>";
-										echo "<td></td>";
-										echo "</tr>";
-								}
-								echo "</table>";
-
-								echo "	</div>";
-								echo "</div>";
-							}
-						}
-					?>
 
 				</div> <!-- .mainscereen -->
 
@@ -542,7 +389,7 @@
 						?>
 					</div>
 
-					<div class="subscreen desccol alignmentcol" id="alignment0">
+					<div class="subscreen desccol" id="alignmentcol">
 						<div class="banner">
 							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/campaigns/default.jpg')">
 								<span class="bannertitle">The Nine Alignments</span>
@@ -554,21 +401,6 @@
 								The first six alignments, lawful good through chaotic neutral, are the standard alignments for player characters. The three evil alignments are for monsters and villains.</p>
 						</div>
 					</div>
-
-					<?php
-						for ($rc = 1; $rc <= count($ddRules->alignments); $rc++) {
-							echo "<div class=\"subscreen desccol alignmentcol hidden\" id=\"alignment" . $rc . "\">";
-							echo "	<div class=\"banner\">";
-							echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/campaigns/default.jpg')\">";
-							echo "			<span class=\"bannertitle\">" . $ddRules->alignments[$rc]['alignment'] . "</span>";
-							echo "		</div>";
-							echo "	</div>";
-							echo "	<div class=\"descbox\">";
-							echo "		<p><b>" . $ddRules->alignments[$rc]['type'] . ":</b> " . $ddRules->alignments[$rc]['desc'] . "</p>";
-							echo "	</div>";
-							echo "</div>";
-						}
-					?>
 
 				</div> <!-- .mainscereen -->
 
@@ -671,7 +503,7 @@
 				<div class="mainscreen">
 
 					<div class="skillscreen embossed">
-						<div class="listtitle bluebtn golden" onclick="showIdAmongClasses(0, 'col', 'skills')">Skills</div>
+						<div class="listtitle bluebtn golden" onclick="skillDefaultDesc()">Skills</div>
 						<div class="skilllist">
 							<?php
 								for ($i = 1; $i <= count($ddRules->skills); $i++) {
@@ -701,7 +533,7 @@
 						<div class="skillbar bluebtn">Available Skill Points: <span class="skillstat centerxy embossed" id="avskillpts"></span></div>
 					</div>
 
-					<div class="subscreen desccol skillscol" id="skills0">
+					<div class="subscreen desccol" id="skillscol">
 
 						<div class="banner">
 							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">
@@ -713,30 +545,16 @@
 							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
 						</div>
 
-					</div>
+						<div class="modranks hidden" id="modranks">
+							<span class="roman" style="font-size: 2.5em">Ranks</span>
+							<div id="skillbtns">
+								<button class="modrankbtn tiled" style="background-image: url('../images/webelements/buttons/btn_arrowup.png'), url('../images/wood-bck.jpg')"></button>
+								<div class="embossed roman" id="skilldescrank">0</div>
+								<button class="modrankbtn tiled" style="background-image: url('../images/webelements/buttons/btn_arrowdown.png'), url('../images/wood-bck.jpg')"></button>
+							</div>
+						</div>
 
-					<?php
-					for ($i = 1; $i <= count($ddRules->skills); $i++) {
-						echo "<div class=\"subscreen desccol skillscol hidden\" id=\"skills" . $i . "\">";
-						echo "	<div class=\"banner\">";
-						echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/abilityrolls.jpg')\">";
-						echo "			<span class=\"bannertitle\">" . $ddRules->skillsdesc[$i]["skill"] . "</span>";
-						echo "		</div>";
-						echo "	</div>";
-						echo "	<div class=\"descbox\">";
-						echo "		<p>" . $ddRules->skillsdesc[$i]["intro"] . "</p>";
-						echo "	</div>";
-						echo "	<div class=\"modranks\">";
-						echo "		<span class=\"roman\" style=\"font-size: 2.5em\">Ranks</span>";
-						echo "		<div class=\"skilldescrank embossed roman\" id=\"skilldescrank" . $i . "\">0</div>";
-						echo "		<div id=\"skillbtns\">";
-						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/btn_arrowup.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 1)\"></button>";
-						echo "			<button class=\"modrankbtn tiled\" style=\"background-image: url('../images/webelements/buttons/btn_arrowdown.png'), url('../images/wood-bck.jpg')\" onclick=\"modSkillRanks(" . $i . ", 0)\"></button>";
-						echo "		</div>";
-						echo "	</div>";
-						echo "</div>";
-					}
-					?>
+					</div>
 
 				</div> <!-- .mainscereen -->
 
@@ -778,7 +596,7 @@
 						</div>
 					</div>
 
-					<div class="subscreen desccol featscol" id="feats0">
+					<div class="subscreen desccol" id="featscol">
 
 						<div class="banner">
 							<div class="bannerbox" style="background-image: none, url('../images/webelements/banners/abilityrolls.jpg')">

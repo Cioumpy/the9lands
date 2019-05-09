@@ -3,7 +3,17 @@
 
 
 
+
+
+
+// ========================================================================== //
+// Character Object Classes																										//
+// ========================================================================== //
+/*  */
+
 function Character() {
+
+	// Character Variables & Functions -------------------------------------------
 	this.player = null;
 
 	this.campaign  = null;			// DONE
@@ -41,10 +51,17 @@ function Character() {
 		this.size = actualSize;
 	};
 
+	// Level Variables & Functions -----------------------------------------------
 	this.progression = [];
+	this.feats = [];
 
 	this.addLevel = function (newlvl) { this.progression.push(newlvl); };
-	this.charLevel = function () { return this.progression.length; }
+	this.charLevel = function () { return this.progression.length; };
+	this.addFeat = function (newfeat) {
+		if (!checkFeat(this, newfeat)) {
+			this.feats.push(newfeat);
+		}
+	};
 
 }
 
@@ -52,7 +69,6 @@ function Character() {
 
 function Level() {
 	this.level = 0;
-
 	this.setLevel = function (lvl) { this.level = lvl; };
 
 	this.class = null;
@@ -68,5 +84,35 @@ function Level() {
 	};
 	this.setAbilities = function (abil) { this.abilities = abil; };
 	this.setSkills = function (actualSkills) { this.skills = actualSkills; };
-	this.addFeat = function (newfeat) { this.feats.push(newfeat); };
+	this.addFeat = function (newfeat) {
+		if (!checkFeat(this, newfeat)) {
+			this.feats.push(newfeat);
+		}
+	};
+}
+
+
+
+// ========================================================================== //
+// Requisites Functions																												//
+// ========================================================================== //
+/*  */
+
+function checkFeat(myChar, feat) {
+	var gotFeat = false;
+	if (myChar.feats.length > 0) {
+		for (var i = 0; i < myChar.feats.length; i++) {
+			if (feat == myChar.feats[i]) {
+				gotFeat = true;
+				break;
+			}
+		}
+	}
+	return gotFeat;
+}
+// This function's name is stored in the DataBase.
+// DO NOT CALL THIS FUNCTION outside callFunction()!!!
+function reqFeat(feat) {
+	var myChar = eval(myCharacter);
+	checkFeat(myChar, feat);
 }

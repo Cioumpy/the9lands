@@ -86,6 +86,7 @@
 				}
 
 				$this->classes[$i]['bonuslangs'] = explode(";",$this->classes[$i]['bonuslangs']);
+				$this->classes[$i]['proficiencies'] = explode(";;", $this->classes[$i]['proficiencies']);
 
 				$classSkill = explode(";", $this->classes[$i]['classskills']);
 				$this->classes[$i]['classskills'] = null;
@@ -105,6 +106,7 @@
 			$featDesc = [];
 			for ($ft = 1; $ft <= count($this->feats); $ft++) {
 				$this->feats[$ft]['desc'] = explode(";;", $this->feats[$ft]['desc']);
+				$this->feats[$ft]['requisites'] = explode(";;", $this->feats[$ft]['requisites']);
 			}
 
 		} // End of function __construct
