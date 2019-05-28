@@ -1,15 +1,15 @@
-CREATE DATABASE  IF NOT EXISTS `the9lands` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `the9lands` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `the9lands`;
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: the9lands
 -- ------------------------------------------------------
--- Server version	5.7.25
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,7 +23,7 @@ USE `the9lands`;
 
 DROP TABLE IF EXISTS `accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
@@ -53,7 +53,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `campaigns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `campaigns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `campaign` varchar(45) DEFAULT NULL,
@@ -90,7 +90,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `characters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `characters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `game` varchar(5) NOT NULL DEFAULT 'dd',
@@ -124,7 +124,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `invites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `invites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
@@ -156,7 +156,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `progrchar0`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `progrchar0` (
   `level` int(11) NOT NULL AUTO_INCREMENT,
   `class1` varchar(45) NOT NULL DEFAULT 'Fighter',
@@ -191,7 +191,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `progrchar1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `progrchar1` (
   `level` int(11) NOT NULL AUTO_INCREMENT,
   `class1` varchar(45) NOT NULL DEFAULT 'Fighter',
@@ -230,19 +230,19 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 19:51:18
-CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- Dump completed on 2019-05-28 19:25:12
+CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `t9lddrules`;
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
 -- ------------------------------------------------------
--- Server version	5.7.25
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -256,7 +256,7 @@ USE `t9lddrules`;
 
 DROP TABLE IF EXISTS `abilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `abilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ability` varchar(20) NOT NULL,
@@ -286,7 +286,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `alignments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `alignments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alignment` varchar(45) DEFAULT NULL,
@@ -309,12 +309,56 @@ INSERT INTO `alignments` VALUES (1,'Lawful Good','lg','&quot;The Crusader&quot;'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `baseclasslist`
+--
+
+DROP TABLE IF EXISTS `baseclasslist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `baseclasslist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class` varchar(45) DEFAULT NULL,
+  `shtname` varchar(5) DEFAULT NULL,
+  `shtdesc` mediumtext,
+  `hd` int(2) DEFAULT NULL,
+  `bab` float DEFAULT NULL,
+  `fort` varchar(4) DEFAULT NULL,
+  `refl` varchar(4) DEFAULT NULL,
+  `will` varchar(4) DEFAULT NULL,
+  `manual` varchar(45) DEFAULT NULL,
+  `page` varchar(45) DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL,
+  `intro` longtext,
+  `Adventures` longtext,
+  `Characteristics` longtext,
+  `Alignment` longtext,
+  `Religion` longtext,
+  `Background` longtext,
+  `Races` longtext,
+  `Other_Classes` longtext,
+  `Role` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `baseclasslist`
+--
+
+LOCK TABLES `baseclasslist` WRITE;
+/*!40000 ALTER TABLE `baseclasslist` DISABLE KEYS */;
+INSERT INTO `baseclasslist` VALUES (1,'Barbarian','Brb','A ferocious warrior who uses fury and instinct to bring down foes.',12,1,'good',NULL,NULL,'Player\'s Handbook v3.5','24','ddBarbarian.jpg','From the frozen wastes of the north and the hellish jungles of the south come brave, even reckless, warriors. Civilized people call them barbarians or berserkers and suspect them of mayhem, impiety, and atrocities. These &quot;barbarians&quot;, however, have proven their mettle and their value to those who would be their allies. To enemies who underestimated them, they have proved their cunning, resourcefulness, persistence, and mercilessness.','Adventuring is the best chance barbarians have of finding a place in a civilized society. They&#39;re not well suited to the monotony of guard duty or other mundane tasks. Barbarians also have no trouble with the dangers, the uncertainties, and the wandering that adventuring involves. They may adventure to defeat hated enemies. They have a noted distaste for that which they consider unnatural, including undead, demons, and devils.','The barbarian is an excellent warrior. Where the fighter&#39;s skill in combat comes from training and discipline, however, the barbarian has a powerful rage. While in this berserk fury, he becomes stronger and tougher, better able to defeat his foes and withstand their attacks. These rages leave him winded, and he has the energy for only a few such spectacular displays per day, but those few rages are usually sufficient. He is at home in the wild, and he runs at great speed.','Barbarians are never lawful. They may be honorable, but at heart they are wild. This wildness is their strength, and it could not live in a lawful soul. At best, barbarians of chaotic alignment are free and expressive. At worst, they are thoughtlessly destructive.','Some barbarians distrust established religions and prefer an intuitive, natural relationship to the cosmos over formal worship. Others devote themselves to powerful deities, such as Kord (god of strength), Obad-Hai (god of nature), or Erythnul (god of slaughter). A barbarian is capable of fierce devotion to his god.','Barbarians come from uncivilized lands or from barbaric tribes on the outskirts of civilization. A barbarian adventurer may have been lured to the settled lands by the promise of riches, may have escaped after being captured in his homeland and sold into &quot;civilized&quot; slavery, may have been recruited as a soldier, or may have been driven out of his homeland by invaders. Barbarians share no bond with each other unless they come from the same tribe or land. In fact, they think of themselves not as barbarians but as warriors.','Human barbarians come from the distant wild lands on the edge of civilization. Most half-orc barbarians lived among orcs before abandoning them for human lands. Dwarf barbarians are rare, usually hailing from dwarven kingdoms that have fallen into barbarism as a result of recurrent war with goblinoids, orcs, and giants. Barbarians of other races are very rare. Among the brutal humanoids, barbarians are more common than fighters. Orcs and ogres are especially likely to be barbarians.','As people of the wild, barbarians are most comfortable in the company of rangers, druids, and clerics of nature deities, such as Obad-Hai or Ehlonna. Many barbarians admire the talents and spontaneity of bards, and some are enthusiastic lovers of music. Barbarians don&#39;t trust that which they don&#39;t understand, and that includes wizardry, which they call &quot;book magic&quot;. They find sorcerers more understandable than wizards, but maybe that&#39;s just because sorcerers tend to be more charismatic. Monks, with their studied, practiced, deliberate approach to combat, sometimes have a hard time seeing eye to eye with barbarians, but members of these classes aren&#39;t necessarily hostile to each other. Barbarians have no special attitudes toward fighters, paladins, clerics, or rogues.','A barbarian&#39;s typical primary role in a group of adventurers is as a front-line combat specialist. No other character can match his sheer toughness. He can also serve as a good scout, thanks to his speed, skill selection, and trap sense.'),(2,'Bard','Brd','A performer whose music works magic &#8212; a wanderer, a taleteller, and a jack-of-all trades.',6,0.75,NULL,'good','good','Player\'s Handbook v3.5','26','ddBard.jpg','It is said that music has a special magic, and the bard proves that saying true. Wandering across the land, gathering lore, telling stories, working magic with his music, and living on the gratitude of his audience &#8212; such is the life of a bard. When chance or opportunity draws them into a conflict, bards serve as diplomats, negotiators, messengers, scouts, and spies. A bard&#39;s magic comes from the heart. If his heart is good, a bard brings hope and courage to the downtrodden and uses his tricks, music, and magic to thwart the schemes of evildoers. If the nobles of the land are corrupt, the good bard is an enemy of the state, cunningly evading capture and raising the spirits of the oppressed. But music can spring from an evil heart as well. Evil bards forego blatant violence in favor of manipulation, holding sway over the hearts and minds of others and taking what enraptured audiences &quot;willingly&quot; give.','Bards see adventures as opportunities to learn. They practice their many skills and abilities, and they especially relish the opportunity to enter a long-forgotten tomb, to discover ancient works of magic, to decipher old tomes, to travel to strange places, to encounter exotic creatures, and to learn new songs and stories. Bards love to accompany heroes (and villains), joining their entourage to witness their deeds firsthand &#8212; a bard who can tell a marvelous story from personal experience earns renown among his fellows. Indeed, after telling so many stories about heroes doing mighty deeds, many bards take these themes to heart and assume heroic roles themselves.','A bard brings forth magic from his soul, not from a book. He can cast only a small number of spells, but he can do so without selecting or preparing them in advance. His magic emphasizes charms and illusions over the more dramatic evocation spells that wizards and sorcerers often use. In addition to spells, a bard works magic with his music and poetry. He can encourage allies, hold his audiences rapt, and counter magical effects that rely on speech or sound. Bards have some of the skills that rogues have, although bards they are not as focused on skill mastery as rogues are. A bard listens to stories as well as telling them, of course, so he has a vast knowledge of local events and noteworthy items.','Bards are wanderers, guided by whim and intuition rather than by tradition or law. The spontaneous talent, magic, and lifestyle of the bard are incompatible with a lawful alignment.','Bards revere Fharlanghn (god of roads). They sometimes camp near his wayside shrines, hoping to earn some coin from the travelers who stop to leave offerings for the god. Many bards, even those who are not elves, worship Corellon Larethian, god of elves and patron of poetry and music. Many good bards are partial to Pelor (god of the sun), believing that he watches over them in their travels. Bards given to chaos and occasional larceny favor Olidammara (god of thieves). Those who have turned to evil ways are known to worship Erythnul (the god of slaughter), though few will admit to it. In any event, bards spend so much time on the road that, while they may be devoted to a deity, they are rarely devoted to any particular temple.','An apprentice bard learns his skills from a single experienced bard, whom he follows and serves until he is ready to strike out on his own. Many bards were once young runaways or orphans, befriended by wandering bards who became their mentors. Since bards occasionally congregate in informal &quot;colleges&quot;, the apprentice bard may meet many of the more prominent bards in the area. Still, the bard has no strong allegiance to bards as a whole. In fact, some bards are highly competitive with other bards, jealous of their reputations and defensive about their territories.','Bards are commonly human, gnome, elf, or half-elf. Humans take well to the wandering life and adapt easily to new lands and customs. Gnomes have a sense of humor and trickery that lends itself to a bardic career. Elves are talented in music and magic, so the career of the bard comes naturally to them. A bard&#39;s wandering ways suit many half-elves, who often feel like strangers even when at home. Half-orcs, even those raised among humans, find themselves ill suited to the demands of a bard&#39;s career. There are no bardic traditions among dwarves, or halflings, though occasional individuals of these races find teachers to train them in the ways of the bard. Bards are exceedingly rare among the savage humanoids, except among centaurs. Centaur bards sometimes train the children of humans or other humanoids.','A bard works well with companions of other classes. He often serves as the spokesman of the party, using his social skills for the party&#39;s benefit. In a party without a wizard or sorcerer, the bard contributes his magic. In a party without a rogue, he uses his skills. A bard is curious about the ways of more focused or dedicated adventurers, so he often tries to pick up pointers from fighters, sorcerers, and rogues.','The bard is perhaps the ultimate generalist. In most adventuring groups, he works best in a supporting role. He can&#39;t usually match the stealth of the ranger or the rogue, the spellcasting power of the cleric or the wizard, or the combat prowess of the barbarian or the fighter. However, he makes all the other characters better at what they do, and he can often fill in for another character when needed. For a typical group of four characters, the bard is perhaps the most useful fifth character to consider adding, and he can make a great team leader.'),(3,'Cleric','Clr','A master of divine magic and a capable warrior as well.',8,0.75,'good',NULL,'good','Player\'s Handbook v3.5','30','ddCleric.jpg','The handiwork of the gods is everywhere&#8212;in places of natural beauty, in mighty crusades, in soaring temples, and in the hearts of worshipers. Like people, gods run the gamut from benevolent to malicious, reserved to intrusive, simple to inscrutable. The gods, however, work mostly through intermediaries&#8212;their clerics. Good clerics heal, protect, and avenge. Evil clerics pillage, destroy, and sabotage. A cleric uses the power of his god to make his god&#39;s will manifest. And if a cleric uses his god&#39;s power to improve his own lot, that&#39;s to be expected, too.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Druid','Drd','One who draws energy from the natural world to cast divine spells and gain strange magical powers.',8,0.75,'good',NULL,'good','Player\'s Handbook v3.5','33','ddDruid.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Fighter','Ftr','A warrior with exceptional combat capability and unequaled skill with weapons.',10,1,'good',NULL,NULL,'Player\'s Handbook v3.5','37','ddFighter.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'Monk','Mnk','A martial artist whose unarmed strikes hit fast and hard &#8212; a master of exotic powers.',8,0.75,'good','good','good','Player\'s Handbook v3.5','39','ddMonk.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,'Paladin','Pal','A champion of justice and destroyer of evil, protected and strengthened by an array of divine powers.',10,1,'good',NULL,NULL,'Player\'s Handbook v3.5','42','ddPaladin.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'Ranger','Rgr','A cunning, skilled warrior of the wilderness. ',8,1,'good','good',NULL,'Player\'s Handbook v3.5','46','ddRanger.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'Rogue','Rog','A tricky, skillful scout and spy who wins the battle by stealth rather than brute force.',6,0.75,NULL,'good',NULL,'Player\'s Handbook v3.5','49','ddRogue.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,'Sorcerer','Sor','A spellcaster with inborn magical ability.',4,0.5,NULL,NULL,'good','Player\'s Handbook v3.5','51','ddSorcerer.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'Wizard','Wiz','A potent spellcaster schooled in the arcane arts.',4,0.5,NULL,NULL,'good','Player\'s Handbook v3.5','55','ddWizard.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `baseclasslist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `classes`
 --
 
 DROP TABLE IF EXISTS `classes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `class` varchar(45) DEFAULT NULL,
@@ -341,7 +385,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (1,'Barbarian','Bbn',12,20,1,'good',NULL,NULL,'ng;cg;nn;cn;ne;ce','Climb;Craft;Handle Animal;Intimidate;Jump;Listen;Ride;Survival;Swim',2,NULL,'Simple Weapon Proficiency;;Martial Weapon Proficiency;;Armor Proficiency (light);;Armor Proficiency (medium);;Shield Proficiency (basic)'),(2,'Bard','Brd',6,20,0.75,NULL,'good','good','ng;cg;nn;cn;ne;ce','Appraise;Balance;Bluff;Climb;Concentration;Craft;Decipher Script;Diplomacy;Disguise;Escape Artist;Gather Information;Hide;Jump;Knowledge;;Listen;Move Silently;Perform;Profession;Sense Motive;Sleight of Hand;Speak Language;Spellcraft;Swim;Tumble;Use Magic Device',6,NULL,NULL),(3,'Cleric','Clr',8,20,0.75,'good',NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Concentration;Craft;Diplomacy;Heal;Knowledge (arcana);Knowledge (history);Knowledge (religion);Knowledge (the planes);Profession;Spellcraft',2,'Abyssal;Celestial;Infernal',NULL),(4,'Druid','Drd',8,20,0.75,'good',NULL,'good','ng;ln;nn;cn;ne','Concentration;Craft;Diplomacy;Handle Animal;Heal;Knowledge (nature);Listen;Profession;Ride;Spellcraft;Spot;Survival;Swim',2,'Sylvan',NULL),(5,'Fighter','Ftr',10,20,1,'good',NULL,NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Climb;Craft;Handle Animal;Intimidate;Jump;Ride;Swim',2,NULL,NULL),(6,'Monk','Mnk',8,20,0.75,'good','good','good','lg;ln;le','Balance;Climb;Concentration;Craft;Diplomacy;Escape Artist;Hide;Jump;Knowledge (arcana);Knowledge (religion);Listen;Move Silently;Perform;Profession;Sense Motive;Spot;Swim;Tumble',4,NULL,NULL),(7,'Paladin','Pal',10,20,1,'good',NULL,NULL,'lg','Concentration;Craft;Diplomacy;Handle Animal;Heal;Knowledge (nobility and royalty);Knowledge (religion);Profession;Ride;Sense Motive',2,NULL,NULL),(8,'Ranger','Rgr',8,20,1,'good','good',NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Climb;Concentration;Craft;Handle Animal;Heal;Hide;Jump;Knowledge (dungeoneering);Knowledge (geography);Knowledge (nature);Listen;Move Silently;Profession;Ride;Search;Spot;Survival;Swim;Use Rope',2,NULL,NULL),(9,'Rogue','Rog',6,20,0.75,NULL,'good',NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Appraise;Balance;Bluff;Climb;Craft;Decipher Script;Diplomacy;Disable Device;Disguise;Escape Artist;Forgery;Gather Information;Hide;Intimidate;Jump;Knowledge (local);Listen;Move Silently;Open Lock;Perform;Profession;Search;Sense Motive;Sleight of Hand;Spot;Swim;Tumble;Use Magic Device;Use Rope',8,NULL,NULL),(10,'Sorcerer','Sor',4,20,0.5,NULL,NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Bluff;Concentration;Craft;Knowledge (arcana);Profession;Spellcraft',2,NULL,NULL),(11,'Wizard','Wiz',4,20,0.5,NULL,NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Concentration;Craft;Decipher Script;Knowledge;Profession;Spellcraft',2,'Draconic',NULL);
+INSERT INTO `classes` VALUES (1,'Barbarian','Bbn',12,20,1,'good',NULL,NULL,'ng;cg;nn;cn;ne;ce','Climb;Craft;Handle Animal;Intimidate;Jump;Listen;Ride;Survival;Swim',2,NULL,'Simple Weapon Proficiency;;Martial Weapon Proficiency;;Armor Proficiency (light);;Armor Proficiency (medium);;Shield Proficiency'),(2,'Bard','Brd',6,20,0.75,NULL,'good','good','ng;cg;nn;cn;ne;ce','Appraise;Balance;Bluff;Climb;Concentration;Craft;Decipher Script;Diplomacy;Disguise;Escape Artist;Gather Information;Hide;Jump;Knowledge;;Listen;Move Silently;Perform;Profession;Sense Motive;Sleight of Hand;Speak Language;Spellcraft;Swim;Tumble;Use Magic Device',6,NULL,NULL),(3,'Cleric','Clr',8,20,0.75,'good',NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Concentration;Craft;Diplomacy;Heal;Knowledge (arcana);Knowledge (history);Knowledge (religion);Knowledge (the planes);Profession;Spellcraft',2,'Abyssal;Celestial;Infernal',NULL),(4,'Druid','Drd',8,20,0.75,'good',NULL,'good','ng;ln;nn;cn;ne','Concentration;Craft;Diplomacy;Handle Animal;Heal;Knowledge (nature);Listen;Profession;Ride;Spellcraft;Spot;Survival;Swim',2,'Sylvan',NULL),(5,'Fighter','Ftr',10,20,1,'good',NULL,NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Climb;Craft;Handle Animal;Intimidate;Jump;Ride;Swim',2,NULL,NULL),(6,'Monk','Mnk',8,20,0.75,'good','good','good','lg;ln;le','Balance;Climb;Concentration;Craft;Diplomacy;Escape Artist;Hide;Jump;Knowledge (arcana);Knowledge (religion);Listen;Move Silently;Perform;Profession;Sense Motive;Spot;Swim;Tumble',4,NULL,NULL),(7,'Paladin','Pal',10,20,1,'good',NULL,NULL,'lg','Concentration;Craft;Diplomacy;Handle Animal;Heal;Knowledge (nobility and royalty);Knowledge (religion);Profession;Ride;Sense Motive',2,NULL,'Simple Weapon Proficiency;;Martial Weapon Proficiency;;Armor Proficiency (light);;Armor Proficiency (medium);;Armor Proficiency (heavy);;Shield Proficiency'),(8,'Ranger','Rgr',8,20,1,'good','good',NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Climb;Concentration;Craft;Handle Animal;Heal;Hide;Jump;Knowledge (dungeoneering);Knowledge (geography);Knowledge (nature);Listen;Move Silently;Profession;Ride;Search;Spot;Survival;Swim;Use Rope',2,NULL,NULL),(9,'Rogue','Rog',6,20,0.75,NULL,'good',NULL,'lg;ng;cg;ln;nn;cn;le;ne;ce','Appraise;Balance;Bluff;Climb;Craft;Decipher Script;Diplomacy;Disable Device;Disguise;Escape Artist;Forgery;Gather Information;Hide;Intimidate;Jump;Knowledge (local);Listen;Move Silently;Open Lock;Perform;Profession;Search;Sense Motive;Sleight of Hand;Spot;Swim;Tumble;Use Magic Device;Use Rope',8,NULL,NULL),(10,'Sorcerer','Sor',4,20,0.5,NULL,NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Bluff;Concentration;Craft;Knowledge (arcana);Profession;Spellcraft',2,NULL,NULL),(11,'Wizard','Wiz',4,20,0.5,NULL,NULL,'good','lg;ng;cg;ln;nn;cn;le;ne;ce','Concentration;Craft;Decipher Script;Knowledge;Profession;Spellcraft',2,'Draconic',NULL);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,7 +395,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `classesdesc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `classesdesc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `class` varchar(45) DEFAULT NULL,
@@ -389,16 +433,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `feats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `feats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `feat` varchar(45) DEFAULT NULL,
+  `parameter` varchar(45) DEFAULT NULL,
   `type` varchar(45) NOT NULL DEFAULT 'general',
+  `subtypes` text,
+  `requisites` text COMMENT 'This generates an array of strings to be evaluated into formulas.',
   `desc` longtext,
   `taken` int(1) NOT NULL DEFAULT '0',
+  `multi` int(1) NOT NULL DEFAULT '0' COMMENT '0 = No, 1 = Stackable, 2 = Not Stackable.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,7 +455,7 @@ CREATE TABLE `feats` (
 
 LOCK TABLES `feats` WRITE;
 /*!40000 ALTER TABLE `feats` DISABLE KEYS */;
-INSERT INTO `feats` VALUES (1,'Acrobatic','general','You have excellent body awareness and coordination.;;Benefit;;You get a +2 bonus on all Jump checks and Tumble checks.',0),(2,'Agile','general','You are particularly flexible and poised.;;Benefit;;You get a +2 bonus on all Balance checks and Escape Artist checks.',0),(3,'Alertness','general','You have finely tuned senses.;;Benefit;;You get a +2 bonus on all Listen checks and Spot checks.;;Special;;The master of a familiar gains the benefit of the Alertness feat whenever the familiar is within arm&#39;s reach.',0),(4,'Animal Affinity','general','You are good with animals.;;Benefit;;You get a +2 bonus on all Handle Animal checks and Ride checks.',0),(5,'Armor Proficiency (light) ','general','You are proficient with light armor.;;Benefit;;When you wear a type of armor with which you are proficient, the armor check penalty for that armor applies only on Balance, Climb, Escape Artist, Hide, Jump, Move Silently, Sleight of Hand, and Tumble checks. Double the normal penalty applies on Swim checks.;;Normal;;A character who is wearing armor with which she is not proficient applies its armor check penalty on attack rolls and on all Strength-based or Dexterity-based ability and skill checks.;;Special;;All characters except wizards, sorcerers, and monks automatically have Armor Proficiency (light) as a bonus feat. They need not select it.',0),(6,'Armor Proficiency (medium)','general','You are proficient with medium armor.;;Prerequisite;;Armor Proficiency (light).;;Benefit;;See Armor Proficiency (light).;;Normal;;See Armor Proficiency (light).;;Special;;Fighters, barbarians, paladins, clerics, and druids automatically have Armor Proficiency (medium) as a bonus feat. They need not select it.',0),(7,'Armor Proficiency (heavy)','general','You are proficient with heavy armor.;;Prerequisites;;Armor Proficiency (light), Armor Proficiency (medium).;;Benefit;;See Armor Proficiency (light).;;Normal;;See Armor Proficiency (light).;;Special;;Fighters, paladins, and clerics automatically have Armor Proficiency (heavy) as a bonus feat. They need not select it.',0),(8,'Athletic','general','You have a knack for athletic endeavors.;;Benefit;;You get a +2 bonus on all Climb checks and Swim checks.',0),(9,'Augment Summoning','general','Your summoned creatures are more powerful than normal.;;Prerequisite;;Spell Focus (conjuration).;;Benefit;;Each creature you conjure with any summon spell gains a +4 enhancement bonus to Strength and Constitution for the duration of the spell that summoned it.',0),(10,'Blind-Fight','general','You know how to fight in melee without being able to see your foes.;;Benefit;;In melee, every time you miss because of concealment, you can reroll your miss chance percentile roll one time to see if you actually hit. An invisible attacker gets no advantages related to hitting you in melee. That is, you don&#39;t lose your Dexterity bonus to Armor Class, and the attacker doesn&#39;t get the usual +2 bonus for being invisible. The invisible attacker&#39;s bonuses do still apply for ranged attacks, however. You take only half the usual penalty to speed for being unable to see. Darkness and poor visibility in general reduces your speed to three-quarters normal, instead of one-half.;;Normal;;Regular attack roll modifiers for invisible attackers trying to hit you apply, and you lose your Dexterity bonus to AC. The speed reduction for darkness and poor visibility also applies.;;Special;;The Blind-Fight feat is of no use against a character who is the subject of a blink spell. A fighter may select Blind-Fight as one of his fighter bonus feats.',0),(11,'Combat Casting','general',NULL,0),(12,'Combat Expertise','general',NULL,0),(13,'Improved Disarm','general',NULL,0),(14,'Improved Feint','general',NULL,0),(15,'Improved Trip','general',NULL,0),(16,'Whirlwind Attack','general',NULL,0),(17,'Combat Reflexes','general',NULL,0),(18,'Deceitful','general',NULL,0),(19,'Deft Hands','general',NULL,0),(20,'Diligent','general',NULL,0),(21,'Dodge','general',NULL,0),(22,'Mobility','general',NULL,0),(23,'Spring Attack','general',NULL,0),(24,'Endurance','general',NULL,0),(25,'Diehard','general',NULL,0),(26,'Eschew Materials','general',NULL,0),(27,'Exotic Weapon Proficiency','general',NULL,0),(28,'Extra Turning','general',NULL,0),(29,'Great Fortitude','general',NULL,0),(30,'Improved Counterspell','general',NULL,0),(31,'Improved Critical','general',NULL,0),(32,'Improved Initiative','general',NULL,0),(33,'Improved Turning','general',NULL,0),(34,'Improved Unarmed Strike','general',NULL,0),(35,'Improved Grapple','general',NULL,0),(36,'Deflect Arrows','general',NULL,0),(37,'Snatch Arrows','general',NULL,0),(38,'Stunning Fist','general',NULL,0),(39,'Investigator','general',NULL,0),(40,'Iron Will','general',NULL,0),(41,'Leadership','general',NULL,0),(42,'Lightning Reflexes ','general',NULL,0),(43,'Magical Aptitude','general',NULL,0),(44,'Martial Weapon Proficiency','general',NULL,0),(45,'Mounted Combat','general',NULL,0),(46,'Mounted Archery','general',NULL,0),(47,'Ride-By Attack','general',NULL,0),(48,'Spirited Charge','general',NULL,0),(49,'Trample','general',NULL,0),(50,'Natural Spell','general',NULL,0),(51,'Negotiator','general',NULL,0),(52,'Nimble Fingers','general',NULL,0),(53,'Persuasive','general',NULL,0),(54,'Point Blank Shot','general',NULL,0),(55,'Far Shot','general',NULL,0),(56,'Precise Shot','general',NULL,0),(57,'Improved Precise Shot','general',NULL,0),(58,'Rapid Shot','general',NULL,0),(59,'Manyshot','general',NULL,0),(60,'Shot on the Run','general',NULL,0),(61,'Power Attack','general',NULL,0),(62,'Cleave','general',NULL,0),(63,'Great Cleave','general',NULL,0),(64,'Improved Bull Rush','general',NULL,0),(65,'Improved Overrun','general',NULL,0),(66,'Improved Sunder','general',NULL,0),(67,'Quick Draw','general',NULL,0),(68,'Rapid Reload','general',NULL,0),(69,'Run','general',NULL,0),(70,'Self-Sufficient','general',NULL,0),(71,'Shield Proficiency','general',NULL,0),(72,'Improved Shield Bash','general',NULL,0),(73,'Tower Shield Proficiency','general',NULL,0),(74,'Simple Weapon Proficiency','general',NULL,0),(75,'Skill Focus','general',NULL,0),(76,'Spell Focus','general',NULL,0),(77,'Greater Spell Focus','general',NULL,0);
+INSERT INTO `feats` VALUES (1,'Acrobatic',NULL,'general',NULL,NULL,'You have excellent body awareness and coordination.;;Benefit;;You get a +2 bonus on all Jump checks and Tumble checks.',0,0),(2,'Agile',NULL,'general',NULL,NULL,'You are particularly flexible and poised.;;Benefit;;You get a +2 bonus on all Balance checks and Escape Artist checks.',0,0),(3,'Alertness',NULL,'general',NULL,NULL,'You have finely tuned senses.;;Benefit;;You get a +2 bonus on all Listen checks and Spot checks.;;Special;;The master of a familiar gains the benefit of the Alertness feat whenever the familiar is within arm&#39;s reach.',0,0),(4,'Animal Affinity',NULL,'general',NULL,NULL,'You are good with animals.;;Benefit;;You get a +2 bonus on all Handle Animal checks and Ride checks.',0,0),(5,'Armor Proficiency (light)',NULL,'general',NULL,NULL,'You are proficient with light armor.;;Benefit;;When you wear a type of armor with which you are proficient, the armor check penalty for that armor applies only on Balance, Climb, Escape Artist, Hide, Jump, Move Silently, Sleight of Hand, and Tumble checks. Double the normal penalty applies on Swim checks.;;Normal;;A character who is wearing armor with which she is not proficient applies its armor check penalty on attack rolls and on all Strength-based or Dexterity-based ability and skill checks.;;Special;;All characters except wizards, sorcerers, and monks automatically have Armor Proficiency (light) as a bonus feat. They need not select it.',0,0),(6,'Armor Proficiency (medium)',NULL,'general',NULL,'reqFeat;;Armor Proficiency (light)','You are proficient with medium armor.;;Prerequisite;;Armor Proficiency (light).;;Benefit;;See Armor Proficiency (light).;;Normal;;See Armor Proficiency (light).;;Special;;Fighters, barbarians, paladins, clerics, and druids automatically have Armor Proficiency (medium) as a bonus feat. They need not select it.',0,0),(7,'Armor Proficiency (heavy)',NULL,'general',NULL,'reqFeat;;Armor Proficiency (medium)','You are proficient with heavy armor.;;Prerequisites;;Armor Proficiency (light), Armor Proficiency (medium).;;Benefit;;See Armor Proficiency (light).;;Normal;;See Armor Proficiency (light).;;Special;;Fighters, paladins, and clerics automatically have Armor Proficiency (heavy) as a bonus feat. They need not select it.',0,0),(8,'Athletic',NULL,'general',NULL,NULL,'You have a knack for athletic endeavors.;;Benefit;;You get a +2 bonus on all Climb checks and Swim checks.',0,0),(9,'Augment Summoning',NULL,'general',NULL,'reqFeat;;Spell Focus (conjuration)','Your summoned creatures are more powerful than normal.;;Prerequisite;;Spell Focus (conjuration).;;Benefit;;Each creature you conjure with any summon spell gains a +4 enhancement bonus to Strength and Constitution for the duration of the spell that summoned it.',0,0),(10,'Blind-Fight',NULL,'general','fighter',NULL,'You know how to fight in melee without being able to see your foes.;;Benefit;;In melee, every time you miss because of concealment, you can reroll your miss chance percentile roll one time to see if you actually hit. An invisible attacker gets no advantages related to hitting you in melee. That is, you don&#39;t lose your Dexterity bonus to Armor Class, and the attacker doesn&#39;t get the usual +2 bonus for being invisible. The invisible attacker&#39;s bonuses do still apply for ranged attacks, however. You take only half the usual penalty to speed for being unable to see. Darkness and poor visibility in general reduces your speed to three-quarters normal, instead of one-half.;;Normal;;Regular attack roll modifiers for invisible attackers trying to hit you apply, and you lose your Dexterity bonus to AC. The speed reduction for darkness and poor visibility also applies.;;Special;;The Blind-Fight feat is of no use against a character who is the subject of a blink spell. A fighter may select Blind-Fight as one of his fighter bonus feats.',0,0),(11,'Combat Casting',NULL,'general',NULL,NULL,'You are adept at casting spells in combat.;;Benefit;;You get a +4 bonus on Concentration checks made to cast a spell or use a spell-like ability while on the defensive or while you are grappling or pinned.',0,0),(12,'Combat Expertise',NULL,'general','fighter','reqAbility;;intelligence=13','You are trained at using your combat skill for defense as well as offense.;;Prerequisite;;Int 13.;;Benefit;;When you use the attack action or the full attack action in melee, you can take a penalty of as much as –5 on your attack roll and add the same number (+5 or less) as a dodge bonus to your Armor Class. This number may not exceed your base attack bonus. The changes to attack rolls and Armor Class last until your next action.;;Normal;;A character without the Combat Expertise feat can fight defensively while using the attack or full attack action to take a –4 penalty on attack rolls and gain a +2 dodge bonus to Armor Class.;;Special;;A fighter may select Combat Expertise as one of his fighter bonus feats.',0,0),(13,'Improved Disarm',NULL,'general','fighter','reqFeat;;Combat Expertise','You know how to disarm opponents in melee combat.;;Prerequisites;;Int 13, Combat Expertise.;;Benefit;;You do not provoke an attack of opportunity when you attempt to disarm an opponent, nor does the opponent have a chance to disarm you. You also gain a +4 bonus on the opposed attack roll you make to disarm your opponent.;;Normal;;See the normal disarm rules, on page 155 of the Player&#39;s Handbook.;;Special;;A fighter may select Improved Disarm as one of his fighter bonus feats.<br>A monk may select Improved Disarm as a bonus feat at 6th level, even if she does not meet the prerequisites.',0,0),(14,'Improved Feint',NULL,'general','fighter','reqFeat;;Combat Expertise','You are skilled at misdirecting your opponent’s attention in combat.;;Prerequisites;;Int 13, Combat Expertise.;;Benefit;;You can make a Bluff check to feint in combat as a move action.;;Normal;;Feinting in combat is a standard action.;;Special;;A fighter may select Improved Feint as one of his fighter bonus feats.',0,0),(15,'Improved Trip',NULL,'general','fighter','reqFeat;;Combat Expertise','You are trained not only in tripping opponents safely but also in following through with an attack.;;Prerequisites;;Int 13, Combat Expertise.;;Benefit;;You do not provoke an attack of opportunity when you attempt to trip an opponent while you are unarmed. You also gain a +4 bonus on your Strength check to trip your opponent.<br>If you trip an opponent in melee combat, you immediately get a melee attack against that opponent as if you hadn’t used your attack for the trip attempt. For example, at 11th level, Tordek gets three attacks at bonuses of +11, +6, and +1. In the current round, he attempts to trip his opponent. His first attempt fails (using up his first attack). His second attempt succeeds, and he immediately makes a melee attack against his opponent with a bonus of +6. Finally, he takes his last attack at a bonus of +1.;;Normal;;Without this feat, you provoke an attack of opportunity when you attempt to trip an opponent while you are unarmed.;;Special;;At 6th level, a monk may select Improved Trip as a bonus feat, even if she does not have the prerequisites.<br>A fighter may select Improved Trip as one of his fighter bonus feats.',0,0),(16,'Whirlwind Attack',NULL,'general','fighter','reqFeat;;Combat Expertise;;reqFeat;;Spring Attack',NULL,0,0),(17,'Combat Reflexes',NULL,'general','fighter',NULL,NULL,0,0),(18,'Deceitful',NULL,'general',NULL,NULL,NULL,0,0),(19,'Deft Hands',NULL,'general',NULL,NULL,NULL,0,0),(20,'Diligent',NULL,'general',NULL,NULL,NULL,0,0),(21,'Dodge',NULL,'general','fighter','reqAbility;;dexterity=13',NULL,0,0),(22,'Mobility',NULL,'general','fighter','reqFeat;;Dodge',NULL,0,0),(23,'Spring Attack',NULL,'general','fighter','reqFeat;;Mobility;;reqBAB;;4',NULL,0,0),(24,'Endurance',NULL,'general',NULL,NULL,NULL,0,0),(25,'Diehard',NULL,'general',NULL,'reqFeat;;Endurance',NULL,0,0),(26,'Eschew Materials',NULL,'general',NULL,NULL,NULL,0,0),(27,'Exotic Weapon Proficiency','weapons;;exotic','general','fighter','reqBAB;;1',NULL,0,2),(28,'Extra Turning',NULL,'general',NULL,'reqFeature;;Turn creatures',NULL,0,1),(29,'Great Fortitude',NULL,'general',NULL,NULL,NULL,0,0),(30,'Improved Counterspell',NULL,'general',NULL,NULL,NULL,0,0),(31,'Improved Critical','weapons','general','fighter','reqProficiency;;weapons;;reqBAB;;8',NULL,0,2),(32,'Improved Initiative',NULL,'general','fighter',NULL,NULL,0,0),(33,'Improved Turning',NULL,'general',NULL,'reqFeature;;Turn creatures',NULL,0,0),(34,'Improved Unarmed Strike',NULL,'general','fighter',NULL,NULL,0,0),(35,'Improved Grapple',NULL,'general','fighter','reqAbility;;dexterity=13;;reqFeat;;Improved Unarmed Strike',NULL,0,0),(36,'Deflect Arrows',NULL,'general','fighter','reqAbility;;dexterity=13;;reqFeat;;Improved Unarmed Strike',NULL,0,0),(37,'Snatch Arrows',NULL,'general','fighter','reqAbility;;dexterity=15;;reqFeat;;Deflect Arrows',NULL,0,0),(38,'Stunning Fist',NULL,'general','fighter','reqAbility;;dexterity=13;;reqAbility;;wisdom=13;;reqFeat;;Improved Unarmed Strike;;reqBAB;;8',NULL,0,0),(39,'Investigator',NULL,'general',NULL,NULL,NULL,0,0),(40,'Iron Will',NULL,'general',NULL,NULL,NULL,0,0),(41,'Leadership',NULL,'general',NULL,NULL,NULL,0,0),(42,'Lightning Reflexes ',NULL,'general',NULL,NULL,NULL,0,0),(43,'Magical Aptitude',NULL,'general',NULL,NULL,NULL,0,0),(44,'Martial Weapon Proficiency','weapons;;martial','general',NULL,NULL,NULL,0,2),(45,'Mounted Combat',NULL,'general','fighter',NULL,NULL,0,0),(46,'Mounted Archery',NULL,'general','fighter',NULL,NULL,0,0),(47,'Ride-By Attack',NULL,'general','fighter',NULL,NULL,0,0),(48,'Spirited Charge',NULL,'general','fighter',NULL,NULL,0,0),(49,'Trample',NULL,'general','fighter',NULL,NULL,0,0),(50,'Natural Spell',NULL,'general',NULL,NULL,NULL,0,0),(51,'Negotiator',NULL,'general',NULL,NULL,NULL,0,0),(52,'Nimble Fingers',NULL,'general',NULL,NULL,NULL,0,0),(53,'Persuasive',NULL,'general',NULL,NULL,NULL,0,0),(54,'Point Blank Shot',NULL,'general','fighter',NULL,NULL,0,0),(55,'Far Shot',NULL,'general','fighter',NULL,NULL,0,0),(56,'Precise Shot',NULL,'general','fighter',NULL,NULL,0,0),(57,'Improved Precise Shot',NULL,'general','fighter',NULL,NULL,0,0),(58,'Rapid Shot',NULL,'general','fighter',NULL,NULL,0,0),(59,'Manyshot',NULL,'general','fighter',NULL,NULL,0,0),(60,'Shot on the Run',NULL,'general','fighter',NULL,NULL,0,0),(61,'Power Attack',NULL,'general','fighter','reqAbility;;strength=13',NULL,0,0),(62,'Cleave',NULL,'general','fighter','reqFeat;;Power Attack',NULL,0,0),(63,'Great Cleave',NULL,'general','fighter','reqFeat;;Cleave;;reqBAB;;4',NULL,0,0),(64,'Improved Bull Rush',NULL,'general','fighter','reqFeat;;Power Attack',NULL,0,0),(65,'Improved Overrun',NULL,'general','fighter','reqFeat;;Power Attack',NULL,0,0),(66,'Improved Sunder',NULL,'general','fighter','reqFeat;;Power Attack',NULL,0,0),(67,'Quick Draw',NULL,'general','fighter','reqBAB;;1',NULL,0,0),(68,'Rapid Reload',NULL,'general','fighter',NULL,NULL,0,0),(69,'Run',NULL,'general',NULL,NULL,NULL,0,0),(70,'Self-Sufficient',NULL,'general',NULL,NULL,NULL,0,0),(71,'Shield Proficiency',NULL,'general',NULL,NULL,NULL,0,0),(72,'Improved Shield Bash',NULL,'general','fighter','reqFeat;;Shield Proficiency',NULL,0,0),(73,'Tower Shield Proficiency',NULL,'general',NULL,'reqFeat;;Shield Proficiency',NULL,0,0),(74,'Simple Weapon Proficiency',NULL,'general',NULL,NULL,NULL,0,0),(75,'Skill Focus','skills','general',NULL,NULL,NULL,0,2),(76,'Spell Focus','school','general',NULL,NULL,NULL,0,2),(77,'Greater Spell Focus','school','general',NULL,NULL,NULL,0,2),(78,'Spell Mastery',NULL,'general',NULL,NULL,NULL,0,0),(79,'Spell Penetration',NULL,'general',NULL,NULL,NULL,0,0),(80,'Greater Spell Penetration',NULL,'general',NULL,'reqFeat;;Spell Penetration',NULL,0,0),(81,'Stealthy',NULL,'general',NULL,NULL,NULL,0,0),(82,'Toughness',NULL,'general',NULL,NULL,NULL,0,0),(83,'Track',NULL,'general',NULL,NULL,NULL,0,0),(84,'Two-Weapon Fighting',NULL,'general','fighter','reqAbility;;dexterity=15',NULL,0,0),(85,'Two-Weapon Defense',NULL,'general','fighter','reqFeat;;Two-Weapon Fighting',NULL,0,0),(86,'Improved Two-Weapon Fighting',NULL,'general','fighter','reqAbility;;dexterity=17;;reqFeat;;Two-Weapon Fighting;;reqBAB;;6',NULL,0,0),(87,'Greater Two-Weapon Fighting',NULL,'general','fighter','reqAbility;;dexterity=19;;reqFeat;;Improved Two-Weapon Fighting;;reqBAB;;11',NULL,0,0),(88,'Weapon Finesse',NULL,'general','fighter','reqBAB;;1',NULL,0,0),(89,'Weapon Focus','weapons','general','fighter',NULL,NULL,0,2),(90,'Weapon Specialization','weapons','general','fighter',NULL,NULL,0,2),(91,'Greater Weapon Focus','weapons','general','fighter',NULL,NULL,0,2),(92,'Greater Weapon Specialization','weapons','general','fighter',NULL,NULL,0,2),(93,'Brew Potion',NULL,'item creation',NULL,NULL,NULL,0,0),(94,'Craft Magic Arms and Armor',NULL,'item creation',NULL,NULL,NULL,0,0),(95,'Craft Rod',NULL,'item creation',NULL,NULL,NULL,0,0),(96,'Craft Staff',NULL,'item creation',NULL,NULL,NULL,0,0),(97,'Craft Wand',NULL,'item creation',NULL,NULL,NULL,0,0),(98,'Craft Wondrous Item',NULL,'item creation',NULL,NULL,NULL,0,0),(99,'Forge Ring',NULL,'item creation',NULL,NULL,NULL,0,0),(100,'Scribe Scroll',NULL,'item creation',NULL,NULL,NULL,0,0),(101,'Empower Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(102,'Enlarge Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(103,'Extend Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(104,'Heighten Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(105,'Maximize Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(106,'Quicken Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(107,'Silent Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(108,'Still Spell',NULL,'metamagic',NULL,NULL,NULL,0,0),(109,'Widen Spell',NULL,'metamagic',NULL,NULL,NULL,0,0);
 /*!40000 ALTER TABLE `feats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +465,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `racedesc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `racedesc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `race` varchar(45) DEFAULT NULL,
@@ -467,7 +515,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `racelist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `racelist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `race` varchar(45) DEFAULT NULL,
@@ -485,7 +533,8 @@ CREATE TABLE `racelist` (
   `bonuslangs` varchar(45) DEFAULT NULL,
   `skillpoints` int(11) NOT NULL DEFAULT '0',
   `skillbonus` longtext,
-  `bonusfeats` longtext,
+  `bonusfeats` smallint(6) NOT NULL DEFAULT '0',
+  `proficiencies` longtext,
   `weapfamil` varchar(45) DEFAULT NULL,
   `darkvision` int(4) DEFAULT NULL,
   `lowlightvision` int(4) DEFAULT NULL,
@@ -500,7 +549,7 @@ CREATE TABLE `racelist` (
 
 LOCK TABLES `racelist` WRITE;
 /*!40000 ALTER TABLE `racelist` DISABLE KEYS */;
-INSERT INTO `racelist` VALUES (1,'Human',0,0,0,0,0,0,'Medium',30,20,'Any','Common','Any',1,NULL,'1',NULL,NULL,NULL),(2,'Dwarf',0,0,2,0,0,-2,'Medium',20,20,'Fighter','Common;Dwarven','Giant;Gnome;Goblin;Orc;Terran;Undercommon',0,NULL,'0','dwarwen',60,NULL),(3,'Elf',0,2,-2,0,0,0,'Medium',30,20,'Wizard','Common;Elven','Draconic;Gnoll;Gnome;Goblin;Orc;Sylvan',0,'Listen;2;Search;2;Spot;2','0;Martial Weapon Proficiency (longsword);Martial Weapon Proficiency (rapier);Martial Weapon Proficiency (longbow);Martial Weapon Proficiency (shortbow)','elven',NULL,2),(4,'Gnome',-2,0,2,0,0,0,'Small',20,15,'Bard','Common;Gnome','Draconic;Dwarven;Elven;Giant;Goblin;Orc',0,'Craft (alchemy);2;Listen;2','0','gnome',NULL,2),(5,'Half-Elf',0,0,0,0,0,0,'Medium',30,20,'Any','Common;Elven','Any',0,'Listen;1;Search;1;Spot;1;Diplomacy;2;Gather Informations;2','0',NULL,NULL,2),(6,'Half-Orc',2,0,0,-2,0,-2,'Medium',30,20,'Barbarian','Common;Orc','Draconic;Giant;Gnoll;Goblin;Abyssal',0,NULL,'0',NULL,60,NULL),(7,'Halfling',-2,2,0,0,0,0,'Small',20,15,'Rogue','Common;Halfling','Dwarven;Elven;Gnome;Goblin;Orc',0,'Climb;2;Jump;2;Listen;2;Move Silently;2;','0','halfling',NULL,NULL);
+INSERT INTO `racelist` VALUES (1,'Human',0,0,0,0,0,0,'Medium',30,20,'Any','Common','Any',1,NULL,1,NULL,NULL,NULL,NULL),(2,'Dwarf',0,0,2,0,0,-2,'Medium',20,20,'Fighter','Common;Dwarven','Giant;Gnome;Goblin;Orc;Terran;Undercommon',0,NULL,0,NULL,'dwarwen',60,NULL),(3,'Elf',0,2,-2,0,0,0,'Medium',30,20,'Wizard','Common;Elven','Draconic;Gnoll;Gnome;Goblin;Orc;Sylvan',0,'Listen;2;Search;2;Spot;2',0,'Martial Weapon Proficiency (longsword);;Martial Weapon Proficiency (rapier);;Martial Weapon Proficiency (longbow);;Martial Weapon Proficiency (shortbow)','elven',NULL,2),(4,'Gnome',-2,0,2,0,0,0,'Small',20,15,'Bard','Common;Gnome','Draconic;Dwarven;Elven;Giant;Goblin;Orc',0,'Craft (alchemy);2;Listen;2',0,NULL,'gnome',NULL,2),(5,'Half-Elf',0,0,0,0,0,0,'Medium',30,20,'Any','Common;Elven','Any',0,'Listen;1;Search;1;Spot;1;Diplomacy;2;Gather Informations;2',0,NULL,NULL,NULL,2),(6,'Half-Orc',2,0,0,-2,0,-2,'Medium',30,20,'Barbarian','Common;Orc','Draconic;Giant;Gnoll;Goblin;Abyssal',0,NULL,0,NULL,NULL,60,NULL),(7,'Halfling',-2,2,0,0,0,0,'Small',20,15,'Rogue','Common;Halfling','Dwarven;Elven;Gnome;Goblin;Orc',0,'Climb;2;Jump;2;Listen;2;Move Silently;2;',0,NULL,'halfling',NULL,NULL);
 /*!40000 ALTER TABLE `racelist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -510,7 +559,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sizes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `sizes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `size` varchar(45) DEFAULT NULL,
@@ -545,7 +594,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `skills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `skill` varchar(45) DEFAULT NULL,
@@ -576,7 +625,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `skillsdesc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `skillsdesc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `skill` varchar(45) DEFAULT NULL,
@@ -609,4 +658,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 19:51:18
+-- Dump completed on 2019-05-28 19:25:13

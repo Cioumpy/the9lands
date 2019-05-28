@@ -63,7 +63,7 @@
 					}
 				}
 
-				$this->races[$i]['bonusfeats'] = explode(";",$this->races[$i]['bonusfeats']);
+				$this->races[$i]['proficiencies'] = explode(";;",$this->races[$i]['proficiencies']);
 				$this->races[$i]['autolangs'] = explode(";",$this->races[$i]['autolangs']);
 				$this->races[$i]['bonuslangs'] = explode(";",$this->races[$i]['bonuslangs']);
 				$this->racedescs[$i]['othertraits'] = explode(";;",$this->racedescs[$i]['othertraits']);

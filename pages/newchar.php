@@ -456,7 +456,7 @@
 							echo "</div>";
 							?>
 						</div>
-						<button class="subbtns" id="rollthedice" style="flex-grow: 0" onclick="setNewAbilities()"><div class="rollbtn"></div></button>
+						<button class="subbtns" id="rollthedice" style="flex-grow: 0" onclick="rollAbilities()"><div class="rollbtn"></div></button>
 					</div>
 
 					<div class="subscreen desccol abilitiescol" id="abilities0">
@@ -583,17 +583,6 @@
 				<div class="mainscreen">
 
 					<div class="subscreen listcol embossed">
-						<div class="listtitle bluebtn golden" onclick="showFeatDesc(0)">Feats</div>
-						<div class="itemlist">
-							<?php
-								for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
-									echo "<div class=\"listitem featlist\" id=\"featitem" . $ft . "\" onclick=\"showFeatDesc(" . $ft . ")\">";
-									echo "<input type=\"checkbox\" id=\"racechk" . $ft . "\"><label class=\"checkbox\" for=\"racechk" . $ft . "\"><div class=\"hidden\"></div></label>";
-									echo $ddRules->feats[$ft]['feat'];
-									echo "</div>";
-								}
-							?>
-						</div>
 					</div>
 
 					<div class="subscreen desccol" id="featscol">
@@ -605,33 +594,10 @@
 						</div>
 
 						<div class="descbox">
-							<p>Lidda the rogue can walk quietly up to a door, put her ear to it, and hear the troglodyte priest on the other side casting a spell on his pet crocodile. If Jozan the cleric were to try the same thing, he’d probably make so much noise that the troglodyte would hear him. Jozan could, however, identify the spell that the evil priest is casting. Actions such as these rely on the skills that characters have (in this case, Move Silently, Listen, and Spellcraft).</p>
+							<p>A feat is a special feature that either gives your character a new capability or improves one that he or she already has.<br>For example, Lidda (a halfling rogue) chooses to start with the Improved Initiative feat at 1st level. That feat gives her a +4 bonus on her initiative checks. At 3rd level (and every 3rd level), she gains a new feat and chooses Dodge. This feat allows her to avoid the attacks of an opponent she selects by improving her Armor Class against that opponent.<br>Unlike a skill, a feat has no ranks. A character either has a feat or does not.</p>
 						</div>
 
 					</div>
-
-					<?php
-						for ($ft = 1; $ft <= count($ddRules->feats); $ft++) {
-							echo "<div class=\"subscreen desccol featscol hidden\" id=\"feats" . $ft . "\">";
-							echo "	<div class=\"banner\">";
-							echo "		<div class=\"bannerbox\" style=\"background-image: none, url('../images/webelements/banners/abilityrolls.jpg')\">";
-							echo "			<span class=\"bannertitle\">" . $ddRules->feats[$ft]['feat'] . "</span>";
-							echo "		</div>";
-							echo "	</div>";
-							echo "	<div class=\"descbox\">";
-							echo "		<p>";
-							for ($i = 0; $i < count($ddRules->feats[$ft]['desc']); $i++) {
-								if ($i % 2 == 0) {
-									echo $ddRules->feats[$ft]['desc'][$i] . "</p>";
-								} else {
-									echo "<p><strong class=\"partitle\">" . $ddRules->feats[$ft]['desc'][$i] . ":</strong><br>";
-								}
-							}
-							echo "		</p>";
-							echo "	</div>";
-							echo "</div>";
-						}
-					?>
 
 				</div> <!-- .mainscereen -->
 
@@ -701,6 +667,7 @@
 	  <script src="../scripts/main.js"></script>
 		<script src="../scripts/charobjclass.js"></script>
 		<script src="../scripts/newchar.js"></script>
+		<script src="../scripts/levelup.js"></script>
 
 	</body>
 

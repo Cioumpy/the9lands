@@ -48,6 +48,16 @@
 	font-family: "Roman", fantasy;
 }
 
+.unavailable {
+	background-image: url('../images/webelements/buttons/blackmetal-bck.png');
+	color: darkgrey;
+}
+
+.taken {
+	background-image: url('../images/webelements/buttons/silvermetal-bck.png');
+	color: darkgrey;
+}
+
 .selected {
 	border: 3px ridge darkgoldenrod;
 	background-image: url('../images/webelements/buttons/greenmetal-bck.png');
