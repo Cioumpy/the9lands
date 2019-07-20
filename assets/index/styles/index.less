@@ -5,13 +5,20 @@
 
 
 
+@pathtoroot: "../../..";
+
+
 /* ========================================================================== */
 /* Import common styles																												*/
 /* ========================================================================== */
 
-@import (once) "/commons/styles/fonts.less";
-@import (once) "/commons/styles/cursors.less";
+@import (once) "@{pathtoroot}/assets/commons/styles/fonts.less";
+@import (once) "@{pathtoroot}/assets/commons/styles/cursors.less";
 
+
+/* ========================================================================== */
+/* Body																																				*/
+/* ========================================================================== */
 
 body {
 	display: flex;
@@ -24,7 +31,7 @@ body {
 	margin: 0;
 
 	background-color: black;
-	background-image: url("/images/webelements/backgrounds/worldmap-fantasy-bck.jpg");
+	background-image: url("@{pathtoroot}/assets/commons/images/style/backgrounds/bck-worldmap-fantasy.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -35,23 +42,28 @@ body {
 	cursor: @curdefault, default;
 }
 
-/* Set a style for all headings */
-h1, h2, h3, h4, h5, h6 {
+
+/* ========================================================================== */
+/* Headings																																		*/
+/* ========================================================================== */
+
+.allheadings() {
   font-family: 'Sherwood', fantasy;
 	font-weight: bold;
   color: darkgoldenrod;
   text-align: center;
   text-shadow: 1px 1px 1px black;
 	margin: 0;
-/*  line-height: 30%; */
 }
 
 h1 {
+	.allheadings();
   font-size: 3em;
   text-shadow: 5px 5px black;
 }
 
 h2 {
+	.allheadings();
 	font-family: 'Roman', fantasy;
   font-size: 2em;
   text-shadow: 4px 4px black;
@@ -66,12 +78,12 @@ a {
 /* Bordered form */
 #titlebox, form {
 	border: 15px solid transparent;
-	border-image: url("/commons/images/style/borders/medieval-border.png") 20% round;
+	border-image: url("@{pathtoroot}/assets/commons/images/style/borders/medieval-border.png") 20% round;
 	box-shadow: 20px 20px 50px 15px black;
 
 	padding: 10px;
 
-	background-image: url("/commons/images/style/backgrounds/darkmetal-bck.png");
+	background-image: url("@{pathtoroot}/assets/commons/images/style/backgrounds/bck-darkmetal.png");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
@@ -98,7 +110,7 @@ input {
 
 		padding: 12px 20px;
 
-		background-image: url("../images/darkmetal-bck.png");
+		background-image: url("@{pathtoroot}/assets/commons/images/style/inputs/text/bck-parchment.jpg");
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 
@@ -119,7 +131,7 @@ button {
 
 	padding: 8px;
 
-	background-image: url("/commons/images/style/buttons/bck-darkmetal.png");
+	background-image: url("@{pathtoroot}/assets/commons/images/style/inputs/buttons/bck-greenmetal.png");
 	background-color: rgba(0,0,0,0.0);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -148,12 +160,10 @@ span.psw {
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
+
 	span.psw {
 		display: block;
 		float: none;
 	}
 
-	.cancelbtn {
-		width: 100%;
-	}
 }
