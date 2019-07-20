@@ -7,7 +7,7 @@
 
 
 	$pathtoroot = "../../../..";
-	include $pathtoroot . "/assets/commons/scripts/session/config.php";  // Cofiguration file for the Database connection
+	include $pathtoroot . "/assets/commons/scripts/session/config.php";  // Configuration file for the Database connection
 
 	// Define login variables
 	$memberid = $_POST['uname'];
@@ -33,9 +33,9 @@
 
 	if ($found) {
 		$_SESSION['member'] = $memberid;
-		header("location: ../pages/player.php");
+		header("location: " . $pathtoroot . "/pages/home.php");
 	} else {
-		header("location: ../index.php");
+		header("location: " . $pathtoroot . "/index.php");
 	}
 
 ?>

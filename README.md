@@ -9,3 +9,5 @@ Since I started working as a Web Developer, I'm restyling the whole website
 ## Version Log:
 
 **0.0.1** - Wrote [index.php] login page completely.
+
+**0.0.1a** - Minor adjustments.
