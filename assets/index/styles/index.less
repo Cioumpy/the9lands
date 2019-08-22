@@ -1,0 +1,169 @@
+/* Login Page CSS Stylesheet == "The Nine Lands" Website. */
+/* ========================================================================== */
+/* It defines the styles for the elements inside the Login Page.
+*/
+
+
+
+@pathtoroot: "../../..";
+
+
+/* ========================================================================== */
+/* Import common styles																												*/
+/* ========================================================================== */
+
+@import (once) "@{pathtoroot}/assets/commons/styles/fonts.less";
+@import (once) "@{pathtoroot}/assets/commons/styles/cursors.less";
+
+
+/* ========================================================================== */
+/* Body																																				*/
+/* ========================================================================== */
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	height: 100vh;
+
+	margin: 0;
+
+	background-color: black;
+	background-image: url("@{pathtoroot}/assets/commons/images/style/backgrounds/bck-worldmap-fantasy.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	font-size: 1em;
+	color: rgb(230,230,230);
+
+	cursor: @curdefault, default;
+}
+
+
+/* ========================================================================== */
+/* Headings																																		*/
+/* ========================================================================== */
+
+.allheadings() {
+  font-family: 'Sherwood', fantasy;
+	font-weight: bold;
+  color: darkgoldenrod;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+	margin: 0;
+}
+
+h1 {
+	.allheadings();
+  font-size: 3em;
+  text-shadow: 5px 5px black;
+}
+
+h2 {
+	.allheadings();
+	font-family: 'Roman', fantasy;
+  font-size: 2em;
+  text-shadow: 4px 4px black;
+}
+
+/* Set a stile for all links */
+a {
+	text-decoration: inherit;
+	color: inherit;
+}
+
+/* Bordered form */
+#titlebox, form {
+	border: 15px solid transparent;
+	border-image: url("@{pathtoroot}/assets/commons/images/style/borders/medieval-border.png") 20% round;
+	box-shadow: 20px 20px 50px 15px black;
+
+	padding: 10px;
+
+	background-image: url("@{pathtoroot}/assets/commons/images/style/backgrounds/bck-darkmetal.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+label {
+	font-family: 'Sherwood', serif;
+	color: silver;
+	text-shadow: 1px 1px 1px black;
+}
+
+/* Full-width inputs */
+input {
+	&[type=text], &[type=password] {
+		display: inline-block;
+
+		width: 100%;
+		box-sizing: border-box;
+
+		margin: 10px 0;
+
+		border: 1px solid black;
+
+		box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6), 2px 2px 4px 2px rgba(255,255,255,0.4);
+
+		padding: 12px 20px;
+
+		background-image: url("@{pathtoroot}/assets/commons/images/style/inputs/text/bck-parchment.jpg");
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+
+		cursor: @curtext, text;
+	}
+}
+
+/* Set a style for all buttons */
+button {
+	display: block;
+
+	width: 200px;
+
+	margin: 0 auto;
+
+	border: none;
+	box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+	padding: 8px;
+
+	background-image: url("@{pathtoroot}/assets/commons/images/style/inputs/buttons/bck-greenmetal.png");
+	background-color: rgba(0,0,0,0.0);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	font-family: 'Sherwood', serif;
+	color: silver;
+	text-shadow: 1px 1px 1px black;
+
+	cursor: @curpointer, default;
+
+	/* Add a hover effect for buttons */
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+/* Add padding to containers */
+.container {
+	padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+	float: right;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+
+	span.psw {
+		display: block;
+		float: none;
+	}
+
+}
