@@ -40,6 +40,12 @@ session_start();
 					<label>PASSWORD</label>
 					<input type="password" placeholder="Enter Password" name="psw" required>
 
+					<?php
+						if (isset($_SESSION['error'])) {
+							echo "<span class=\"error\">" . $_SESSION['error'] . "</span>";
+						}
+					?>
+
 					<button type="submit">LOGIN</button>
 					<label><input type="checkbox" checked> Remember me</label>
 					<span class="psw">Forgot <a href="#">password</a>?</span>
