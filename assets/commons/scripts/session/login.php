@@ -9,33 +9,46 @@
 	$pathtoroot = "../../../..";
 	include $pathtoroot . "/assets/commons/scripts/session/config.php";  // Configuration file for the Database connection
 
-	// Define login variables
-	$memberid = $_POST['uname'];
-	$memberpsw = $_POST['psw'];
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	// Create connection
-	$conn = new mysqli($servername, $userid, $keyword, $dbname);
+		// Define and validate the input fields
+		$memberid = validate_input($_POST["uname"]);
+	  $memberpsw = validate_input($_POST["psw"]);
 
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
+		// Create connection and check it
+		$conn = new mysqli($servername, $userid, $keyword, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		// Retrieve stored password for current user from database
+		$sql = "SELECT password FROM accounts WHERE username='$memberid';";
+		$result = $conn->query($sql);
+		if ($result->num_rows == 1) {
+			while ($row = $result->fetch_assoc()) {
+				$stored_password = $row['password'];
+			}
+		}
+
+		// Verify the password
+		if(password_verify($memberpsw, $stored_password)) {
+			// If password is valid, set session user and go to home page
+			$_SESSION['member'] = $memberid;
+			unset($_SESSION['error']);
+			header("location: " . $pathtoroot . "/assets/pages/home.php");
+		} else {
+			// If password is invalid, generate an error and go back to login page
+			$_SESSION['error'] = "Username or Password are invalid!";
+			header("location: " . $pathtoroot . "/index.php");
+		}
+
 	}
 
-	$sql = "SELECT  username, password FROM accounts WHERE username='$memberid' AND password='$memberpsw'";
-	$result = $conn->query($sql);
-
-	$found = false;
-	if ($result->num_rows == 1) {
-		$found = true;
-	}
-
-	mysqli_close($conn);
-
-	if ($found) {
-		$_SESSION['member'] = $memberid;
-		header("location: " . $pathtoroot . "/pages/home.php");
-	} else {
-		header("location: " . $pathtoroot . "/index.php");
+	function validate_input($data) {
+	  $data = trim($data);
+	  $data = stripslashes($data);
+	  $data = htmlspecialchars($data);
+	  return $data;
 	}
 
 ?>
