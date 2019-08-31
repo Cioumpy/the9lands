@@ -35,7 +35,7 @@
 			// If password is valid, set session user and go to home page
 			$_SESSION['member'] = $memberid;
 			unset($_SESSION['error']);
-			header("location: " . $pathtoroot . "/assets/pages/home.php");
+			header("location: " . $pathtoroot . "/pages/home.php");
 		} else {
 			// If password is invalid, generate an error and go back to login page
 			$_SESSION['error'] = "Username or Password are invalid!";
