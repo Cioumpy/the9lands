@@ -7,7 +7,8 @@
 
 
 	$pathtoroot = "../../../..";
-	include $pathtoroot . "/assets/commons/scripts/session/config.php";  // Configuration file for the Database connection
+	$path_session = "assets/commons/scripts/session";
+	include "$pathtoroot/$path_session/config.php";  // Configuration file for the Database connection
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -35,7 +36,7 @@
 			// If password is valid, set session user and go to home page
 			$_SESSION['member'] = $memberid;
 			unset($_SESSION['error']);
-			header("location: " . $pathtoroot . "/assets/pages/home.php");
+			header("location: " . $pathtoroot . "/pages/home.php");
 		} else {
 			// If password is invalid, generate an error and go back to login page
 			$_SESSION['error'] = "Username or Password are invalid!";
