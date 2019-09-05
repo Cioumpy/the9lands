@@ -7,7 +7,8 @@
 
 
 	$pathtoroot = "../../../..";
-	include $pathtoroot . "/assets/commons/scripts/session/config.php";  // Configuration file for the Database connection
+	$path_session = "assets/commons/scripts/session";
+	include "$pathtoroot/$path_session/config.php";  // Configuration file for the Database connection
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
