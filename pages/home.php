@@ -56,7 +56,7 @@
 
   		<div id="main_menu">
 
-				<label class="mainmenu_item"><a href="#">View your Characters</a></label>
+				<label class="mainmenu_item"><a href="charlist.php">View your Characters</a></label>
 				<label class="mainmenu_item"><a href="#">Play a Campaign</a></label>
 				<label class="mainmenu_item"><a href="#">Run a Campaign</a></label>
 				<label class="mainmenu_item"><a href="#">Write a Campaign</a></label>

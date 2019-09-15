@@ -16,7 +16,7 @@
 
 // The following script collects the profile info for the current session member
 
-	$sql = "SELECT  username, password, first_name, last_name, email FROM accounts WHERE username='$sessuser'";
+	$sql = "SELECT  username, first_name, last_name, email FROM accounts WHERE username='$sessuser'";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows == 1) {
