@@ -15,6 +15,14 @@ class Session_model extends CI_Model
 		return $query->row_array();
 	}
 
+
+	/**
+	 * Create Account
+	 *
+	 * This method creates an account and inserts it into the database.
+	 *
+	 * @return bool
+	 */
 	public function create_account()
 	{
     $data = array(
@@ -26,6 +34,23 @@ class Session_model extends CI_Model
   	);
 
     return $this->db->insert('accounts', $data);
+	}
+
+
+	/**
+	 * Delete Account
+	 *
+	 * This method deletes an account from the database.
+	 *
+	 * @return bool
+	 */
+	public function delete_account()
+	{
+    $data = array(
+			'email' => $this->input->post('account_to_delete'),
+  	);
+
+    return $this->db->delete('accounts', $data);
 	}
 
 	/**

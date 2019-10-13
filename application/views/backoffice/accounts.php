@@ -9,6 +9,7 @@
 			<th>Unhashed Password</th>
 			<th>First Name</th>
 			<th>Last Name</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,6 +18,12 @@
 			<?php foreach ($accounts_item as $item_value): ?>
 	    <td><?php echo $item_value; ?></td>
 			<?php endforeach; ?>
+			<td>
+				<?php echo form_open('backoffice/delete_account'); ?>
+					<?php echo form_hidden('account_to_delete', $accounts_item['email']); ?>
+					<input type="submit" name="submit" value="Delete account" />
+				</form>
+			</td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
@@ -25,9 +32,7 @@
 
 <h2>Create an account</h2>
 
-<?php echo validation_errors(); ?>
-
-<?php echo form_open(); ?>
+<?php echo form_open('backoffice/create_account'); ?>
 
 	<?php echo form_inputbox($first_name, $first_name_label); ?>
 	<?php echo form_inputbox($last_name, $last_name_label); ?>

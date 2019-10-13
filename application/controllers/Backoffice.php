@@ -1,27 +1,17 @@
 <?php
-class Backoffice extends CI_Controller {
-
-
-	public function __construct() {
+class Backoffice extends CI_Controller
+{
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->model('session_model');
 		$this->load->helper('url_helper');
-	}
-
-	public function accounts() {
 		$this->load->helper('form');
     $this->load->library('form_validation');
+	}
 
-		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-    $this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('email', 'Email Address', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-
-    if ($this->form_validation->run() !== FALSE)
-		{
-      $this->session_model->create_account();
-    }
-
+	public function accounts()
+	{
 		$data['title'] = 'Accounts';
 		$data['accounts'] = $this->session_model->get_accounts();
 
@@ -58,6 +48,26 @@ class Backoffice extends CI_Controller {
 		$this->load->view('backoffice/templates/header', $data);
 		$this->load->view('backoffice/accounts', $data);
 		$this->load->view('backoffice/templates/footer');
+	}
+
+	public function create_account()
+	{
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+    $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('email', 'Email Address', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+    if ($this->form_validation->run() !== FALSE)
+		{
+      $this->session_model->create_account();
+    }
+		redirect('backoffice/accounts', 'refresh');
+	}
+
+	public function delete_account()
+	{
+    $this->session_model->delete_account();
+		redirect('backoffice/accounts', 'refresh');
 	}
 
 }

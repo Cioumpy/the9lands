@@ -16,6 +16,7 @@ function form_inputbox($data = '', $label = '', $value = '', $extra = '')
 		$input .= "<label for='{$for_attribute}'>{$label}</label>";
 	}
 	$input .= form_input($data, $value, $extra);
+	$input .= form_error($for_attribute);
 	$input .= "</div>";
 
 	return $input;
