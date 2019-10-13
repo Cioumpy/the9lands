@@ -38,6 +38,26 @@ class Session_model extends CI_Model
 
 
 	/**
+	 * Update Account
+	 *
+	 * This method updates an account in the database.
+	 *
+	 * @return bool
+	 */
+	public function update_account()
+	{
+    $data = array(
+			'email' => $this->input->post('email'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'unhashed' => $this->input->post('password'),
+  	);
+
+		$this->db->where('email', $data['email']);
+		return $this->db->update('accounts', $data);
+	}
+
+
+	/**
 	 * Delete Account
 	 *
 	 * This method deletes an account from the database.

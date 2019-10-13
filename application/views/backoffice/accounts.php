@@ -23,6 +23,11 @@
 					<?php echo form_hidden('account_to_delete', $accounts_item['email']); ?>
 					<input type="submit" name="submit" value="Delete account" />
 				</form>
+				<?php echo form_open('backoffice/update_account'); ?>
+					<?php echo form_hidden('email', $accounts_item['email']); ?>
+					<?php echo form_input('password'); ?>
+					<input type="submit" name="submit" value="Update password" />
+				</form>
 			</td>
 		</tr>
 		<?php endforeach; ?>

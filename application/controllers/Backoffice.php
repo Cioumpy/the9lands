@@ -70,4 +70,10 @@ class Backoffice extends CI_Controller
 		redirect('backoffice/accounts', 'refresh');
 	}
 
+	public function update_account()
+	{
+    $this->session_model->update_account();
+		redirect('backoffice/accounts', 'refresh');
+	}
+
 }
