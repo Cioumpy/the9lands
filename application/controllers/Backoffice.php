@@ -13,6 +13,7 @@ class Backoffice extends CI_Controller
 	public function accounts()
 	{
 		$data['title'] = 'Accounts';
+		$data['page'] = 'accounts';
 		$data['accounts'] = $this->session_model->get_accounts();
 
 		$data['first_name_label'] = 'First Name';
@@ -46,8 +47,9 @@ class Backoffice extends CI_Controller
 
 
 		$this->load->view('backoffice/templates/header', $data);
-		$this->load->view('backoffice/accounts', $data);
-		$this->load->view('backoffice/templates/footer');
+		$this->load->view('backoffice/templates/navbar', $data);
+		$this->load->view('backoffice/' . $data['page'], $data);
+		$this->load->view('backoffice/templates/footer', $data);
 	}
 
 	public function create_account()

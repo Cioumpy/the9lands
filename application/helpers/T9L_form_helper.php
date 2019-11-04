@@ -9,7 +9,7 @@
  */
 function form_inputbox($data = '', $label = '', $value = '', $extra = '')
 {
-	$input = "<div>";
+	$input = "<div class='form_input_container'>";
 	if ($label !== '')
 	{
 		$for_attribute = is_array($data) ? $data['name'] : $data;

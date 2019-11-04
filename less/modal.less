@@ -1,0 +1,34 @@
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: fixed;
+	left: 0;
+  top: 0;
+	z-index: 3;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(0, 0, 0, 0.5);
+
+	&_box {
+		min-width: 25%;
+
+		background-color: silver;
+
+		padding: 10px;
+
+		& .cancel_btn {
+			display: flex;
+			justify-content: flex-end;
+
+			width: 100%;
+
+			& span {
+				cursor: pointer;				
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+@import "/less/backoffice/style.less";
+
+.title_box {
+	display: flex;
+	justify-content: space-between;
+}
+
+table {
+	width: 100%;
+	border: 1px solid black;
+	background-color: white;
+
+	th {
+		border: 1px solid black;
+		background-color: silver;
+		text-align: left;
+	}
+
+	td {
+		border: 1px solid black;
+	}
+}
+
+#create_account_form {
+	& form {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+}

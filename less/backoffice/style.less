@@ -1,0 +1,51 @@
+@import "/less/modal.less";
+
+body {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	background-color: silver;
+
+	overflow: hidden;
+}
+
+#navbar {
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	height: 100%;
+	width: 200px;
+
+	background-color: gray;
+
+	padding: 10px;
+
+
+	&_title {
+		font-weight: bold;
+		font-size: 1.5em;
+
+		& span:nth-child(1) {
+			font-size: 1.2em;
+		}
+	}
+}
+
+#mainview {
+	flex-grow: 2;
+	padding: 0 20px;
+
+	overflow-y: auto;
+}
+
+.form_input_container {
+	display: flex;
+	flex-direction: column;
+
+	margin: 5px 0;
+}
+
+.form_btns {
+	display: flex;
+	justify-content: space-between;
+}
