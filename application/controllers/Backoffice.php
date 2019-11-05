@@ -10,6 +10,14 @@ class Backoffice extends CI_Controller
     $this->load->library('form_validation');
 	}
 
+
+	/**
+	 *	***Accounts Page***
+	 *
+	 *	Displays the Accounts Page.
+	 *
+	 *	@author Stefano Sellone
+	 */
 	public function accounts()
 	{
 		$data['title'] = 'Accounts';
@@ -52,6 +60,14 @@ class Backoffice extends CI_Controller
 		$this->load->view('backoffice/templates/footer', $data);
 	}
 
+	/**
+	 *	***Create Account***
+	 *
+	 *	The form to create a new account.
+	 *	On submit, it redirects again to the Accounts page.
+	 *
+	 *	@author Stefano Sellone
+	 */
 	public function create_account()
 	{
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
