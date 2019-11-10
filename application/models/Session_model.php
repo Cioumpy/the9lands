@@ -25,15 +25,16 @@ class Session_model extends CI_Model
 	 */
 	public function create_account()
 	{
-    $data = array(
+		$data = array(
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
 			'email' => $this->input->post('email'),
 			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 			'unhashed' => $this->input->post('password'),
-  	);
+			'role' => $this->input->post('role'),
+		);
 
-    return $this->db->insert('accounts', $data);
+	    return $this->db->insert('accounts', $data);
 	}
 
 
@@ -46,11 +47,14 @@ class Session_model extends CI_Model
 	 */
 	public function update_account()
 	{
-    $data = array(
+		$data = array(
+			'first_name' => $this->input->post('first_name'),
+			'last_name' => $this->input->post('last_name'),
 			'email' => $this->input->post('email'),
 			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 			'unhashed' => $this->input->post('password'),
-  	);
+			'role' => $this->input->post('role'),
+		);
 
 		$this->db->where('email', $data['email']);
 		return $this->db->update('accounts', $data);
@@ -66,11 +70,10 @@ class Session_model extends CI_Model
 	 */
 	public function delete_account()
 	{
-    $data = array(
+		$data = array(
 			'email' => $this->input->post('account_to_delete'),
-  	);
-
-    return $this->db->delete('accounts', $data);
+		);
+		return $this->db->delete('accounts', $data);
 	}
 
 	/**

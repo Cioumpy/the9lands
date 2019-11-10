@@ -16,21 +16,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($accounts as $accounts_item): ?>
+		<?php foreach ($accounts as $accounts_key => $accounts_item): ?>
 		<tr>
-			<?php foreach ($accounts_item as $item_value): ?>
-	    <td><?php echo $item_value; ?></td>
+			<?php foreach ($accounts_item as $item_key => $item_value): ?>
+			<td class="<?php echo $accounts_key." ".$item_key; ?>"><?php echo $item_value; ?></td>
 			<?php endforeach; ?>
-			<td>
-				<?php echo form_open('backoffice/update_account'); ?>
-					<?php echo form_hidden('email', $accounts_item['email']); ?>
-					<?php echo form_input('password'); ?>
-					<button type="submit" name="submit"><span class="glyphicon glyphicon-pencil"></span></button>
-				</form>
+			<td style="display: flex; justify-content: space-around;">
+				<button class="edit_btn js-update_account_btn" data-row="<?php echo $accounts_key; ?>"><span class="glyphicon glyphicon-pencil"></span></button>
 				<?php echo form_open('backoffice/delete_account'); ?>
 					<?php echo form_hidden('account_to_delete', $accounts_item['email']); ?>
-					<button type="submit" name="submit"><span class="glyphicon glyphicon-trash"></span></button>
-				</form>
+					<button type="submit" name="submit" class="edit_btn"><span class="glyphicon glyphicon-trash"></span></button>
+				<?php echo form_close(); ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
@@ -40,7 +36,7 @@
 
 <div class="modal" id="create_account_modal" style="display: none;">
 	<div class="modal_box">
-		<div class="cancel_btn">
+		<div class="js-modal_cancel_btn modal_cancel_btn">
 			<span class="glyphicon glyphicon-remove"></span>
 		</div>
 		<div class="modal_content" id="create_account_form">
@@ -48,10 +44,11 @@
 
 			<?php echo form_open('backoffice/create_account'); ?>
 
-				<?php echo form_inputbox($first_name, $first_name_label); ?>
-				<?php echo form_inputbox($last_name, $last_name_label); ?>
-				<?php echo form_inputbox($email, $email_label); ?>
-				<?php echo form_inputbox($password, $password_label); ?>
+				<?php echo form_inputbox($create_account['first_name']); ?>
+				<?php echo form_inputbox($create_account['last_name']); ?>
+				<?php echo form_inputbox($create_account['email']); ?>
+				<?php echo form_passwordbox($create_account['password']); ?>
+				<?php echo form_dropdownbox($create_account['role']); ?>
 
 				<br />
 
@@ -60,7 +57,7 @@
 					<button type="submit" name="submit">Create account</button>
 				</div>
 
-			</form>
+			<?php echo form_close(); ?>
 		</div>
 	</div>
 </div>
@@ -75,10 +72,11 @@
 
 			<?php echo form_open('backoffice/update_account'); ?>
 
-				<?php echo form_inputbox($first_name, $first_name_label); ?>
-				<?php echo form_inputbox($last_name, $last_name_label); ?>
-				<?php echo form_inputbox($email, $email_label); ?>
-				<?php echo form_inputbox($password, $password_label); ?>
+				<?php echo form_inputbox($update_account['first_name']); ?>
+				<?php echo form_inputbox($update_account['last_name']); ?>
+				<?php echo form_inputbox($update_account['email']); ?>
+				<?php echo form_passwordbox($update_account['password']); ?>
+				<?php echo form_dropdownbox($update_account['role']); ?>
 
 				<br />
 
@@ -87,7 +85,7 @@
 					<button type="submit" name="submit">Update account</button>
 				</div>
 
-			</form>
+			<?php echo form_close(); ?>
 		</div>
 	</div>
 </div>
