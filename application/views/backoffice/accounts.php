@@ -1,3 +1,15 @@
+<?php
+/**
+ * <b>Account Page View</b>
+ *
+ * @var	$title			String
+ * @var $accounts		array()
+ * @var $create_account array()
+ * @var $update_account array()
+ */
+?>
+
+
 <div class="title_box">
 	<h2><?php echo $title; ?>' Table:</h2>
 	<button id="create_account_btn"><span class="glyphicon glyphicon-plus"></span> New Account</button>

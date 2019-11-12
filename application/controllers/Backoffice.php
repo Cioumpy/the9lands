@@ -7,7 +7,7 @@ class Backoffice extends CI_Controller
 		$this->load->model('session_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
-    $this->load->library('form_validation');
+		$this->load->library('form_validation');
 	}
 
 
@@ -20,6 +20,11 @@ class Backoffice extends CI_Controller
 	 */
 	public function accounts()
 	{
+		if (!file_exists(APPPATH.'views/backoffice/accounts.php')){
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
 		$data['title'] = 'Accounts';
 		$data['page'] = 'accounts';
 		$data['accounts'] = $this->session_model->get_accounts();
