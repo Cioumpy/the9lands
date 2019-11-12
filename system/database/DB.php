@@ -182,7 +182,7 @@ function &DB($params = '', $query_builder_override = NULL)
 			class CI_DB extends CI_DB_query_builder { }
 		}
 	}
-	elseif ( ! class_exists('CI_DB', FALSE))
+	else if ( ! class_exists('CI_DB', FALSE))
 	{
 		/**
 	 	 * @ignore

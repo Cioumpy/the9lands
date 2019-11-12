@@ -7,52 +7,110 @@ class Backoffice extends CI_Controller
 		$this->load->model('session_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
-    $this->load->library('form_validation');
+		$this->load->library('form_validation');
 	}
 
 
 	/**
-	 *	***Accounts Page***
+	 *	<h1>Accounts Page</h1>
 	 *
-	 *	Displays the Accounts Page.
+	 *	<p>Displays the Accounts Page.</p>
 	 *
 	 *	@author Stefano Sellone
 	 */
 	public function accounts()
 	{
+		if (!file_exists(APPPATH.'views/backoffice/accounts.php')){
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
 		$data['title'] = 'Accounts';
 		$data['page'] = 'accounts';
 		$data['accounts'] = $this->session_model->get_accounts();
 
-		$data['first_name_label'] = 'First Name';
-		$data['first_name'] = array(
-	    'type'  => 'text',
-	    'name'  => 'first_name',
-	    'id'    => 'first_name',
-	    'required' => 'required'
-		);
-		$data['last_name_label'] = 'Last Name';
-		$data['last_name'] = array(
-	    'type'  => 'text',
-	    'name'  => 'last_name',
-	    'id'    => 'last_name',
-	    'required' => 'required'
-		);
-		$data['email_label'] = 'Email Address';
-		$data['email'] = array(
-	    'type'  => 'email',
-	    'name'  => 'email',
-	    'id'    => 'email',
-	    'required' => 'required'
-		);
-		$data['password_label'] = 'Password';
-		$data['password'] = array(
-	    'type'  => 'password',
-	    'name'  => 'password',
-	    'id'    => 'password',
-	    'required' => 'required'
+		$data['create_account'] = array(
+		    'first_name' => array(
+		        'type'  => 'text',
+		        'name'  => 'first_name',
+		        'id'    => 'create_first_name',
+		        'required' => 'required',
+		        'label' => 'First Name',
+		    ),
+		    'last_name' => array(
+		        'type'  => 'text',
+		        'name'  => 'last_name',
+		        'id'    => 'create_last_name',
+		        'required' => 'required',
+		        'label' => 'Last Name',
+		    ),
+		    'email' => array(
+		        'type'  => 'text',
+		        'name'  => 'email',
+		        'id'    => 'create_email',
+		        'required' => 'required',
+		        'label' => 'Email Address',
+		    ),
+		    'password' => array(
+		        'type'  => 'text',
+		        'name'  => 'password',
+		        'id'    => 'create_password',
+		        'required' => 'required',
+		        'label' => 'Password',
+		    ),
+			'role' => array(
+				'name'  => 'role',
+				'id'    => 'create_role',
+				'label' => 'Role',
+				'options' => array(
+					'user' => 'User',
+					'admin' => 'Administrator',
+				),
+				'selected' => 'user',
+			),
 		);
 
+		$data['update_account'] = array(
+		    'first_name' => array(
+		        'type'  => 'text',
+		        'name'  => 'first_name',
+		        'id'    => 'update_first_name',
+		        'required' => 'required',
+		        'label' => 'First Name',
+		    ),
+		    'last_name' => array(
+		        'type'  => 'text',
+		        'name'  => 'last_name',
+		        'id'    => 'update_last_name',
+		        'required' => 'required',
+		        'label' => 'Last Name',
+		    ),
+		    'email' => array(
+		        'type'  => 'text',
+		        'name'  => 'email',
+		        'id'    => 'update_email',
+		        'required' => 'required',
+		    	'disabled' => 'disabled',
+		        'label' => 'Email Address',
+		    ),
+		    'password' => array(
+		        'type'  => 'password',
+		        'name'  => 'password',
+		        'id'    => 'update_password',
+		        'required' => 'required',
+		        'label' => 'New Password',
+		    ),
+			'role' => array(
+				'name'  => 'role',
+				'id'    => 'create_role',
+				'label' => 'Role',
+				'options' => array(
+					'user' => 'User',
+					'admin' => 'Administrator',
+				),
+				'selected' => 'user',
+			),
+		);
 
 		$this->load->view('backoffice/templates/header', $data);
 		$this->load->view('backoffice/templates/navbar', $data);
@@ -61,36 +119,44 @@ class Backoffice extends CI_Controller
 	}
 
 	/**
-	 *	***Create Account***
+	 *	<h2>Create Account</h2>
 	 *
-	 *	The form to create a new account.
-	 *	On submit, it redirects again to the Accounts page.
+	 *	<p>The form to create a new account.<br />
+	 *	On submit, it creates an account and redirects again to the Accounts page.</p>
 	 *
 	 *	@author Stefano Sellone
 	 */
 	public function create_account()
 	{
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-    $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email Address', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
-    if ($this->form_validation->run() !== FALSE)
+		if ($this->form_validation->run() !== FALSE)
 		{
-      $this->session_model->create_account();
-    }
+			$this->session_model->create_account();
+		}
 		redirect('backoffice/accounts', 'refresh');
 	}
 
 	public function delete_account()
 	{
-    $this->session_model->delete_account();
+		$this->session_model->delete_account();
 		redirect('backoffice/accounts', 'refresh');
 	}
 
 	public function update_account()
 	{
-    $this->session_model->update_account();
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('email', 'Email Address', 'required');
+		$this->form_validation->set_rules('password', 'New Password', 'required');
+
+		if ($this->form_validation->run() !== FALSE)
+		{
+			$this->session_model->update_account();
+		}
 		redirect('backoffice/accounts', 'refresh');
 	}
 
