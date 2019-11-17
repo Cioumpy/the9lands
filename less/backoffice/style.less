@@ -1,14 +1,27 @@
-@import "/less/modal.less";
+@import "../modal.less";
 
 body {
 	display: flex;
 	flex-direction: row;
 	height: 100vh;
 	
-	backgound-color: rgb(184,154,94);
-	backgound-image: url('/media/backoffice/backgrounds/clean-gray-paper.png');
+	background-color: rgb(184,154,94);
+	background-image: url('/media/backoffice/backgrounds/clean-gray-paper.png');
 
 	overflow: hidden;
+	
+	font-family: 'Times New Roman', serif;
+}
+
+button {
+	border: 2px outset silver;
+
+	background-color: rgb(60, 60, 60);
+	background-image: url('/media/backoffice/backgrounds/handmade-paper.png');
+
+	padding: 10px;
+	
+	color: silver;
 }
 
 #navbar {
@@ -17,9 +30,12 @@ body {
 
 	height: 100%;
 	width: 200px;
+	
+	border-right: 8px solid transparent;
+	border-image: url('/media/backoffice/borders/greymedieval-border.png') 20% round;
 
-	background-color: brown;
-	background-image: url('/media/backoffice/backgrounds/dark-wood.png');
+	background-color: black;
+	background-image: url('/media/backoffice/backgrounds/handmade-paper.png');
 
 	padding: 10px;
 	
@@ -29,9 +45,28 @@ body {
 	&_title {
 		font-weight: bold;
 		font-size: 1.5em;
+		color: darkgoldenrod;
 
 		& span:nth-child(1) {
 			font-size: 1.2em;
+		}
+	}
+	
+	ul {
+		display: flex;
+		flex-direction: column;
+		
+		list-style-type: none;
+		
+		margin: 0;
+		padding: 0;
+		
+		li {
+			border: 2px outset silver;
+			
+			padding: 10px;
+			
+			font-weight: bold;
 		}
 	}
 }

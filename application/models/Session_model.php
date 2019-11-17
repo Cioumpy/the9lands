@@ -76,41 +76,57 @@ class Session_model extends CI_Model
 		return $this->db->delete('accounts', $data);
 	}
 
+
+
 	/**
-	 * Check User
+	 * <h1>Check User's Role</h1>
 	 *
-	 * This method checks if the input user's password
-	 * matches with the one in the database.
+	 * <p>This method checks if the user's role is equal to the requested parameter.</p>
+	 *
+	 * @param	$role	String	The user's role. Default is <code>'anonymous'</code>.
+	 *
+	 * @return 			bool	A boolean value.
+	 */
+	public function user_has_role(String $role = 'anonymous')
+	{
+		if ($this->session->role == $role)
+		{
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+
+	/**
+	 * <h1>Check Password</h1>
+	 *
+	 * <p>This method checks if the input user's password matches with the one in the database.</p>
 	 *
 	 * @param string $pwd						The input password
 	 * @param string $hashed_pwd		The hashed password in the database
 	 *
 	 * @return bool
 	 */
-	public function _check_user($pwd, $hashed_pwd)
+	public function check_password($pwd, $hashed_pwd)
 	{
 		if (password_verify($pwd, $hashed_pwd))
 		{
 			return TRUE;
 		}
-		else
-		{
-			return FALSE;
-		}
+		return FALSE;
 	}
 
 
-	/**
-	 * Check Session
+/**
+	 * <h1>Check Login</h1>
 	 *
-	 * This method checks if the active session user
-	 * is logged in.
+	 * <p>This method checks if the active session user is logged in.</p>
 	 *
 	 * @return bool
 	 */
-	public function _check_session()
+	public function is_user_loggedin()
 	{
-		if (isset($_SESSION['member']))
+		if ($_SESSION['soft_logged_in'] OR $_SESSION['hard_logged_in'])
 		{
 			return TRUE;
 		}

@@ -76,7 +76,7 @@
 
 <div class="modal" id="update_account_modal" style="display: none;">
 	<div class="modal_box">
-		<div class="cancel_btn">
+		<div class="js-modal_cancel_btn modal_cancel_btn">
 			<span class="glyphicon glyphicon-remove"></span>
 		</div>
 		<div class="modal_content" id="update_account_form">

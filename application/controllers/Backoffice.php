@@ -8,6 +8,15 @@ class Backoffice extends CI_Controller
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+
+		$userdata = array(
+			'email' => 'cioumpy@gmail.com',
+			'role' => 'admin',
+			'soft_logged_in'  => TRUE,
+			'hard_logged_in'  => TRUE,
+		);
+
+		$this->session->set_userdata($userdata);
 	}
 
 
@@ -20,102 +29,108 @@ class Backoffice extends CI_Controller
 	 */
 	public function accounts()
 	{
-		if (!file_exists(APPPATH.'views/backoffice/accounts.php')){
-			// Whoops, we don't have a page for that!
-			show_404();
+		if ($this->session_model->user_has_role('admin')) {
+			if (!file_exists(APPPATH.'views/backoffice/accounts.php')){
+				// Whoops, we don't have a page for that!
+				show_404();
+			}
+
+			$data['title'] = 'Accounts';
+			$data['page'] = 'accounts';
+			$data['accounts'] = $this->session_model->get_accounts();
+
+			$data['create_account'] = array(
+				'first_name' => array(
+					'type'  => 'text',
+					'name'  => 'first_name',
+					'id'    => 'create_first_name',
+					'required' => 'required',
+					'label' => 'First Name',
+				),
+				'last_name' => array(
+					'type'  => 'text',
+					'name'  => 'last_name',
+					'id'    => 'create_last_name',
+					'required' => 'required',
+					'label' => 'Last Name',
+				),
+				'email' => array(
+					'type'  => 'text',
+					'name'  => 'email',
+					'id'    => 'create_email',
+					'required' => 'required',
+					'label' => 'Email Address',
+				),
+				'password' => array(
+					'type'  => 'text',
+					'name'  => 'password',
+					'id'    => 'create_password',
+					'required' => 'required',
+					'label' => 'Password',
+				),
+				'role' => array(
+					'name'  => 'role',
+					'id'    => 'create_role',
+					'label' => 'Role',
+					'options' => array(
+						'user' => 'User',
+						'admin' => 'Administrator',
+					),
+					'selected' => 'user',
+				),
+			);
+
+			$data['update_account'] = array(
+				'first_name' => array(
+					'type'  => 'text',
+					'name'  => 'first_name',
+					'id'    => 'update_first_name',
+					'required' => 'required',
+					'label' => 'First Name',
+				),
+				'last_name' => array(
+					'type'  => 'text',
+					'name'  => 'last_name',
+					'id'    => 'update_last_name',
+					'required' => 'required',
+					'label' => 'Last Name',
+				),
+				'email' => array(
+					'type'  => 'text',
+					'name'  => 'email',
+					'id'    => 'update_email',
+					'required' => 'required',
+					'disabled' => 'disabled',
+					'label' => 'Email Address',
+				),
+				'password' => array(
+					'type'  => 'password',
+					'name'  => 'password',
+					'id'    => 'update_password',
+					'required' => 'required',
+					'label' => 'New Password',
+				),
+				'role' => array(
+					'name'  => 'role',
+					'id'    => 'update_role',
+					'label' => 'Role',
+					'options' => array(
+						'user' => 'User',
+						'admin' => 'Administrator',
+					),
+					'selected' => 'user',
+				),
+			);
+
+			$this->load->view('backoffice/templates/header', $data);
+			$this->load->view('backoffice/templates/navbar', $data);
+			$this->load->view('backoffice/' . $data['page'], $data);
+			$this->load->view('backoffice/templates/footer', $data);
+		}
+		else {
+			redirect('');
 		}
 
-		$data['title'] = 'Accounts';
-		$data['page'] = 'accounts';
-		$data['accounts'] = $this->session_model->get_accounts();
-
-		$data['create_account'] = array(
-		    'first_name' => array(
-		        'type'  => 'text',
-		        'name'  => 'first_name',
-		        'id'    => 'create_first_name',
-		        'required' => 'required',
-		        'label' => 'First Name',
-		    ),
-		    'last_name' => array(
-		        'type'  => 'text',
-		        'name'  => 'last_name',
-		        'id'    => 'create_last_name',
-		        'required' => 'required',
-		        'label' => 'Last Name',
-		    ),
-		    'email' => array(
-		        'type'  => 'text',
-		        'name'  => 'email',
-		        'id'    => 'create_email',
-		        'required' => 'required',
-		        'label' => 'Email Address',
-		    ),
-		    'password' => array(
-		        'type'  => 'text',
-		        'name'  => 'password',
-		        'id'    => 'create_password',
-		        'required' => 'required',
-		        'label' => 'Password',
-		    ),
-			'role' => array(
-				'name'  => 'role',
-				'id'    => 'create_role',
-				'label' => 'Role',
-				'options' => array(
-					'user' => 'User',
-					'admin' => 'Administrator',
-				),
-				'selected' => 'user',
-			),
-		);
-
-		$data['update_account'] = array(
-		    'first_name' => array(
-		        'type'  => 'text',
-		        'name'  => 'first_name',
-		        'id'    => 'update_first_name',
-		        'required' => 'required',
-		        'label' => 'First Name',
-		    ),
-		    'last_name' => array(
-		        'type'  => 'text',
-		        'name'  => 'last_name',
-		        'id'    => 'update_last_name',
-		        'required' => 'required',
-		        'label' => 'Last Name',
-		    ),
-		    'email' => array(
-		        'type'  => 'text',
-		        'name'  => 'email',
-		        'id'    => 'update_email',
-		        'required' => 'required',
-		    	'disabled' => 'disabled',
-		        'label' => 'Email Address',
-		    ),
-		    'password' => array(
-		        'type'  => 'password',
-		        'name'  => 'password',
-		        'id'    => 'update_password',
-		        'required' => 'required',
-		        'label' => 'New Password',
-		    ),
-			'role' => array(
-				'name'  => 'role',
-				'id'    => 'create_role',
-				'label' => 'Role',
-				'options' => array(
-					'user' => 'User',
-					'admin' => 'Administrator',
-				),
-				'selected' => 'user',
-			),
-		);
-
-		$this->load->view('backoffice/templates/header', $data);
-		$this->load->view('backoffice/templates/navbar', $data);
-		$this->load->view('backoffice/' . $data['page'], $data);
-		$this->load->view('backoffice/templates/footer', $data);
 	}
 
 	/**
