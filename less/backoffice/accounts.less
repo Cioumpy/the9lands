@@ -1,0 +1,49 @@
+@import "style.less";
+
+.title_box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+table {
+	width: 100%;
+	border: 1px solid black;
+	background-color: white;
+
+	th {
+		border: 1px solid black;
+		background-color: silver;
+		text-align: left;
+	}
+
+	td {
+		margin: 0;
+		border: 1px solid black;
+		
+		form {
+			margin: 0;
+		}
+		
+		.edit_btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 30px;
+			width: 30px;
+			
+			border: none;
+			background: none;
+			
+			color: blue;
+		}
+	}
+}
+
+#create_account_form {
+	& form {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+}

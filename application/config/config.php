@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * @var array() $config  The Configuration Array
+ */
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -35,7 +39,7 @@ $config['base_url'] = 'http://the9lands.org/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
