@@ -1,27 +1,43 @@
-<div id="titlebox">
-	<h1>The Nine Lands</h1>
-	<h2>d20 System Online Tabletop RPG</h2>
-</div>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title><?php echo $title ?> - <?php echo $subtitle ?></title>
 
-<div id="mainbody">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
-	<?php echo form_open('pages/view'); ?>
+		<link rel="stylesheet/less" type="text/css" href="/less/pages/<?php echo $page; ?>.less" />
 
-<!--	<form action="/assets/commons/scripts/session/login.php" method="post">		-->
-		<div class="container">
-			<label>USERNAME</label>
-			<input type="text" placeholder="Enter Username" name="uname" required>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+	<body>
 
-			<label>PASSWORD</label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
-
-			<?php echo validation_errors(); ?>
-
-			<button type="submit">LOGIN</button>
-			<label><input type="checkbox" checked> Remember me</label>
-			<span class="psw">Forgot <a href="#">password</a>?</span>
+		<div id="row_top">
+			<div id="title_box">
+				<h1></h1>
+				<h2></h2>
+			</div>
 		</div>
 
-	</form>
+		<div id="row_bottom">
 
-</div>
+			<div id="content_box">
+				<?php echo form_open('pages/login'); ?>
+
+					<?php echo form_inputbox($login_account['email']); ?>
+					<?php echo form_passwordbox($login_account['password']); ?>
+
+					<button type="submit" name="submit">LOGIN</button>
+
+					<div id="other_options">
+						<label><input type="checkbox" checked> Remember me</label>
+						<span class="psw">Forgot <a href="#">password</a>?</span>
+					</div>
+
+				<?php echo form_close(); ?>
+			</div>
+
+		</div>
+
+	</body>
+</html>

@@ -1,17 +1,29 @@
 <?php
+/**
+ * <h1>Session Model</h1>
+ *
+ * <p>This class defines all session variables.<br/>
+ * Be sure to have the following lines in the constructor of every controller:</p>
+ * <code>
+ * 		parent::__construct();<br/>
+ * 		$this->load->model('session_model');
+ * </code>
+ *
+ * @return bool
+ */
 class Session_model extends CI_Model
 {
 	public function __construct() {
 		parent::__construct();
 	}
 
-	public function get_accounts($id = FALSE) {
-		if ($id === FALSE) {
+	public function get_accounts($email = FALSE) {
+		if ($email === FALSE) {
 			$query = $this->db->get('accounts');
 			return $query->result_array();
 		}
 
-		$query = $this->db->get_where('accounts', array('id' => $id));
+		$query = $this->db->get_where('accounts', array('email' => $email));
 		return $query->row_array();
 	}
 
@@ -87,33 +99,9 @@ class Session_model extends CI_Model
 	 *
 	 * @return 			bool	A boolean value.
 	 */
-	public function user_has_role(String $role = 'anonymous')
+	public function has_user_role(String $role = 'user')
 	{
-		if ($this->session->role == $role)
-		{
-			return TRUE;
-		}
-		return FALSE;
-	}
-
-
-	/**
-	 * <h1>Check Password</h1>
-	 *
-	 * <p>This method checks if the input user's password matches with the one in the database.</p>
-	 *
-	 * @param string $pwd						The input password
-	 * @param string $hashed_pwd		The hashed password in the database
-	 *
-	 * @return bool
-	 */
-	public function check_password($pwd, $hashed_pwd)
-	{
-		if (password_verify($pwd, $hashed_pwd))
-		{
-			return TRUE;
-		}
-		return FALSE;
+		return $this->session->role == $role;
 	}
 
 
@@ -126,30 +114,39 @@ class Session_model extends CI_Model
 	 */
 	public function is_user_loggedin()
 	{
-		if ($_SESSION['soft_logged_in'] OR $_SESSION['hard_logged_in'])
-		{
-			return TRUE;
-		}
-		return FALSE;
+		return (isset($_SESSION['soft_login']) ? $_SESSION['soft_login'] : FALSE) OR (isset($_SESSION['hard_login']) ? $_SESSION['hard_login'] : FALSE);
 	}
 
 
 	/**
 	 * Login User
 	 *
+	 * Insert user in current session.
+	 *
 	 *
 	 */
-	public function login_user($id, $pwd)
+	public function set_current_user(String $email, String $pwd)
 	{
-		$my_user = array('username' => $id);
-		$query = $this->db->get_where('accounts', $my_user);
-		if ($this->db->count_all_results() === 1)
+		$my_user = $this->get_accounts($email);
+		if (password_verify($pwd, $my_user['password']))
 		{
-			$row = $query->row();
-			return _check_user($pwd, $row['password']);
+			$my_user['soft_login'] = FALSE;
+			$my_user['hard_login'] = FALSE;
+			if ('anonymous@nomail.com' != $email) {
+				// TODO: Set soft-login cookie.
+				$my_user['soft_login'] = TRUE;
+				$my_user['hard_login'] = TRUE;
+			}
+			unset($my_user['password']);
+			unset($my_user['unhashed']);
+			$this->session->set_userdata($my_user);
 		}
-
-		return $query->row_array();
 	}
+
+	public function set_current_user_anonymous()
+	{
+		$this->set_current_user('anonymous@nomail.com', '0000');
+	}
+
 
 }

@@ -9,14 +9,8 @@ class Backoffice extends CI_Controller
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$userdata = array(
-			'email' => 'cioumpy@gmail.com',
-			'role' => 'admin',
-			'soft_logged_in'  => TRUE,
-			'hard_logged_in'  => TRUE,
-		);
+		// TODO: Check for soft-login cookies.
 
-		$this->session->set_userdata($userdata);
 	}
 
 
@@ -29,7 +23,7 @@ class Backoffice extends CI_Controller
 	 */
 	public function accounts()
 	{
-		if ($this->session_model->user_has_role('admin')) {
+		if ($this->session_model->has_user_role('admin')) {
 			if (!file_exists(APPPATH.'views/backoffice/accounts.php')){
 				// Whoops, we don't have a page for that!
 				show_404();
@@ -59,6 +53,7 @@ class Backoffice extends CI_Controller
 					'name'  => 'email',
 					'id'    => 'create_email',
 					'required' => 'required',
+					'autocomplete' => 'username',
 					'label' => 'Email Address',
 				),
 				'password' => array(
@@ -66,6 +61,7 @@ class Backoffice extends CI_Controller
 					'name'  => 'password',
 					'id'    => 'create_password',
 					'required' => 'required',
+					'autocomplete' => 'new-password',
 					'label' => 'Password',
 				),
 				'role' => array(
@@ -101,6 +97,7 @@ class Backoffice extends CI_Controller
 					'id'    => 'update_email',
 					'required' => 'required',
 					'disabled' => 'disabled',
+					'autocomplete' => 'username',
 					'label' => 'Email Address',
 				),
 				'password' => array(
@@ -108,6 +105,7 @@ class Backoffice extends CI_Controller
 					'name'  => 'password',
 					'id'    => 'update_password',
 					'required' => 'required',
+					'autocomplete' => 'new-password',
 					'label' => 'New Password',
 				),
 				'role' => array(
