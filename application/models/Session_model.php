@@ -19,7 +19,7 @@ class Session_model extends CI_Model
 	}
 
 	public function get_accounts($email = FALSE) {
-		if (isset($this->db->get('accounts')))
+		if (NULL !== $this->db->get('accounts'))
 		{
 			if ($email === FALSE)
 			{
@@ -46,7 +46,7 @@ class Session_model extends CI_Model
 	 */
 	public function create_account()
 	{
-		if (isset($this->db->get('accounts')))
+		if (NULL !== $this->db->get('accounts'))
 		{
 			$data = array(
 				'first_name' => $this->input->post('first_name'),
