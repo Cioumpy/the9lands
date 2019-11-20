@@ -13,18 +13,27 @@
  */
 class Session_model extends CI_Model
 {
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 	}
 
 	public function get_accounts($email = FALSE) {
-		if ($email === FALSE) {
-			$query = $this->db->get('accounts');
-			return $query->result_array();
-		}
+		if (isset($this->db->get('accounts')))
+		{
+			if ($email === FALSE)
+			{
+				$query = $this->db->get('accounts');
+				return $query->result_array();
+			}
 
-		$query = $this->db->get_where('accounts', array('email' => $email));
-		return $query->row_array();
+			$query = $this->db->get_where('accounts', array('email' => $email));
+			return $query->row_array();
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 
 
@@ -37,16 +46,19 @@ class Session_model extends CI_Model
 	 */
 	public function create_account()
 	{
-		$data = array(
-			'first_name' => $this->input->post('first_name'),
-			'last_name' => $this->input->post('last_name'),
-			'email' => $this->input->post('email'),
-			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-			'unhashed' => $this->input->post('password'),
-			'role' => $this->input->post('role'),
-		);
+		if (isset($this->db->get('accounts')))
+		{
+			$data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'email' => $this->input->post('email'),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'unhashed' => $this->input->post('password'),
+				'role' => $this->input->post('role'),
+			);
 
-	    return $this->db->insert('accounts', $data);
+		    $this->db->insert('accounts', $data);
+		}
 	}
 
 
