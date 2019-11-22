@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
 	<head>
 		<title>The Nine Lands Backoffice - <?php echo $title; ?></title>

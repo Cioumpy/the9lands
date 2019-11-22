@@ -69,27 +69,34 @@ class Pages extends CI_Controller {
 		redirect('pages/index');
 	}
 
-	public function view($page = 'home'){
-
+	public function home() {
 		// If the user is not logged in, go to the login page
 		if ($this->session_model->has_user_role('anonymous'))
 		{
 			redirect('pages/index');
 		}
 
-		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+		if ( ! file_exists(APPPATH.'views/pages/home.php'))
 		{
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
 
-		$data['page'] = $page;
+		$data['page'] = 'home';
 		$data['title'] = 'The Nine Lands';
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
 
+		$data['main_menu'] = array(
+			'View your Characters' => site_url(),
+			'Play a Campaign' => site_url(),
+			'Run a Campaign' => site_url(),
+			'Write a Campaign' => site_url(),
+			'Open Game Content Rules' => site_url(),
+			'Ad Hoc Rules' => site_url(),
+		);
+
 		$this->load->view('pages/templates/header', $data);
-		$this->load->view('pages/'.$page, $data);
-		$this->load->view('pages/templates/footer', $data);
+		$this->load->view('pages/home', $data);
 	}
 
 }
