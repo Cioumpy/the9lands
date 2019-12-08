@@ -11,6 +11,9 @@
 	</div>
 
 	<div id="session_menu">
+		<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+			echo "<a type=\"button\" href=\"" . site_url('backoffice/accounts') . "\" title=\"Backoffice\"><span class=\"glyphicon glyphicon-log-out\"></span></a>";
+		} ?>
 		<a type="button" href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-user"></a>
 		<a type="button" href="<?php echo site_url('pages/logout'); ?>" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
 	</div>
@@ -21,8 +24,8 @@
 
 	<div id="main_menu">
 
-		<?php foreach ($main_menu as $key => $value): ?>
-			<label class="mainmenu_item"><a href="<?php echo $value; ?>"><?php echo $key; ?></a></label>
+		<?php foreach ($main_menu as $menu_entry => $link): ?>
+			<label class="mainmenu_item"><a href="<?php echo $link; ?>"><?php echo $menu_entry; ?></a></label>
 		<?php endforeach; ?>
 
 	</div>
