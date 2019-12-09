@@ -87,7 +87,7 @@ class Pages extends CI_Controller {
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
 
 		$data['main_menu'] = array(
-			'View your Characters' => site_url(),
+			'View your Characters' => site_url('characters/list'),
 			'Play a Campaign' => site_url(),
 			'Run a Campaign' => site_url(),
 			'Write a Campaign' => site_url(),
