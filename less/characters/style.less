@@ -1,0 +1,78 @@
+@import (once) "../cursors.less";
+@import (once) "../fonts.less";
+@import (once) "../borders.less";
+@import (once) "../modal.less";
+
+
+
+/* ================================================================================ */
+/* General Properties																																*/
+/* ================================================================================ */
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 100vh;
+
+	background-color: chocolate;
+	background-image: url("/media/characters/backgrounds/background-room.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	overflow: hidden;
+}
+
+
+
+/* ================================================================================ */
+/* General MainBox Properties																												*/
+/* ================================================================================ */
+
+.mainbox { /* The container of the Charachter boxes */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 80%;
+	max-width: 870px;
+
+	height: 80%;
+	max-height: 650px;
+
+	margin: 0 auto;
+
+	border: 15px solid transparent;
+	border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
+	box-shadow: 10px 10px 18px 10px rgba(0,0,0,0.6);
+
+	padding: 3px 10px;
+
+	background-color: rgb(47, 20, 0);
+	background-image: url("/media/backoffice/backgrounds/handmade-paper.png");
+
+	overflow: hidden;
+
+	/* ====== Header ============================================================== */
+	.pagetitle {
+		display: flex;
+		justify-content: space-between;
+		flex-grow: 0;
+		flex-shrink: 0;
+
+		.titlebox {
+			@embossed();
+			flex-grow: 2;
+		}
+
+		.sideimgbox {
+			display: flex;
+			align-items: center;
+			flex-grow: 0;
+
+			margin: 10px;
+		}
+	}
+}
