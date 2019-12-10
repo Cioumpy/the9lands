@@ -29,8 +29,10 @@ class Backoffice extends CI_Controller
 				show_404();
 			}
 
-			$data['title'] = 'Accounts';
+			$data['controller'] = 'backoffice';
 			$data['page'] = 'accounts';
+			$data['title'] = 'The Nine Lands Backoffice';
+			$data['subtitle'] = 'Accounts';
 			$data['accounts'] = $this->session_model->get_accounts();
 
 			$data['create_account'] = array(
@@ -120,10 +122,10 @@ class Backoffice extends CI_Controller
 				),
 			);
 
-			$this->load->view('backoffice/templates/header', $data);
+			$this->load->view('templates/header', $data);
 			$this->load->view('backoffice/templates/navbar', $data);
-			$this->load->view('backoffice/' . $data['page'], $data);
-			$this->load->view('backoffice/templates/footer', $data);
+			$this->load->view($data['controller'] . '/' . $data['page'], $data);
+			$this->load->view('templates/footer', $data);
 		}
 		else {
 			redirect('');

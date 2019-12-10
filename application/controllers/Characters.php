@@ -21,13 +21,14 @@ class Characters extends CI_Controller
 			show_404();
 		}
 
+		$data['controller'] = 'characters';
 		$data['page'] = 'list';
 		$data['title'] = 'The Nine Lands';
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
 
-		$this->load->view('characters/templates/header', $data);
-		$this->load->view('characters/list', $data);
-		$this->load->view('characters/templates/footer', $data);
+		$this->load->view('templates/header', $data);
+		$this->load->view($data['controller'] . '/' . $data['page'], $data);
+		$this->load->view('templates/footer', $data);
 	}
 }
 
