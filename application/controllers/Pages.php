@@ -25,7 +25,6 @@ class Pages extends CI_Controller {
 			show_404();
 		}
 
-		$data['controller'] = 'pages';
 		$data['page'] = 'index';
 		$data['title'] = 'The Nine Lands';
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
@@ -49,7 +48,7 @@ class Pages extends CI_Controller {
 			),
 		);
 
-		$this->load->view($data['controller'] . '/' . $data['page'], $data);
+		$this->load->view('pages/index', $data);
 	}
 
 	public function login() {
@@ -83,7 +82,6 @@ class Pages extends CI_Controller {
 			show_404();
 		}
 
-		$data['controller'] = 'pages';
 		$data['page'] = 'home';
 		$data['title'] = 'The Nine Lands';
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
@@ -97,8 +95,8 @@ class Pages extends CI_Controller {
 			'Ad Hoc Rules' => site_url(),
 		);
 
-		$this->load->view('templates/header', $data);
-		$this->load->view($data['controller'] . '/' . $data['page'], $data);
+		$this->load->view('pages/templates/header', $data);
+		$this->load->view('pages/home', $data);
 	}
 
 }

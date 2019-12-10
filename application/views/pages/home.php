@@ -12,9 +12,9 @@
 
 	<div id="session_menu">
 		<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-			<a type="button" href="<?php echo site_url('backoffice/accounts'); ?>" title="Backoffice" target="_blank"><span class="glyphicon glyphicon-wrench"></span></a>
+			<a type="button" href="<?php site_url('backoffice/accounts') ?>" title="Backoffice"><span class="glyphicon glyphicon-wrench"></span></a>
 		<?php endif; ?>
-		<a type="button" href="<?php echo site_url(); ?>" title="Profile"><span class="glyphicon glyphicon-user"></a>
+		<a type="button" href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-user"></a>
 		<a type="button" href="<?php echo site_url('pages/logout'); ?>" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
 	</div>
 
