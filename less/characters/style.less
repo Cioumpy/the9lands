@@ -5,6 +5,45 @@
 
 
 
+@button: {
+	/* Set a style for all buttons */
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+
+	border: none;
+
+	padding: 0 10px;
+
+	background-color: rgb(47, 20, 0);
+	background-image: url("/media/backoffice/backgrounds/handmade-paper.png");
+	background-size: contain;
+
+	font-family: "Sherwood", serif;
+	color: brown;
+	text-shadow: 1px 1px 1px goldenrod;
+
+	cursor: @curpointer, default;
+
+	&:hover {
+		/* Add a hover effect for buttons */
+		opacity: 0.8;
+	}
+
+	/* Grey out the disabled buttons */
+	&[disabled] {
+		opacity: 0.4;
+
+		color: darkgrey;
+
+		cursor: @curdefault, default;
+	}
+}
+
+
+
 /* ================================================================================ */
 /* General Properties																																*/
 /* ================================================================================ */
@@ -23,6 +62,27 @@ body {
 	background-repeat: no-repeat;
 
 	overflow: hidden;
+
+	a {
+		/* Set a style for all links */
+		text-decoration: none;
+		color: inherit;
+
+		cursor: @curpointer, pointer;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		&[type='button'] {
+			@button();
+		}
+	}
+
+	button {
+		@button();
+	}
+
 }
 
 
@@ -55,7 +115,7 @@ body {
 
 	overflow: hidden;
 
-	/* ====== Header ============================================================== */
+	/* ====== Header Section ====================================================== */
 	.pagetitle {
 		display: flex;
 		justify-content: space-between;
@@ -63,8 +123,20 @@ body {
 		flex-shrink: 0;
 
 		.titlebox {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			@embossed();
 			flex-grow: 2;
+
+			h2 {
+				margin: 0;
+				font-family: "Sherwood", fantasy;
+				font-weight: bold;
+			  color: darkgoldenrod;
+				text-align: center;
+			  text-shadow: 1px 1px 1px black;
+			}
 		}
 
 		.sideimgbox {
@@ -74,5 +146,208 @@ body {
 
 			margin: 10px;
 		}
+	}
+
+	/* ====== Body Section ======================================================== */
+	.mainscreen {
+		display: flex;
+		justify-content: center;
+		flex-grow: 2;
+		flex-shrink: 2;
+
+		height: calc(100% - 140px);
+
+		.subscreen {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: stretch;
+			flex-grow: 0;
+
+			margin: 10px;
+
+			overflow-y: auto;
+
+			/* List column */
+			&.listcol {
+				@embossed();
+				flex-shrink: 0;
+
+				width: auto;
+				min-width: 200px;
+
+				.listtitle {
+					flex-shrink: 0;
+					flex-grow: 0;
+
+					border-top-left-radius: 5px;
+					border-top-right-radius: 5px;
+					box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+					padding: 10px;
+
+					background-color: rgb(47, 20, 0);
+					background-image: url("/media/backoffice/backgrounds/handmade-paper.png");
+					background-size: contain;
+
+					font-family: "Sherwood", fantasy;
+					font-size: 1.2em;
+					font-weight: normal;
+					color: silver;
+					text-shadow: 1px 1px 1px black;
+				}
+
+				.itemlist {
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: stretch;
+
+					flex-grow: 2;
+
+					width: 100%;
+
+					overflow-y: auto;
+				}
+			}
+
+			/* Description column */
+			&.desccol {
+				flex-grow: 1;
+
+				.banner {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-grow: 0;
+					flex-shrink: 0;
+
+					height: 8em;
+
+					border: 10px solid transparent;
+					border-bottom: none;
+					border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
+
+					overflow: hidden;
+
+					.bannerbox {
+						display: flex;
+						align-items: flex-end;
+
+						height: 100%;
+						width: 100%;
+
+						background-color: wheat;
+						background-image: none, url('/media/characters/banners/campaigns/default.jpg');
+						background-repeat: no-repeat, no-repeat;
+						background-position: right 0.8em center, center;
+						background-size: contain, cover;
+
+						font-family: 'Roman', serif;
+						font-size: 3em;
+						color: darkgoldenrod;
+						text-shadow: 2px 3px 4px black;
+
+						span {
+							margin: 0.1em 0.8em;
+						}
+					}
+				}
+
+				.descbox {
+					flex-grow: 1;
+
+					border: 10px solid transparent;
+					border-top: none;
+					border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
+
+					padding: 10px;
+
+					background-color: rgb(184,154,94);
+					background-image: url('/media/backoffice/backgrounds/clean-gray-paper.png');
+
+					font-family: 'Roman', serif;
+					text-align: justify;
+
+					overflow-y: auto;
+				}
+
+				.optionbox {
+					display: flex;
+					justify-content: space-around;
+					align-items: center;
+					flex-grow: 0;
+					flex-shrink: 0;
+					@embossed();
+
+					margin-top: 15px;
+
+					padding: 10px;
+
+					overflow: hidden;
+				}
+			}
+		}
+	}
+
+	/* ====== Footer Section ====================================================== */
+
+	.pagefooter {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-grow: 0;
+		flex-shrink: 0;
+
+		margin: 10px;
+
+		.pagebuttons {
+			@embossed();
+			display: flex;
+			flex-grow: 0;
+
+			margin: 0;
+		}
+
+		.mainbtns {
+			width: 15%;
+			min-width: 200px;
+
+			box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6) inset, 2px 2px 4px 2px rgba(255,255,255,0.4) inset;
+
+			padding: 3px 10px;
+
+			font-size: 1.2em;
+			color: darkgoldenrod;
+			text-transform: uppercase;
+			text-shadow: 1px 1px 1px black;
+
+			&:first-child {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			&:last-child {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+			a& {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				font-family: "Sherwood", serif;
+				text-align: center;
+				text-decoration: none;
+
+				cursor: @curpointer, pointer;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+
 	}
 }
