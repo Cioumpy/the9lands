@@ -16,9 +16,15 @@
 
 		<div class="subscreen listcol">
 			<div class="listtitle">Campaigns</div>
+			<div class="itemlist" id="js-campaigns_list">
+				<div class="listitem" id="campaigns_0" onclick="getCampaignDescription('0')">Custom Character</div>
+				<?php foreach ($listcol as $key => $camp): ?>
+					<div class="listitem" id="campaigns_<?php echo $camp['id']; ?>" onclick="getCampaignDescription('<?php echo $camp['id']; ?>')"><?php echo $camp['name'] ?></div>
+				<?php endforeach; ?>
+			</div>
 		</div>
 
-		<div class="subscreen desccol">
+		<div class="subscreen desccol" id="campdesc">
 			<div class="banner">
 				<div class="bannerbox">
 					<span>Custom Character</span>
@@ -29,8 +35,8 @@
 			</div>
 			<div class="optionbox">
 				<span>
-					<b>Starting Level: </b>
-					<input type="number" min="1" max="20" value="1">
+					<span><b>Starting Level: </b></span>
+					<span><input type="number" min="1" max="20" value="1"></span>
 				</span>
 			</div>
 		</div>

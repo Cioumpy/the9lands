@@ -103,13 +103,11 @@ class Session_model extends CI_Model
 
 
 	/**
-	 * <h1>Check User's Role</h1>
+	 * <h3>Check User's Role</h3>
 	 *
-	 * <p>This method checks if the user's role is equal to the requested parameter.</p>
-	 *
-	 * @param	$role	String	The user's role. Default is <code>'anonymous'</code>.
-	 *
-	 * @return 			bool	A boolean value.
+	 * This method checks if the user's role is equal to the requested parameter.
+	 * {@param String $role}	The user's role. Default is <code>'user'</code>.
+	 * {@return bool}	A boolean value.
 	 */
 	public function has_user_role(String $role = 'user')
 	{
@@ -117,7 +115,7 @@ class Session_model extends CI_Model
 	}
 
 
-/**
+	/**
 	 * <h1>Check Login</h1>
 	 *
 	 * <p>This method checks if the active session user is logged in.</p>
@@ -126,39 +124,28 @@ class Session_model extends CI_Model
 	 */
 	public function is_user_loggedin()
 	{
-		return (isset($_SESSION['soft_login']) ? $_SESSION['soft_login'] : FALSE) OR (isset($_SESSION['hard_login']) ? $_SESSION['hard_login'] : FALSE);
+		return isset($_SESSION['email']);
 	}
 
 
-	/**
-	 * Login User
-	 *
-	 * Insert user in current session.
-	 *
-	 *
-	 */
+		/**
+		 * Login User
+		 *
+		 * Insert user in current session.
+		 *
+		 *
+		 */
 	public function set_current_user(String $email, String $pwd)
 	{
 		$my_user = $this->get_accounts($email);
 		if (password_verify($pwd, $my_user['password']))
 		{
-			$my_user['soft_login'] = FALSE;
-			$my_user['hard_login'] = FALSE;
-			if ('anonymous@nomail.com' != $email) {
-				// TODO: Set soft-login cookie.
-				$my_user['soft_login'] = TRUE;
-				$my_user['hard_login'] = TRUE;
-			}
+			$my_user['soft_login'] = TRUE;
+			$my_user['hard_login'] = TRUE;
 			unset($my_user['password']);
 			unset($my_user['unhashed']);
 			$this->session->set_userdata($my_user);
 		}
 	}
-
-	public function set_current_user_anonymous()
-	{
-		$this->set_current_user('anonymous@nomail.com', '0000');
-	}
-
 
 }

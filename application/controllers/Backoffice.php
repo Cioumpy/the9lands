@@ -8,9 +8,6 @@ class Backoffice extends CI_Controller
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-
-		// TODO: Check for soft-login cookies.
-
 	}
 
 
@@ -128,7 +125,7 @@ class Backoffice extends CI_Controller
 			$this->load->view('templates/footer', $data);
 		}
 		else {
-			redirect('');
+			show_error();
 		}
 
 	}

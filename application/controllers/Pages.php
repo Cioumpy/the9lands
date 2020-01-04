@@ -8,12 +8,6 @@ class Pages extends CI_Controller {
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-
-		// TODO: Check for soft-login cookies.
-		if (!isset($_SESSION['role'])) {
-			$this->session_model->set_current_user_anonymous();
-		}
-
 	}
 
 
@@ -72,7 +66,7 @@ class Pages extends CI_Controller {
 
 	public function home() {
 		// If the user is not logged in, go to the login page
-		if ($this->session_model->has_user_role('anonymous'))
+		if (!$this->session_model->is_user_loggedin())
 		{
 			redirect('pages/index');
 		}

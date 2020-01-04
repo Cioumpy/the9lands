@@ -63,6 +63,8 @@ body {
 
 	overflow: hidden;
 
+	cursor: @curdefault, default;
+
 	a {
 		/* Set a style for all links */
 		text-decoration: none;
@@ -207,7 +209,34 @@ body {
 
 					width: 100%;
 
+					padding: 2px;
+
 					overflow-y: auto;
+
+					.listitem {
+						display: flex;
+						align-items: center;
+						flex-shrink: 0;
+
+						height: 2em;
+
+						margin: 1px 0;
+
+						border: 3px ridge gray;
+
+						background-color: rgb(47, 20, 0);
+						background-image: url("/media/backoffice/backgrounds/handmade-paper.png");
+
+						padding: 3px 10px;
+
+						font-family: "Roman", serif;
+						font-size: 1.2em;
+						text-shadow: 1px 1px 1px black;
+
+						color: silver;
+
+						cursor: @curpointer, pointer;
+					}
 				}
 			}
 
@@ -274,17 +303,40 @@ body {
 
 				.optionbox {
 					display: flex;
-					justify-content: space-around;
+					justify-content: space-between;
 					align-items: center;
 					flex-grow: 0;
 					flex-shrink: 0;
 					@embossed();
 
+					height: 50px;
+
 					margin-top: 15px;
 
 					padding: 10px;
 
+					font-family: 'Roman', serif;
+					font-size: 1.2em;
+					color: silver;
+					text-shadow: 2px 3px 4px black;
+
 					overflow: hidden;
+
+					input[type='number'] {
+						text-align: center;
+					}
+
+					span {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						margin: 0 5px;
+
+						b {
+							color: darkgoldenrod;
+						}
+					}
 				}
 			}
 		}

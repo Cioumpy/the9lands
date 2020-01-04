@@ -22,8 +22,6 @@
 		<thead>
 			<tr>
 				<th>Email address</th>
-				<th>Password</th>
-				<th>Unhashed Password</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Role</th>
@@ -34,7 +32,9 @@
 			<?php foreach ($accounts as $accounts_key => $accounts_item): ?>
 			<tr>
 				<?php foreach ($accounts_item as $item_key => $item_value): ?>
-				<td class="<?php echo $accounts_key." ".$item_key; ?>"><?php echo $item_value; ?></td>
+					<?php if ($item_key != 'password' && $item_key != 'unhashed'): ?>
+						<td class="<?php echo $accounts_key." ".$item_key; ?>"><?php echo $item_value; ?></td>
+					<?php endif; ?>
 				<?php endforeach; ?>
 				<td style="display: flex; justify-content: space-around;">
 					<button class="edit_btn js-update_account_btn" data-row="<?php echo $accounts_key; ?>"><span class="glyphicon glyphicon-pencil"></span></button>
