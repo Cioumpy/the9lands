@@ -80,6 +80,8 @@ class Characters extends CI_Controller
 		}
 		else {
 			$data['campaign'] = $this->campaign_model->get_campaign($id);
+			$gm_account = $this->session_model->get_accounts($data['campaign']['gm']);
+			$data['campaign']['gm'] = $gm_account['first_name'] . " " . $gm_account['last_name'];
 		}
 		$this->load->view('characters/parts/campdesc', $data);
 	}
