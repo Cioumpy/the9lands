@@ -44,20 +44,11 @@ class Session_model extends CI_Model
 	 *
 	 * @return bool
 	 */
-	public function create_account()
+	public function create_account($data = NULL)
 	{
-		if (NULL !== $this->db->get('accounts'))
+		if (NULL !== $this->db->get('accounts') && isset($data))
 		{
-			$data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
-				'email' => $this->input->post('email'),
-				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-				'unhashed' => $this->input->post('password'),
-				'role' => $this->input->post('role'),
-			);
-
-		    $this->db->insert('accounts', $data);
+	    $this->db->insert('accounts', $data);
 		}
 	}
 

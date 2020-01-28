@@ -119,10 +119,13 @@ class Backoffice extends CI_Controller
 				),
 			);
 
+			$footer_data['controller'] = $data['controller'];
+			$footer_data['scripts'] = array('main', $data['page']);
+
 			$this->load->view('templates/header', $data);
 			$this->load->view('backoffice/templates/navbar', $data);
 			$this->load->view($data['controller'] . '/' . $data['page'], $data);
-			$this->load->view('templates/footer', $data);
+			$this->load->view('templates/footer', $footer_data);
 		}
 		else {
 			show_error();
@@ -147,7 +150,16 @@ class Backoffice extends CI_Controller
 
 		if ($this->form_validation->run() !== FALSE)
 		{
-			$this->session_model->create_account();
+			$data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'email' => $this->input->post('email'),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'unhashed' => $this->input->post('password'),
+				'role' => $this->input->post('role'),
+			);
+
+			$this->session_model->create_account($data);
 		}
 		redirect('backoffice/accounts', 'refresh');
 	}

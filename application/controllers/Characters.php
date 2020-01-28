@@ -6,6 +6,7 @@ class Characters extends CI_Controller
 		parent::__construct();
 		$this->load->model('session_model');
 		$this->load->model('campaign_model');
+		$this->load->model('character_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -31,9 +32,12 @@ class Characters extends CI_Controller
 		$data['title'] = 'The Nine Lands';
 		$data['subtitle'] = 'd20 System Online Tabletop RPG';
 
+		$footer_data['controller'] = $data['controller'];
+		$footer_data['scripts'] = array('main', $data['page']);
+
 		$this->load->view('templates/header', $data);
 		$this->load->view($data['controller'] . '/' . $data['page'], $data);
-		$this->load->view('templates/footer', $data);
+		$this->load->view('templates/footer', $footer_data);
 	}
 
 	public function new()
@@ -57,9 +61,12 @@ class Characters extends CI_Controller
 
 		$data['listcol'] = $this->get_campaigns();
 
+		$footer_data['controller'] = $data['controller'];
+		$footer_data['scripts'] = array('main', 'list', $data['page']);
+
 		$this->load->view('templates/header', $data);
 		$this->load->view($data['controller'] . '/' . $data['page'], $data);
-		$this->load->view('templates/footer', $data);
+		$this->load->view('templates/footer', $footer_data);
 	}
 
 	public function get_campaigns()
@@ -84,5 +91,41 @@ class Characters extends CI_Controller
 			$data['campaign']['gm'] = $gm_account['first_name'] . " " . $gm_account['last_name'];
 		}
 		$this->load->view('characters/parts/campdesc', $data);
+	}
+
+	public function create_character($starting_level = 1, $campaign_id = NULL, $player = NULL)
+	{
+		if (!isset($player)) {
+			$player = $this->session->email;
+		}
+		$currxp = 0;
+		for ($i=0; $i < $starting_level; $i++) {
+			$currxp = $currxp + ($i * 1000);
+		}
+		$data = [
+			'player' => $player,
+			'starting_level' => $starting_level,
+			'campaign_id' => $campaign_id,
+			'currxp' => $currxp,
+		];
+
+		// TODO: Uncomment the following line, once finished with the other tasks, to avoid creating characters endlessly.
+		// $this->character_model->create_character($data);
+
+		$data = [];
+		$data['character'] = $this->character_model->get_new_character();
+		$player_account = $this->session_model->get_accounts($data['character']['player']);
+		$data['character']['player'] = $player_account['first_name'] . " " . $player_account['last_name'];
+
+		$this->load->view('characters/sections/summary', $data);
+	}
+
+	public function show_new_character_summary()
+	{
+		$data['character'] = $this->character_model->get_new_character();
+		$player_account = $this->session_model->get_accounts($data['character']['player']);
+		$data['character']['player'] = $player_account['first_name'] . " " . $player_account['last_name'];
+
+		$this->load->view('characters/sections/summary', $data);
 	}
 }

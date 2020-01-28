@@ -5,7 +5,19 @@ function getCampaignDescription(itemId) {
 			$('#campdesc').html(response);
 		}
 	});
-	$('#js-campaigns_list').children().css('background-color', 'rgb(47, 20, 0)');
+	$('#js-campaigns_list').children().removeAttr('style');
 	$('#campaigns_' + itemId).css('background-color', 'rgb(7, 64, 0)');
 
+}
+
+function createCharacter() {
+	console.log($('#starting_level').val() + $('#starting_level').text());
+	let startingLevel = $('#starting_level').val() + $('#starting_level').text() + "/";
+	let campaignId = ($('#campaign_id').text() == "0") ? "" : $('#campaign_id').text() + "/";
+	$.ajax({
+		url: 'http://the9lands.org/characters/create_character/' + startingLevel + campaignId,
+		success: function (response) {
+			$('#mainbox').html(response);
+		}
+	});
 }

@@ -1,3 +1,4 @@
+@import (once) "../mixins.less";
 @import (once) "../cursors.less";
 @import (once) "../fonts.less";
 @import (once) "../borders.less";
@@ -66,14 +67,16 @@ body {
 	cursor: @curdefault, default;
 
 	a {
-		/* Set a style for all links */
-		text-decoration: none;
-		color: inherit;
+		&:link, &:visited {
+			/* Set a style for all links */
+			text-decoration: inherit;
+			color: inherit;
 
-		cursor: @curpointer, pointer;
+			cursor: @curpointer, pointer;
 
-		&:hover {
-			text-decoration: none;
+			&:hover {
+				text-decoration: none;
+			}
 		}
 
 		&[type='button'] {
@@ -106,9 +109,8 @@ body {
 
 	margin: 0 auto;
 
-	border: 15px solid transparent;
-	border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
-	box-shadow: 10px 10px 18px 10px rgba(0,0,0,0.6);
+	.border_medieval();
+	.box-shadow(10px; 10px; 18px; 10px; rgba(0,0,0,0.6));
 
 	padding: 3px 10px;
 
@@ -236,6 +238,11 @@ body {
 						color: silver;
 
 						cursor: @curpointer, pointer;
+
+						&:hover {
+							-webkit-filter: brightness(130%);
+							filter: brightness(130%);
+						}
 					}
 				}
 			}
@@ -253,9 +260,8 @@ body {
 
 					height: 8em;
 
-					border: 10px solid transparent;
+					.border_medieval(10px);
 					border-bottom: none;
-					border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
 
 					overflow: hidden;
 
@@ -286,9 +292,8 @@ body {
 				.descbox {
 					flex-grow: 1;
 
-					border: 10px solid transparent;
+					.border_medieval(10px);
 					border-top: none;
-					border-image: url('/media/commons/borders/greymedieval-border.png') 20% round;
 
 					padding: 10px;
 

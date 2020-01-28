@@ -25,7 +25,7 @@
 	<div id="main_menu">
 
 		<?php foreach ($main_menu as $menu_entry => $link): ?>
-			<label class="mainmenu_item"><a href="<?php echo $link; ?>"><?php echo $menu_entry; ?></a></label>
+			<a href="<?php echo $link; ?>"><label class="mainmenu_item"><?php echo $menu_entry; ?></label></a>
 		<?php endforeach; ?>
 
 	</div>
