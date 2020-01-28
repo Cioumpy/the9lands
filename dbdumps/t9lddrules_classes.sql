@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `t9lddrules`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,18 +23,18 @@ DROP TABLE IF EXISTS `classes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `classes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `class` varchar(45) DEFAULT NULL,
   `shtname` varchar(5) DEFAULT NULL,
-  `hd` int(2) DEFAULT NULL,
-  `maxlvl` int(2) NOT NULL DEFAULT '20',
+  `hd` int DEFAULT NULL,
+  `maxlvl` int NOT NULL DEFAULT '20',
   `bab` float DEFAULT NULL,
   `fort` varchar(4) DEFAULT NULL,
   `refl` varchar(4) DEFAULT NULL,
   `will` varchar(4) DEFAULT NULL,
   `alignments` varchar(45) DEFAULT NULL,
   `classskills` text,
-  `skillpoints` int(2) NOT NULL DEFAULT '2',
+  `skillpoints` int NOT NULL DEFAULT '2',
   `bonuslangs` varchar(45) DEFAULT NULL,
   `proficiencies` text,
   PRIMARY KEY (`id`),
@@ -63,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:45
+-- Dump completed on 2020-01-29  0:16:09

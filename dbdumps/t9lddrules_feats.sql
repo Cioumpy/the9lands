@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `t9lddrules`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,15 +23,15 @@ DROP TABLE IF EXISTS `feats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `feats` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `feat` varchar(45) DEFAULT NULL,
   `parameter` varchar(45) DEFAULT NULL,
   `type` varchar(45) NOT NULL DEFAULT 'general',
   `subtypes` text,
   `requisites` text COMMENT 'This generates an array of strings to be evaluated into formulas.',
   `desc` longtext,
-  `taken` int(1) NOT NULL DEFAULT '0',
-  `multi` int(1) NOT NULL DEFAULT '0' COMMENT '0 = No, 1 = Stackable, 2 = Not Stackable.',
+  `taken` int NOT NULL DEFAULT '0',
+  `multi` int NOT NULL DEFAULT '0' COMMENT '0 = No, 1 = Stackable, 2 = Not Stackable.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
@@ -58,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:45
+-- Dump completed on 2020-01-29  0:16:09

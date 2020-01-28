@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `t9lddrules`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,27 +23,27 @@ DROP TABLE IF EXISTS `racelist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `racelist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `race` varchar(45) DEFAULT NULL,
-  `strength` int(11) NOT NULL DEFAULT '0',
-  `dexterity` int(11) NOT NULL DEFAULT '0',
-  `constitution` int(11) NOT NULL DEFAULT '0',
-  `intelligence` int(11) NOT NULL DEFAULT '0',
-  `wisdom` int(11) NOT NULL DEFAULT '0',
-  `charisma` int(11) NOT NULL DEFAULT '0',
+  `strength` int NOT NULL DEFAULT '0',
+  `dexterity` int NOT NULL DEFAULT '0',
+  `constitution` int NOT NULL DEFAULT '0',
+  `intelligence` int NOT NULL DEFAULT '0',
+  `wisdom` int NOT NULL DEFAULT '0',
+  `charisma` int NOT NULL DEFAULT '0',
   `size` varchar(45) NOT NULL DEFAULT 'Medium',
-  `speed` int(11) NOT NULL DEFAULT '30',
-  `encumbered` int(11) NOT NULL DEFAULT '20',
+  `speed` int NOT NULL DEFAULT '30',
+  `encumbered` int NOT NULL DEFAULT '20',
   `favclass` varchar(45) NOT NULL DEFAULT 'Any',
   `autolangs` varchar(45) NOT NULL DEFAULT 'Common',
   `bonuslangs` varchar(45) DEFAULT NULL,
-  `skillpoints` int(11) NOT NULL DEFAULT '0',
+  `skillpoints` int NOT NULL DEFAULT '0',
   `skillbonus` longtext,
-  `bonusfeats` smallint(6) NOT NULL DEFAULT '0',
+  `bonusfeats` smallint NOT NULL DEFAULT '0',
   `proficiencies` longtext,
   `weapfamil` varchar(45) DEFAULT NULL,
-  `darkvision` int(4) DEFAULT NULL,
-  `lowlightvision` int(4) DEFAULT NULL,
+  `darkvision` int DEFAULT NULL,
+  `lowlightvision` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -70,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:44
+-- Dump completed on 2020-01-29  0:16:08

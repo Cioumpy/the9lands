@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `the9lands` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `the9lands`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: the9lands
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,16 +23,16 @@ DROP TABLE IF EXISTS `invites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `invites` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `master` varchar(45) DEFAULT NULL,
   `player` varchar(45) DEFAULT NULL,
-  `camp_id` int(11) DEFAULT NULL,
-  `roll1` int(11) DEFAULT NULL,
-  `roll2` int(11) DEFAULT NULL,
-  `roll3` int(11) DEFAULT NULL,
-  `roll4` int(11) DEFAULT NULL,
-  `roll5` int(11) DEFAULT NULL,
-  `roll6` int(11) DEFAULT NULL,
+  `camp_id` int DEFAULT NULL,
+  `roll1` int DEFAULT NULL,
+  `roll2` int DEFAULT NULL,
+  `roll3` int DEFAULT NULL,
+  `roll4` int DEFAULT NULL,
+  `roll5` int DEFAULT NULL,
+  `roll6` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -59,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:43
+-- Dump completed on 2020-01-29  0:16:08

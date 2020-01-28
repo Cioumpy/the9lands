@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `t9lddrules` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `t9lddrules`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: t9lddrules
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,18 +23,18 @@ DROP TABLE IF EXISTS `sizes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sizes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `size` varchar(45) DEFAULT NULL,
-  `atkacmod` tinyint(4) DEFAULT NULL,
-  `spatkmod` tinyint(4) DEFAULT NULL COMMENT 'This modifier applies to the bull rush, grapple, overrun, and trip special attacks.',
-  `hide` tinyint(4) DEFAULT NULL COMMENT 'This modifier applies to the hide skill modifier.',
+  `atkacmod` tinyint DEFAULT NULL,
+  `spatkmod` tinyint DEFAULT NULL COMMENT 'This modifier applies to the bull rush, grapple, overrun, and trip special attacks.',
+  `hide` tinyint DEFAULT NULL COMMENT 'This modifier applies to the hide skill modifier.',
   `min_length` float DEFAULT NULL COMMENT 'Biped''s height, quadruped''s body length (nose to base of tail).',
   `max_length` float DEFAULT NULL COMMENT 'Biped''s height, quadruped''s body length (nose to base of tail).',
   `min_weight` float DEFAULT NULL COMMENT 'Assumes that the creature is roughly as dense as a regular animal. A creature made of stone will weigh considerably more. A gaseous creature will weigh much less.',
   `max_weight` float DEFAULT NULL COMMENT 'Assumes that the creature is roughly as dense as a regular animal. A creature made of stone will weigh considerably more. A gaseous creature will weigh much less.',
   `space` float DEFAULT NULL COMMENT 'These values are typical for creatures of the indicated size. Some exceptions exist.',
-  `reach_tall` tinyint(4) DEFAULT NULL COMMENT 'These values are typical for creatures of the indicated size. Some exceptions exist.',
-  `reach_long` tinyint(4) DEFAULT NULL COMMENT 'These values are typical for creatures of the indicated size. Some exceptions exist.',
+  `reach_tall` tinyint DEFAULT NULL COMMENT 'These values are typical for creatures of the indicated size. Some exceptions exist.',
+  `reach_long` tinyint DEFAULT NULL COMMENT 'These values are typical for creatures of the indicated size. Some exceptions exist.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -61,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:43
+-- Dump completed on 2020-01-29  0:16:08

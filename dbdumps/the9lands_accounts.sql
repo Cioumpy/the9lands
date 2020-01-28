@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `the9lands` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `the9lands`;
--- MySQL dump 10.13  Distrib 8.0.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: the9lands
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +40,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES ('anonymous@nomail.com','$2y$10$wJGRyada0WZJ.14FnNtNQuxU0ckvjsKZto6THMQCoC3kOv8/23zC6','0000','Anonymous','User','anonymous'),('cioumpy@gmail.com','$2y$10$wP1XwMH5M/HrNrxrt1sKtOA7MpRglgdU9Y.V7dun121qeqBUcqAfe','syse85','Stefano','Sellone','admin'),('claretta992@gmail.com','$2y$10$ZmKx/1BfGtkO8Tv6owvynurHL3N25UXeGOqFiCXsCRpr8cqewERG.','stese82','Clara','Marasa\'','user'),('mnea85@email.com','$2y$10$UVulfCpnFCGxeYV7/pWake.vYliib0P3ioZ/yUtq5prKksYn0ndxW','masa89','Paolo','Carella','user'),('rucor85@email.com','$2y$10$ElA9jFEhyJBNAnPMOOl/u.uaT9tWMslu30X5LVCd9yM9jxrIodbyW','macor83','Ruggero','Cortini','user');
+INSERT INTO `accounts` VALUES ('anonymous@nomail.com','$2y$10$wJGRyada0WZJ.14FnNtNQuxU0ckvjsKZto6THMQCoC3kOv8/23zC6','0000','Anonymous','User','anonymous'),('cioumpy@gmail.com','$2y$10$wP1XwMH5M/HrNrxrt1sKtOA7MpRglgdU9Y.V7dun121qeqBUcqAfe','syse85','Stefano','Sellone','admin'),('claretta992@gmail.com','$2y$10$ZmKx/1BfGtkO8Tv6owvynurHL3N25UXeGOqFiCXsCRpr8cqewERG.','stese82','Clara','Marasa\'','user'),('messiah@email.com','$2y$10$dFJfLyPV404gu3WnkATYg.mbaTV98cnto3w9tdhjuId77vNGNbPOS','sama88','Francesco','De Vitis','user'),('mnea85@email.com','$2y$10$UVulfCpnFCGxeYV7/pWake.vYliib0P3ioZ/yUtq5prKksYn0ndxW','masa89','Paolo','Carella','user'),('rucor85@email.com','$2y$10$ElA9jFEhyJBNAnPMOOl/u.uaT9tWMslu30X5LVCd9yM9jxrIodbyW','macor83','Ruggero','Cortini','user');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-05  0:06:43
+-- Dump completed on 2020-01-29  0:16:07
