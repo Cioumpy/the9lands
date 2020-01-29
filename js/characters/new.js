@@ -11,7 +11,6 @@ function getCampaignDescription(itemId) {
 }
 
 function createCharacter() {
-	console.log($('#starting_level').val() + $('#starting_level').text());
 	let startingLevel = $('#starting_level').val() + $('#starting_level').text() + "/";
 	let campaignId = ($('#campaign_id').text() == "0") ? "" : $('#campaign_id').text() + "/";
 	$.ajax({

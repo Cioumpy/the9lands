@@ -26,8 +26,10 @@ class Backoffice extends CI_Controller
 				show_404();
 			}
 
-			$data['title'] = 'Accounts';
+			$data['controller'] = 'backoffice';
 			$data['page'] = 'accounts';
+			$data['title'] = 'The Nine Lands Backoffice';
+			$data['subtitle'] = 'Accounts';
 			$data['accounts'] = $this->session_model->get_accounts();
 
 			$data['create_account'] = array(
