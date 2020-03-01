@@ -7,12 +7,12 @@ This website aims ultimately to become a platform where Players and Dungeon Mast
 ### Technologies used:
 
 * PHP 7
-	* CodeIgniter
+	* Symfony
 * HTML5
 * JavaScript
-	* JQuery (will soon switch to React or Angular)
+	* React.js
 * CSS3
-	* Less (will soon switch to SASS)
+	* SCSS
 * MySQL 8
 	* MySQL Workbench
 * Apache2 server on Ubuntu (local)
