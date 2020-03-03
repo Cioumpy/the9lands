@@ -3,20 +3,11 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
-use Symfony\Component\Form\Forms;
+use App\Form\Type\Account\LoginType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Validation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-$vendorDirectory = realpath(__DIR__.'/../vendor');
-$vendorFormDirectory = $vendorDirectory.'/symfony/form';
-$vendorValidatorDirectory = $vendorDirectory.'/symfony/validator';
 
 
 class PagesController extends AbstractController
