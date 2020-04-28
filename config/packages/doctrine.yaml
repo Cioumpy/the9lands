@@ -7,14 +7,14 @@ doctrine:
                 user:             cioumpy
                 password:         syse85
                 host:             localhost
-                port:             3308
+                port:             3306
                 server_version:   '8.0.19'
             rules:
                 dbname:           t9l_ddrules
                 user:             cioumpy
                 password:         syse85
                 host:             localhost
-                port:             3308
+                port:             3306
                 server_version:   '8.0.19'
     orm:
         auto_generate_proxy_classes: true

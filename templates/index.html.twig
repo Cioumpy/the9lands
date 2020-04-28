@@ -1,22 +1,38 @@
-<div id="row_top">
-    <div id="title_box">
-        <h1>{{ title }}</h1>
-        <h2>{{ subtitle }}</h2>
-    </div>
-</div>
-
-<div id="row_bottom">
-
-    <div id="content_box">
-        <p>{{ login_account.email.label }}</p>
-        <p>{{ login_account.password.label }}</p>
-
-        {{ form_start(login_form) }}
-        {{ form_widget(login_form) }}
-
-        <input type="submit"/>
-        {{ form_end(login_form) }}
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ title }} - {{ subtitle }}{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div id="row_top">
+        <div id="title_box">
+            <h1>{{ title }}</h1>
+            <h2>{{ subtitle }}</h2>
+        </div>
     </div>
 
-</div>
+    <div id="row_bottom">
+
+        <div id="content_box">
+            <p>{{ login_account.email.label }}</p>
+            <p>{{ login_account.password.label }}</p>
+
+            {{ form_start(login_form) }}
+            {{ form_widget(login_form) }}
+
+            {{ form_end(login_form) }}
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>

@@ -13,13 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PagesController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("")
      * @Route("/index")
      * @param Request $request
      * @return Response
      */
     public function index(Request $request)
     {
+        return $this->showLoginPage($request);
+    }
+
+    public function showLoginPage(Request $request) {
         $title = 'The Nine Lands';
         $subtitle = 'd20 System Online Tabletop RPG';
 
@@ -72,5 +76,4 @@ class PagesController extends AbstractController
             'login_form' => $login_form->createView(),
         ]);
     }
-
 }

@@ -2,7 +2,7 @@
 
 This website aims ultimately to become a platform where Players and Dungeon Masters can create, store, modify, delete and, most importantly, play d20 System characters and adventures with their friends online.
 
-> This project is just started and I'm the only developer, so this is going to be a work in progress for a very long time. Also, I'm a beginner. This project is periodically subject to drastic changes due to the improving of my skills.
+> This project is just started and I'm the only developer, so this is going to be a work in progress for a very long time. Also, I'm a beginner. This project is periodically subject to drastic changes due to the improving of my skills and subsequent changes of mind about the technologies used.
 
 ### Technologies used:
 
