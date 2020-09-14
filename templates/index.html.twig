@@ -9,17 +9,17 @@
 </head>
 <body>
 {% block body %}
-    <div class="t9l-homepage">
-        <div class="row__top">
-            <div class="title-box">
-                <img class="title-box__title" src="{{ asset('build/assets/media/logos/h1.png') }}" alt="{{ title }}" />
-                <img class="title-box__subtitle" src="{{ asset('build/assets/media/logos/h2.png') }}" alt="{{ subtitle }}" />
+    <div class="t9l-page-home">
+        <div class="t9l-page__row--top">
+            <div class="t9l-title-box">
+                <img class="t9l-title-box__title" src="{{ asset('build/assets/media/logos/h1.png') }}" alt="{{ title }}" />
+                <img class="t9l-title-box__subtitle" src="{{ asset('build/assets/media/logos/h2.png') }}" alt="{{ subtitle }}" />
             </div>
         </div>
 
-        <div class="row__bottom">
+        <div class="t9l-page__row--bottom">
 
-            <div class="form_wrapper">
+            <div class="t9l-form__wrapper">
 
                 {{ form_start(login_form) }}
                     {{ form_errors(login_form) }}

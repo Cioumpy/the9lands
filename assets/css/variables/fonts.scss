@@ -9,3 +9,10 @@
   font-family: "Roman";
   src: url("#{$path-fonts}/morris-roman-black.ttf");
 }
+
+@mixin t9l-font-button {
+  font-family: 'Sherwood', 'Times New Roman', serif;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+  font-size: 1.5em;
+}

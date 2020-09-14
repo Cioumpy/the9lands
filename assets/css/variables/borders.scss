@@ -4,3 +4,9 @@
   border: 10px solid transparent;
   border-image: url("#{$path-borders}/greymedieval-border.png") 20% round;
 }
+
+@mixin border-button-default {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba($t9l-color-white, 0.4) inset, -3px -3px 5px rgba($t9l-color-black, 0.4) inset;
+}

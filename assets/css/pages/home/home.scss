@@ -1,4 +1,4 @@
-.t9l-homepage {
+.t9l-page-home {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,8 +22,8 @@
     @include cursor-pointer;
   }
 
-  .row {
-    &__top {
+  .t9l-page__row {
+    &--top {
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
@@ -37,7 +37,7 @@
         justify-content: space-between;
       }
 
-      .title-box {
+      .t9l-title-box {
         padding: 10px;
 
         &__title {
@@ -94,7 +94,7 @@
       }
     }
 
-    &__bottom {
+    &--bottom {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -105,7 +105,7 @@
         justify-content: flex-end;
       }
 
-      .mainmenu {
+      .t9l-mainmenu {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -137,7 +137,7 @@
         }
       }
 
-      .form_wrapper {
+      .t9l-form__wrapper {
         min-width: 25%;
         max-width: 100%;
         @include border-medieval-grey;
@@ -172,6 +172,23 @@
               background-image: url('#{$path-backgrounds}/clean-gray-paper.png');
               font-size: 1.5em;
               @include cursor-text;
+            }
+
+            button[type="submit"] {
+              align-self: center;
+              margin: 0 auto;
+
+              @include border-button-default;
+              border: 1px solid $t9l-color-black;
+              @include background-leather;
+
+              padding: 5px 30px;
+
+              @include t9l-font-button;
+              color: silver;
+              font-size: 1em;
+
+              @include cursor-button;
             }
           }
         }

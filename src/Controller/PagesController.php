@@ -59,13 +59,22 @@ class PagesController extends AbstractController
             $accountsRepo = $this->getDoctrine()->getRepository(Accounts::class);
             $user = $accountsRepo->find($this->session->get('email'));
 
-            return $this->render('home.html.twig', [
+            $data = [
                 'title' => $title,
                 'subtitle' => $subtitle,
                 'user' => $user->getEmail(),
                 'unhashed' => $user->getUnhashed(),
                 'role' => $user->getRole(),
-            ]);
+                'menulist' => [
+                    'newchar' => 'New Character',
+                    'charlist' => 'Your Characters',
+                    'campaigns' => 'Campaigns',
+                    'dm' => 'Dungeon Master',
+                    'rules' => 'Rules',
+                ],
+            ];
+
+            return $this->render('home.html.twig', $data);
         }
 
         return $this->render('index.html.twig', [
@@ -75,9 +84,14 @@ class PagesController extends AbstractController
         ]);
     }
 
-    public function logout() {
+    /**
+     * @Route("/logout")
+     * @param Request $request
+     * @return Response
+     */
+    public function logout(Request $request) {
         $this->session->clear();
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('app_pages_index');
     }
 
     /**
