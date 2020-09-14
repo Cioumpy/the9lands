@@ -1,0 +1,22 @@
+/* Cursors */
+
+$cursor-default: url('#{$path-cursors}/t9l_cursor.png');
+$cursor-pointer: url('#{$path-cursors}/t9l_pointer.png') 2 10;
+$cursor-grab: url('#{$path-cursors}/t9l_grab.png') 20 19;
+$cursor-text: url('#{$path-cursors}/t9l_text.png') 20 19;
+
+@mixin cursor-default {
+  cursor: $cursor-default, default;
+}
+
+@mixin cursor-pointer {
+  cursor: $cursor-pointer, pointer;
+}
+
+@mixin cursor-button {
+  cursor: $cursor-pointer, default;
+}
+
+@mixin cursor-text {
+  cursor: $cursor-text, text;
+}

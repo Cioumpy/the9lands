@@ -9,24 +9,30 @@
 </head>
 <body>
 {% block body %}
-    <div id="row_top">
-        <div id="title_box">
-            <h1>{{ title }}</h1>
-            <h2>{{ subtitle }}</h2>
-        </div>
-    </div>
-
-    <div id="row_bottom">
-
-        <div id="content_box">
-
-            {{ form_start(login_form) }}
-            {{ form_widget(login_form) }}
-
-            {{ form_end(login_form) }}
-
+    <div class="t9l-homepage">
+        <div class="row__top">
+            <div class="title-box">
+                <img class="title-box__title" src="{{ asset('build/assets/media/logos/h1.png') }}" alt="{{ title }}" />
+                <img class="title-box__subtitle" src="{{ asset('build/assets/media/logos/h2.png') }}" alt="{{ subtitle }}" />
+            </div>
         </div>
 
+        <div class="row__bottom">
+
+            <div class="form_wrapper">
+
+                {{ form_start(login_form) }}
+                    {{ form_errors(login_form) }}
+
+                    {{ form_row(login_form.email, {'attr': {'class':''}}) }}
+                    {{ form_row(login_form.password) }}
+
+                    {{ form_row(login_form.save) }}
+                {{ form_end(login_form) }}
+
+            </div>
+
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}

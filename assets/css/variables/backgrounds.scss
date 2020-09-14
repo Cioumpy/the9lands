@@ -1,0 +1,19 @@
+/* Backgrounds */
+
+@mixin background-worldmap {
+  background-color: black;
+  background-image: url("#{$path-backgrounds}/worldmap-fantasy-bck.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin background-parchment {
+  background-color: black;
+  background-image: url("#{$path-backgrounds}/handmade-paper.png");
+}
+
+@mixin background-leather {
+  background-color: #4C0000;
+  background-image: url("#{$path-backgrounds}/handmade-paper.png");
+}

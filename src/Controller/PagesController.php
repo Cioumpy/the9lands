@@ -7,12 +7,26 @@ use App\Entity\Accounts;
 use App\Form\Type\Account\LoginType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class PagesController extends AbstractController
 {
+    private $session;
+    private $userLoggedIn;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+        if (!$this->session->get('email', false)) {
+            $this->setUserLoggedIn(false);
+        } else {
+            $this->setUserLoggedIn(true);
+        }
+    }
+
     /**
      * @Route("")
      * @Route("/index")
@@ -34,23 +48,24 @@ class PagesController extends AbstractController
             $accountsRepo = $this->getDoctrine()->getRepository(Accounts::class);
             $user = $accountsRepo->find($task['email']);
 
-            if ($user->getUnhashed() == $task['password']) {
-                return $this->render('home.html.twig', [
-                    'title' => $title,
-                    'subtitle' => $subtitle,
-                    'user' => $user->getEmail(),
-                    'unhashed' => $user->getUnhashed(),
-                    'role' => $user->getRole(),
-                ]);
+            // TODO: Change the condition to verify hashed password to improve security!!!
+            if (!is_null($user) && $user->getUnhashed() == $task['password']) {
+                $this->session->set('email', $user->getEmail());
+                $this->setUserLoggedIn(true);
             }
+        }
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($task);
-            // $entityManager->flush();
+        if ($this->isUserLoggedIn()) {
+            $accountsRepo = $this->getDoctrine()->getRepository(Accounts::class);
+            $user = $accountsRepo->find($this->session->get('email'));
 
-            // return $this->redirectToRoute('task_success');
+            return $this->render('home.html.twig', [
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'user' => $user->getEmail(),
+                'unhashed' => $user->getUnhashed(),
+                'role' => $user->getRole(),
+            ]);
         }
 
         return $this->render('index.html.twig', [
@@ -58,5 +73,26 @@ class PagesController extends AbstractController
             'subtitle' => $subtitle,
             'login_form' => $login_form->createView(),
         ]);
+    }
+
+    public function logout() {
+        $this->session->clear();
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUserLoggedIn(): bool
+    {
+        return $this->userLoggedIn;
+    }
+
+    /**
+     * @param bool $userLoggedIn
+     */
+    public function setUserLoggedIn(bool $userLoggedIn): void
+    {
+        $this->userLoggedIn = $userLoggedIn;
     }
 }

@@ -1,0 +1,6 @@
+/* Borders */
+
+@mixin border-medieval-grey {
+  border: 10px solid transparent;
+  border-image: url("#{$path-borders}/greymedieval-border.png") 20% round;
+}

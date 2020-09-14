@@ -72,6 +72,11 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+
+    .configureFilenames({
+        images: '[path][name].[ext]',
+        fonts: '[path][name].[ext]',
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

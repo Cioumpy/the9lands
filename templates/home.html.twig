@@ -9,23 +9,25 @@
 </head>
 <body>
 {% block body %}
-    <div id="row_top">
-        <div id="title_box">
-            <h1>{{ title }}</h1>
-            <h2>{{ subtitle }}</h2>
-        </div>
-    </div>
-
-    <div id="row_bottom">
-
-        <div id="content_box">
-
-            <p>{{ user }}</p>
-            <p>{{ unhashed }}</p>
-            <p>{{ role }}</p>
-
+    <div class="t9l-homepage">
+        <div class="row__top">
+            <div class="title-box">
+                <img class="title-box__title" src="{{ asset('build/assets/media/logos/h1.png') }}" alt="{{ title }}" />
+                <img class="title-box__subtitle" src="{{ asset('build/assets/media/logos/h2.png') }}" alt="{{ subtitle }}" />
+            </div>
         </div>
 
+        <div class="row__bottom">
+
+            <div class="mainmenu">
+
+                <p class="mainmenu__item">{{ user }}</p>
+                <p class="mainmenu__item">{{ unhashed }}</p>
+                <p class="mainmenu__item">{{ role }}</p>
+
+            </div>
+
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}

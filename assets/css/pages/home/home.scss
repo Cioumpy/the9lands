@@ -1,0 +1,181 @@
+.t9l-homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+
+  @include background-worldmap;
+
+  font-size: 1em;
+  color: rgb(230, 230, 230);
+
+  @include cursor-default;
+
+  a,
+  a:link,
+  a:visited {
+    @include cursor-pointer;
+  }
+
+  .row {
+    &__top {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+
+      margin: 0;
+
+      padding: 50px;
+
+      @include bp('breakpoint-s') {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .title-box {
+        padding: 10px;
+
+        &__title {
+          display: block;
+          width: 100%;
+          max-width: 665px;
+
+          margin: 0;
+        }
+
+        &__subtitle {
+          display: block;
+          width: 100%;
+          max-width: 620px;
+
+          margin: 0;
+        }
+      }
+
+      #session_menu {
+        display: flex;
+        flex-direction: row;
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 40px;
+          height: 40px;
+
+          margin: 0 2px;
+
+          border: none;
+          border-radius: 5px;
+          box-shadow: -3px -3px 5px 3px rgba(0, 0, 0, 0.6) inset,
+            2px 2px 4px 2px rgba(255, 255, 255, 0.4) inset;
+
+          padding: 6px 8px 10px 8px;
+
+          @include background-parchment;
+
+          color: silver;
+          font-size: 1.5em;
+          text-shadow: 1px 1px 1px black;
+
+          @include cursor-button;
+
+          /* Add a hover effect for buttons */
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    &__bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 50px;
+
+      @include bp('breakpoint-s') {
+        justify-content: flex-end;
+      }
+
+      .mainmenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+        border-radius: 20px;
+        box-shadow: -3px -3px 5px 3px rgba(0, 0, 0, 0.6) inset,
+          2px 2px 4px 2px rgba(255, 255, 255, 0.4) inset;
+
+        background-color: rgba(0, 0, 0, 0.5);
+
+        padding: 2em;
+        padding-left: 4em;
+
+        font-family: "Roman", serif;
+        color: silver;
+        text-shadow: 2px 2px 2px black;
+
+        &__item {
+          width: 100%;
+          margin: 5px;
+          font-size: 2em;
+
+          @include cursor-button;
+
+          &:hover {
+            color: darkgoldenrod;
+          }
+        }
+      }
+
+      .form_wrapper {
+        min-width: 25%;
+        max-width: 100%;
+        @include border-medieval-grey;
+        box-shadow:20px 20px 50px 15px black;
+        @include background-leather;
+        padding: 20px;
+
+        form {
+          > div {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding-bottom: 10px;
+
+            label {
+              font-family: 'Sherwood', serif;
+              color: silver;
+              text-shadow: 1px 1px 1px black;
+              font-size: 1.5em;
+              text-transform: uppercase;
+            }
+
+            /* Full-width inputs */
+            input[type="text"], input[type="email"], input[type="password"] {
+              display: inline-block;
+              width: 100%;
+              box-sizing: border-box;
+              margin: 10px 0;
+              border: 1px solid black;
+              box-shadow: -3px -3px 5px 3px rgba(0,0,0,0.6), 2px 2px 4px 2px rgba(255,255,255,0.4);
+              background-color: rgb(184,154,94);
+              background-image: url('#{$path-backgrounds}/clean-gray-paper.png');
+              font-size: 1.5em;
+              @include cursor-text;
+            }
+          }
+        }
+      }
+    }
+  }
+}

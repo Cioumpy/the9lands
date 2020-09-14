@@ -1,0 +1,14 @@
+/* Paths */
+
+// Assets
+$path-assets: '/build/assets';
+$path-media: '#{$path-assets}/media';
+
+// Fonts
+$path-fonts: '#{$path-assets}/fonts';
+
+// Media
+$path-logos: '#{$path-media}/logos';
+$path-backgrounds: '#{$path-media}/backgrounds';
+$path-borders: '#{$path-media}/borders';
+$path-cursors: '#{$path-media}/cursors';

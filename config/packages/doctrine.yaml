@@ -3,7 +3,7 @@ doctrine:
         default_connection:       default
         connections:
             default:
-                dbname:           the9lands
+                dbname:           t9l_db
                 user:             cioumpy
                 password:         syse85
                 host:             localhost
