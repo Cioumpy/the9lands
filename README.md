@@ -2,17 +2,17 @@
 
 This website aims ultimately to become a platform where Players and Dungeon Masters can create, store, modify, delete and, most importantly, play d20 System characters and adventures with their friends online.
 
-> This project is just started and I'm the only developer, so this is going to be a work in progress for a very long time. Also, I'm a beginner. This project is periodically subject to drastic changes due to the improving of my skills.
+> This project is just started and I'm the only developer, so this is going to be a work in progress for a very long time. Also, I'm a beginner. This project is periodically subject to drastic changes due to the improving of my skills and subsequent changes of mind about the technologies used.
 
 ### Technologies used:
 
 * PHP 7
-	* CodeIgniter
+	* Symfony
 * HTML5
 * JavaScript
-	* JQuery (will soon switch to React or Angular)
+	* React.js
 * CSS3
-	* Less (will soon switch to SASS)
+	* SCSS
 * MySQL 8
 	* MySQL Workbench
 * Apache2 server on Ubuntu (local)

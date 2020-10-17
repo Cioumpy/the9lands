@@ -1,0 +1,8 @@
+.t9l-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include border-button-default;
+  border: 1px solid $t9l-color-black;
+  @include background-leather;
+}
