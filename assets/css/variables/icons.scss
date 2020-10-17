@@ -1,0 +1,9 @@
+.t9l-icons {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &.icon-logout {
+    background-image: url("#{$path-icons}/icon-logout.png");;
+  }
+}

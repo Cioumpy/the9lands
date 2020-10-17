@@ -1,0 +1,11 @@
+/* Layers (z-index VALUE) */
+
+// Core Layers
+$base-layer : 0;
+$max-layer: 1000;
+
+// Header Layer
+$header-layer: $base-layer + 200;
+
+// Modal Layer
+$modal-layer: $max-layer - 200;
