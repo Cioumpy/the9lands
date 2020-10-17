@@ -3,14 +3,14 @@ doctrine:
         default_connection:       default
         connections:
             default:
-                dbname:           t9l_db
+                dbname:           the9lands
                 user:             cioumpy
                 password:         syse85
                 host:             localhost
                 port:             3306
                 server_version:   '8.0.19'
             rules:
-                dbname:           t9l_ddrules
+                dbname:           t9lddrules
                 user:             cioumpy
                 password:         syse85
                 host:             localhost
