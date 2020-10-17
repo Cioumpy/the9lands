@@ -64,15 +64,9 @@
         width: 140px;
 
         .t9l-button {
-          display: flex;
-          justify-content: center;
-          align-items: center;
           $size: 40px;
           width: $size;
           height: $size;
-          @include border-button-default;
-          border: 1px solid $t9l-color-black;
-          @include background-leather;
 
           i {
             width: 30px;

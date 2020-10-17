@@ -1,10 +1,22 @@
+[class^='t9l-'] {
+  box-sizing: border-box;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+}
+
 body {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
 
-  a, a:link, a:visited {
+  a,
+  a:link,
+  a:visited {
     text-decoration: inherit;
     color: inherit;
   }
