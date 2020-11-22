@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="t9l-page t9l-characters-list">
+        <div class="t9l-character-board t9l-wrapper--big-grid">
+
+            <div class="t9l-character-board__title-wrapper">
+                <div class="t9l-character-board__game-logo">
+                    <img src="{{ asset('build/assets/media/logos/dd-logo.png') }}" height="40px">
+                </div>
+                <h2 class="t9l-character-board__title">{{ subtitle }}</h2>
+            </div>
+
+            <p style="font-size: 36px; text-align: center;">
+                <a href="#">Create New Character</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

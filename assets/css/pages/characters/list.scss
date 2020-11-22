@@ -1,0 +1,30 @@
+.t9l-characters-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("#{$path-backgrounds}/background-tavern.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .t9l-character-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-height: 700px;
+    padding: 10px;
+    background-color: rgba($t9l-color-black,0.7);
+    @include border-medieval-grey();
+
+    @include bp('breakpoint-m') {
+      padding: 20px;
+    }
+
+    &__title-wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}

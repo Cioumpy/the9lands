@@ -8,6 +8,7 @@
 @import "variables/cursors";
 @import "variables/fonts";
 @import "variables/icons";
+@import "variables/layout";
 
 // Atoms
 @import "atoms/buttons";
@@ -17,5 +18,5 @@
 // Organisms
 
 // Pages
-@import "main";
 @import "pages/home/home";
+@import "pages/characters/list";

@@ -1,0 +1,60 @@
+[class^='t9l-'] {
+  box-sizing: border-box;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  a,
+  a:link,
+  a:visited {
+    text-decoration: inherit;
+    color: inherit;
+  }
+}
+
+.t9l-page {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.t9l-wrapper {
+  width: 100%;
+  margin: 0 auto;
+
+  &--small-grid {
+    @extend .t9l-wrapper;
+    max-width: 768px;
+  }
+
+  &--medium-grid {
+    @extend .t9l-wrapper;
+    max-width: 1024px;
+  }
+
+  &--big-grid {
+    @extend .t9l-wrapper;
+    max-width: 1200px;
+  }
+
+  &--full-grid {
+    @extend .t9l-wrapper;
+    max-width: 1440px;
+  }
+
+  &--full-width {
+    @extend .t9l-wrapper;
+    max-width: 1920px;
+  }
+}

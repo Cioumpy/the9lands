@@ -14,12 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PagesController extends AbstractController
 {
-    private $session;
-    private $userLoggedIn;
+    private SessionInterface $session;
+    private bool $userLoggedIn;
 
     public function __construct(SessionInterface $session)
     {
-        $this->session = $session;
+        $this->setSession($session);
         if (!$this->session->get('email', false)) {
             $this->setUserLoggedIn(false);
         } else {
@@ -28,7 +28,7 @@ class PagesController extends AbstractController
     }
 
     /**
-     * @Route("")
+     * @Route("", name="t9l_page_home")
      * @Route("/index")
      * @param Request $request
      * @return Response
@@ -67,7 +67,10 @@ class PagesController extends AbstractController
                 'role' => $user->getRole(),
                 'menulist' => [
                     'newchar' => 'New Character',
-                    'charlist' => 'Your Characters',
+                    'charlist' => [
+                        'label' => 'Your Characters',
+                        'url' => '/characters/list'
+                    ],
                     'campaigns' => 'Campaigns',
                     'dm' => 'Dungeon Master',
                     'rules' => 'Rules',
@@ -91,7 +94,23 @@ class PagesController extends AbstractController
      */
     public function logout(Request $request) {
         $this->session->clear();
-        return $this->redirectToRoute('app_pages_index');
+        return $this->redirectToRoute('t9l_page_home');
+    }
+
+    /**
+     * @return SessionInterface
+     */
+    public function getSession(): SessionInterface
+    {
+        return $this->session;
+    }
+
+    /**
+     * @param SessionInterface $session
+     */
+    public function setSession(SessionInterface $session): void
+    {
+        $this->session = $session;
     }
 
     /**
